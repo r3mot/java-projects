@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -18,6 +19,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("Home"), 1304,739);
         String css = this.getClass().getResource("/midterm/Styling/style.css").toExternalForm();
         scene.getStylesheets().add(css);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
     }

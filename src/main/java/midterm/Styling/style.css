@@ -1,69 +1,76 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap');
 
-#pane {
-    /* -fx-background-color: #c8d8e4; */
-    -fx-background-color: #2b6777;
-    -fx-background-repeat: stretch;  
-    -fx-background-size: 1304 739;
-    -fx-background-position: center center;
+*{
+    fx-primary: rgb(127,0,52);
+    fx-secondary: rgb(228,177,8);
+    -fx-font-family: "Verdana";
+    
 }
 
-/* Text Fields */
-.newField {
-    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 5, 0.0 , 3, 3 ); 
-    -fx-font-family: "Ubuntu Light";
+/* Panes */
+#anchor {
+    -fx-background-color: fx-secondary;
 }
-.searchStyle {
-    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 5, 0.0 , 3, 3 );
-    -fx-font-family: "Ubuntu Light";
-}
-
-
-
-/* Labels*/
-#libraryMainLabel {
-    -fx-font-family: "Ubuntu Light";
-    -fx-font-size: 35px;
-}
-#addBookLabel {
-    -fx-font-family: "Ubuntu Light";
-    -fx-font-size: 20px;
-    -fx-text-align: center;
-}
-
-
-
-/* Table Design */
-
- .tableStyle {
-    -fx-font-family: "Ubuntu Light";
-    -fx-background-color: 
-        linear-gradient(#f2f2f2, #d6d6d6),
-        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
-        linear-gradient(#dddddd 0%, #f6f6f6 50%);
-    -fx-background-insets: 0,1,2;
-    -fx-text-fill: black;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 25, 0.0 , 0 , 1 );
-} 
-
-
-/* Add New Book Styles */
-#addBookBtn {
-    -fx-border-radius: 30;
-    -fx-background-radius: 30;
-    -fx-background-color: rgb(255, 255, 255);
-    -fx-text-fill: black;
-}
-#addBookBtn:hover {
-    -fx-background-color: rgb(168, 192, 238);
-    -fx-text-fill: black;
-}
-#addBookBtn:pressed {
-    -fx-rotate: 10;
-}
-#headPane {
-    -fx-background-color: white;
+#leftPaneInitial {
+    -fx-background-color: fx-primary;
 }
 #leftPane {
-    -fx-background-color: #2b6777;
+    -fx-background-color: rgb(64,64,64);
+}
+
+/* Buttons */
+.btn{
+    -fx-background-radius: 20;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 12px;
+}
+#b1 {
+    -fx-background-color: fx-primary;
+    -fx-text-fill:white;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-font-size: 16;
+    -fx-font-weight: 10px;
+}
+#b1:hover {
+    -fx-background-color: black;
+}
+#addBookBtn {
+    -fx-background-color:rgb(64,64,64);
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-font-weight: 10px;
+}
+#addBookBtn:hover{
+    -fx-background-color:white;
+    -fx-text-fill: black;
+}
+#cancelBtn {
+    -fx-background-color:rgb(64,64,64);
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-font-weight: 10px;
+}
+#cancelBtn:hover{
+    -fx-background-color:white;
+    -fx-text-fill: black;
+}
+
+/* Text Field */
+#searchField {
+    -fx-effect: dropshadow(one-pass-box, rgb(214, 167, 13),  10,0.5,10,5);
+    -fx-background-color: rgb(223, 217, 217);
+}
+.newBookFields {
+    -fx-effect: dropshadow(one-pass-box,rgb(48, 47, 47),  10,0.5,5,5);
+}
+
+/* Table */
+#table {
+    -fx-effect: dropshadow(one-pass-box, rgb(214, 167, 13),  10,0.5,10,5);
+    -fx-background-color: rgb(223, 217, 217);
 }

@@ -6,8 +6,11 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
+import javafx.animation.TranslateTransition;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,8 +22,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 import midterm.Backend.Book;
 import midterm.Backend.Library;
 import midterm.Backend.Sort.Filter;
@@ -32,10 +39,10 @@ public class HomeController implements Initializable {
     Filter filter;
 
     @FXML private Pane pane;
-    @FXML private Pane leftPane;
+    @FXML private Pane leftPane, leftPaneInitial;
     @FXML private AnchorPane anchor;
-    @FXML private Button addBookBtn;
-    @FXML private Button hiddenBtn;
+    @FXML private Button addBookBtn, cancelBtn;
+    @FXML private Button hiddenBtn, b1;
     @FXML private RadioButton pagesFilterBtn;
     @FXML private RadioButton ratingFilterBtn;
     @FXML private RadioButton subjectFilterBtn;
@@ -53,12 +60,22 @@ public class HomeController implements Initializable {
     @FXML private TextField titleInput;
     @FXML private TextField yearInput;
     @FXML private Label addBookLabel;
+    @FXML private Label warning1, warning2, warning3;
+    @FXML private ImageView image;
     @FXML private ToggleGroup filters;
     private ObservableList < Book > booksAsList;
     private Book[] booksCopy;
 
+    @FXML private ImageView close;
+    @FXML private ImageView minimize;
+    @FXML private Pane navbar;
+
+   
+
     @FXML
     void addBookOnClick(ActionEvent event) throws IOException {
+
+        checkInputTypes();
 
         if (textFieldEmpty())
             triggerWarning(event);
@@ -68,11 +85,12 @@ public class HomeController implements Initializable {
             subjectInput.getText(),
             Integer.parseInt(yearInput.getText()),
             Integer.parseInt(pagesInput.getText()),
-            Integer.parseInt(ratingInput.getText())
+            Double.parseDouble(ratingInput.getText())
         );
 
         addToTable(newBook);
         triggerSuccessDialog(event);
+        slideRight();
         update();
     }
 
@@ -94,6 +112,28 @@ public class HomeController implements Initializable {
         table.setItems(bookList(filter.filterYear()));
     }
 
+    @FXML
+    void closeOnClick(MouseEvent event) {
+        Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+        stage.close();
+    }
+
+    @FXML
+    void minimizeOnClick(MouseEvent event) {
+        Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+        stage.setIconified(true);
+    }
+
+    @FXML
+    private void b1OnClick(ActionEvent event){
+        slideLeft();
+
+     }
+
+     @FXML
+    private void cancelOnClick(ActionEvent event){
+        slideRight();
+     }
     
     /* - Uses Key event to determine whether or not a user is typing
         - On key release, assign event listener to the search field
@@ -138,6 +178,7 @@ public class HomeController implements Initializable {
         yearCol.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getPubYear()).asObject());
         pagesCol.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getNumPages()).asObject());
         ratingCol.setCellValueFactory(data -> new SimpleDoubleProperty(data.getValue().getRating()).asObject());
+        beforeSlide();
         start();
     }
 
@@ -152,6 +193,7 @@ public class HomeController implements Initializable {
         this.booksCopy = library.getCatalog();
         this.filter = new Filter(booksCopy);
         this.table.setItems(bookList(booksCopy));
+        clearWarnings();
     }
 
     private void addToTable(Book newBook) {
@@ -166,6 +208,24 @@ public class HomeController implements Initializable {
             ratingInput.getText().isEmpty())
             return true;
         return false;
+    }
+
+    private void checkInputTypes(){
+        if(!yearInput.getText().matches("[0-9]*")){
+            warning1.setVisible(true);
+        }
+        if(!pagesInput.getText().matches("[0-9]*")){
+            warning2.setVisible(true);
+        }
+        if(!ratingInput.getText().matches("[0-9]*")){
+            warning3.setVisible(true);
+        }
+    }
+
+    private void clearWarnings(){
+        warning1.setVisible(false);
+        warning2.setVisible(false);
+        warning3.setVisible(false);
     }
 
     /* Ensures table and library are in sync */
@@ -220,6 +280,55 @@ public class HomeController implements Initializable {
         if (result.get() == ButtonType.OK) {
             clearTextFields();
         }
+    }
+
+    /* The following are related to the slide transition animation */
+    private void slideLeft(){
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.seconds(0.8));
+        slide.setNode(leftPane);
+        slide.setToX(-961);
+        slide.play();
+        leftPaneInitial.setTranslateX(0);
+        afterSlide();
+        slide.setOnFinished((e->{
+        }));
+    }
+
+    private void slideRight(){
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.seconds(0.8));
+        slide.setNode(leftPane);
+        slide.setToX(0);
+        slide.play();
+        leftPaneInitial.setTranslateX(0);
+        beforeSlide();
+        slide.setOnFinished((e->{
+        }));
+    }
+
+    private void beforeSlide(){
+        leftPane.setVisible(false);
+        titleInput.setVisible(false);
+        subjectInput.setVisible(false);
+        pagesInput.setVisible(false);
+        yearInput.setVisible(false);
+        ratingInput.setVisible(false);
+        addBookBtn.setVisible(false);
+        leftPaneInitial.setVisible(true);
+        b1.setVisible(true);
+    }
+
+    private void afterSlide(){
+        leftPane.setVisible(true);
+        titleInput.setVisible(true);
+        subjectInput.setVisible(true);
+        pagesInput.setVisible(true);
+        yearInput.setVisible(true);
+        ratingInput.setVisible(true);
+        addBookBtn.setVisible(true);
+        leftPaneInitial.setVisible(false);
+        b1.setVisible(false);
     }
 
 }

@@ -11,8 +11,8 @@ public class Library {
         return catalog;
     }
 
-    public Book addBook(String t, String s, int p, int y, int r){
-        Book newBook = new Book(t, s, p, y, r);
+    public Book addBook(String t, String s, int p, int y, double d){
+        Book newBook = new Book(t, s, p, y, d);
         catalog[bookCount] = newBook;
         bookCount++;
         return newBook;

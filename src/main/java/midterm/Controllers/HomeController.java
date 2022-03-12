@@ -73,7 +73,7 @@ public class HomeController implements Initializable {
 
         addToTable(newBook);
         triggerSuccessDialog(event);
-        updateFilters();
+        update();
     }
 
     @FXML
@@ -94,7 +94,7 @@ public class HomeController implements Initializable {
         table.setItems(bookList(filter.filterYear()));
     }
 
-    @FXML
+    
     /* - Uses Key event to determine whether or not a user is typing
         - On key release, assign event listener to the search field
         - Type: ObjectProperty<Predicate<? super E>>
@@ -102,9 +102,10 @@ public class HomeController implements Initializable {
         - Converts the filtered list to a sorted list
         - Displays the searched values in the table (if any)
     */
+    @FXML
     void searchCatalog(KeyEvent event) {
 
-        checkForUpdates(); // Custom even listener
+        update(); // Custom even listener
         
 
         FilteredList < Book > filteredData = new FilteredList < > (booksAsList, e-> true);
@@ -141,9 +142,11 @@ public class HomeController implements Initializable {
     }
 
 
+    /* End of Action Events for GUI */
     // ==================================================================================================
 
 
+   /* Sets all necessary data in library and GUI table */
     private void start() {
         library.initialize();
         this.booksCopy = library.getCatalog();
@@ -155,10 +158,6 @@ public class HomeController implements Initializable {
         table.getItems().add(newBook);
     }
 
-    private void updateFilters() {
-        booksCopy = library.getCatalog();
-        filter = new Filter(booksCopy);
-    }
     private boolean textFieldEmpty() {
         if (titleInput.getText().isEmpty() ||
             subjectInput.getText().isEmpty() ||
@@ -169,10 +168,13 @@ public class HomeController implements Initializable {
         return false;
     }
 
-    private void checkForUpdates() {
+    /* Ensures table and library are in sync */
+    private void update() {
         booksCopy = library.getCatalog();
+        filter = new Filter(booksCopy);
         bookList(booksCopy);
     }
+
     private void clearTextFields() {
         titleInput.clear();
         subjectInput.clear();
@@ -182,11 +184,12 @@ public class HomeController implements Initializable {
 
     }
 
+    /* List that allows for tracking of changes - used to populate table */
     ObservableList < Book > bookList(Book[] book) {
         booksAsList = FXCollections.observableArrayList();
 
         for (Book b: book) {
-            if (b.getRating() == -1)
+            if (b.getRating() == -1) // Refer to Generator Class: line 89
                 continue;
             booksAsList.add(new Book(
                 b.getTitle(),
@@ -199,6 +202,7 @@ public class HomeController implements Initializable {
     }
 
 
+    /* User did not fill out all text fields */
     private void triggerWarning(ActionEvent event) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Add Book Error");
@@ -207,6 +211,7 @@ public class HomeController implements Initializable {
         if (result.get() == ButtonType.OK) {}
     }
 
+    /* User successfully added a book to the library */
     private void triggerSuccessDialog(ActionEvent event) throws IOException {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Congratulations");

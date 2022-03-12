@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="739.0" prefWidth="1304.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="midterm.Controllers.HomeController">
+   <children>
+      <Pane fx:id="pane" layoutX="-14.0" prefHeight="739.0" prefWidth="1304.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TableView fx:id="table" layoutX="416.0" layoutY="146.0" prefHeight="519.0" prefWidth="735.0" styleClass="tableStyle">
+              <columns>
+                <TableColumn fx:id="titleCol" minWidth="20.0" prefWidth="100.0" text="Title" />
+                <TableColumn fx:id="subjectCol" minWidth="20.0" prefWidth="100.0" text="Subject" />
+                  <TableColumn fx:id="yearCol" minWidth="20.0" prefWidth="100.0" text="Year" />
+                  <TableColumn fx:id="pagesCol" minWidth="20.0" prefWidth="100.0" text="Pages" />
+                  <TableColumn fx:id="ratingCol" editable="false" prefWidth="93.0" sortable="false" text="Rating" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <TextField fx:id="searchField" alignment="CENTER" layoutX="416.0" layoutY="68.0" onKeyReleased="#searchCatalog" prefHeight="49.0" prefWidth="735.0" promptText="Search for a book" style="-fx-font-style: blue;" styleClass="searchStyle" />
+            <Label layoutX="1197.0" layoutY="148.0" styleClass="filterLabelStyle" text="Filters" textFill="WHITE" underline="true">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Pane fx:id="leftPane" layoutX="14.0" layoutY="-7.0" prefHeight="754.0" prefWidth="358.0">
+               <children>
+                  <TextField fx:id="titleInput" layoutX="75.0" layoutY="162.0" prefHeight="38.0" prefWidth="209.0" promptText="Title" styleClass="newField" />
+                  <TextField fx:id="subjectInput" layoutX="75.0" layoutY="262.0" prefHeight="38.0" prefWidth="209.0" promptText="Subject" styleClass="newField" />
+                  <TextField fx:id="yearInput" layoutX="75.0" layoutY="362.0" prefHeight="38.0" prefWidth="209.0" promptText="Year" styleClass="newField" />
+                  <TextField fx:id="pagesInput" layoutX="75.0" layoutY="462.0" prefHeight="38.0" prefWidth="209.0" promptText="Pages" styleClass="newField" />
+                  <TextField fx:id="ratingInput" layoutX="75.0" layoutY="562.0" prefHeight="38.0" prefWidth="209.0" promptText="Rating" styleClass="newField" />
+                  <Button fx:id="addBookBtn" layoutX="75.0" layoutY="647.0" mnemonicParsing="false" onAction="#addBookOnClick" prefHeight="25.0" prefWidth="209.0" text="Add Book">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Label fx:id="addBookLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="81.0" prefHeight="49.0" prefWidth="349.0" text="CSC 300 Library" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <RadioButton fx:id="ratingFilterBtn" layoutX="1189.0" layoutY="192.0" mnemonicParsing="false" onAction="#ratingFilterOnClick" text="Rating" textFill="WHITE">
+               <toggleGroup>
+                  <ToggleGroup fx:id="filters" />
+               </toggleGroup>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </RadioButton>
+            <RadioButton fx:id="yearFilterBtn" layoutX="1189.0" layoutY="228.0" mnemonicParsing="false" onAction="#yearFilterOnClick" text="Year" textFill="WHITE" toggleGroup="$filters">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
+            <RadioButton fx:id="pagesFilterBtn" layoutX="1189.0" layoutY="264.0" mnemonicParsing="false" onAction="#pagesFilterOnClick" text="Pages" textFill="WHITE" toggleGroup="$filters">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
+            <Pane layoutX="1119.0" prefHeight="200.0" prefWidth="200.0" />
+         </children></Pane>
+   </children>
+</AnchorPane>

@@ -1,5 +1,6 @@
 package midterm.Backend;
 
+import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,13 +21,16 @@ public class Generator {
      public Book[] getRandomBooks(){
         return generateRandomBooks();
     }
-    
+
     private int randomPages(){
         return (int)(1 + (Math.random() * (1000 - 50) + 50));        
     }
 
-    private int randomRating(){
-        return (int)(1 + (Math.random() * (5 - 1) + 1));              
+    private double randomRating(){
+        double rating = (0.1 + (Math.random() * (10 - 0.1))); 
+        DecimalFormat df = new DecimalFormat("0.0");
+        double roundedToOneDecimal = Double.parseDouble(df.format(rating));
+        return roundedToOneDecimal;
     }
 
     private int randomYear(){

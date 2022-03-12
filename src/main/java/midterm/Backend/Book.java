@@ -5,7 +5,8 @@ package midterm.Backend;
 public class Book {
     
     private String title, subject;
-    private int pubYear, numPages, rating;
+    private int pubYear, numPages;
+    private double rating;
     public Book sortBy;
 
     public Book(){
@@ -13,10 +14,10 @@ public class Book {
         subject = null;
         pubYear = 0;
         numPages = 0;
-        rating = 0;
+        rating = 0.0;
     };
 
-    public Book(String title, String subject, int pubYear, int numPages, int rating) {
+    public Book(String title, String subject, int pubYear, int numPages, double rating) {
         this.title = title;
         this.subject = subject;
         this.pubYear = pubYear;
@@ -56,11 +57,11 @@ public class Book {
         this.numPages = numPages;
     }
 
-    public int getRating(){
+    public double getRating(){
         return this.rating;
     }
 
-    public void setRating(int rating){
+    public void setRating(double rating){
         this.rating = rating;
     }
     

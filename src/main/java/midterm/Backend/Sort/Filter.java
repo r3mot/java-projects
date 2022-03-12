@@ -44,7 +44,7 @@ public class Filter extends QuickSort {
     private static class CompareRating implements Comparator<Book> {
         @Override
         public int compare(Book a, Book b){
-            return b.getRating() - a.getRating();
+            return Double.compare(b.getRating(), a.getRating());
         }
     }
 }

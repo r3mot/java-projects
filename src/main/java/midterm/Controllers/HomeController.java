@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -41,7 +42,7 @@ public class HomeController implements Initializable{
     @FXML private RadioButton yearFilterBtn;
     @FXML private TableView<Book> table;
     @FXML private TableColumn<Book, Integer> pagesCol;
-    @FXML private TableColumn<Book, Integer> ratingCol;
+    @FXML private TableColumn<Book, Double> ratingCol;
     @FXML private TableColumn<Book, Integer> yearCol;
     @FXML private TableColumn<Book, String> subjectCol;
     @FXML private TableColumn<Book, String> titleCol;
@@ -126,7 +127,7 @@ public class HomeController implements Initializable{
         subjectCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getSubject()));
         yearCol.setCellValueFactory (data -> new SimpleIntegerProperty(data.getValue().getPubYear()).asObject());
         pagesCol.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getNumPages()).asObject());
-        ratingCol.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getRating()).asObject());
+        ratingCol.setCellValueFactory(data -> new SimpleDoubleProperty(data.getValue().getRating()).asObject());
         start();
     }
 

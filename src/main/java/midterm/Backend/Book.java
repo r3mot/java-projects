@@ -3,13 +3,13 @@ package midterm.Backend;
 /* Book object to be used throughout program */
 
 public class Book {
-    
+
     private String title, subject;
     private int pubYear, numPages;
     private double rating;
     public Book sortBy;
 
-    public Book(){
+    public Book() {
         title = null;
         subject = null;
         pubYear = 0;
@@ -25,52 +25,52 @@ public class Book {
         this.rating = rating;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return this.title;
     }
 
-    public void setTitle(String title){
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getSubject(){
+    public String getSubject() {
         return this.subject;
     }
 
-    public void setSubject(String subject){
+    public void setSubject(String subject) {
         this.subject = subject;
     }
 
-    public int getPubYear(){
+    public int getPubYear() {
         return this.pubYear;
     }
 
-    public void setYear(int pubYear){
+    public void setYear(int pubYear) {
         this.pubYear = pubYear;
     }
 
-    public int getNumPages(){
+    public int getNumPages() {
         return this.numPages;
     }
 
-    public void setPages(int numPages){
+    public void setPages(int numPages) {
         this.numPages = numPages;
     }
 
-    public double getRating(){
+    public double getRating() {
         return this.rating;
     }
 
-    public void setRating(double rating){
+    public void setRating(double rating) {
         this.rating = rating;
     }
-    
+
     @Override
     public String toString() {
         return "\nTitle: " + title +
-                "\tSubject: " + subject +
-                "\tYear: " + pubYear +
-                "\tPages: " + numPages +
-                "\tRating: " + rating;
-    } 
+            "\tSubject: " + subject +
+            "\tYear: " + pubYear +
+            "\tPages: " + numPages +
+            "\tRating: " + rating;
+    }
 }

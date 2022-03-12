@@ -25,7 +25,7 @@ import midterm.Backend.Book;
 import midterm.Backend.Library;
 import midterm.Backend.Sort.Filter;
 
-public class HomeController implements Initializable{
+public class HomeController implements Initializable {
 
     // Objs
     Library library = new Library();
@@ -40,31 +40,30 @@ public class HomeController implements Initializable{
     @FXML private RadioButton ratingFilterBtn;
     @FXML private RadioButton subjectFilterBtn;
     @FXML private RadioButton yearFilterBtn;
-    @FXML private TableView<Book> table;
-    @FXML private TableColumn<Book, Integer> pagesCol;
-    @FXML private TableColumn<Book, Double> ratingCol;
-    @FXML private TableColumn<Book, Integer> yearCol;
-    @FXML private TableColumn<Book, String> subjectCol;
-    @FXML private TableColumn<Book, String> titleCol;
+    @FXML private TableView < Book > table;
+    @FXML private TableColumn < Book, Integer > pagesCol;
+    @FXML private TableColumn < Book, Double > ratingCol;
+    @FXML private TableColumn < Book, Integer > yearCol;
+    @FXML private TableColumn < Book, String > subjectCol;
+    @FXML private TableColumn < Book, String > titleCol;
     @FXML private TextField pagesInput;
     @FXML private TextField ratingInput;
     @FXML private TextField searchField;
     @FXML private TextField subjectInput;
     @FXML private TextField titleInput;
     @FXML private TextField yearInput;
-    @FXML  private Label addBookLabel;
+    @FXML private Label addBookLabel;
     @FXML private ToggleGroup filters;
-    private ObservableList<Book> booksAsList;
+    private ObservableList < Book > booksAsList;
     private Book[] booksCopy;
 
     @FXML
     void addBookOnClick(ActionEvent event) throws IOException {
 
-        if(textFieldEmpty())
+        if (textFieldEmpty())
             triggerWarning(event);
-        
-        Book newBook = library.addBook
-        (
+
+        Book newBook = library.addBook(
             titleInput.getText(),
             subjectInput.getText(),
             Integer.parseInt(yearInput.getText()),
@@ -96,26 +95,36 @@ public class HomeController implements Initializable{
     }
 
     @FXML
+    /* - Uses Key event to determine whether or not a user is typing
+        - On key release, assign event listener to the search field
+        - Type: ObjectProperty<Predicate<? super E>>
+        - the predicate matches the element in the filtered list
+        - Converts the filtered list to a sorted list
+        - Displays the searched values in the table (if any)
+    */
     void searchCatalog(KeyEvent event) {
-        checkForUpdates();
-        FilteredList<Book> filteredData = new FilteredList<>(booksAsList, e->true);
-        searchField.setOnKeyReleased(e->{
-            searchField.textProperty().addListener((ObservableValue, oldValue, newValue) -> {
-                filteredData.setPredicate((Predicate<? super Book>) book-> {
-                    if(newValue == null || newValue.isEmpty()){
+
+        checkForUpdates(); // Custom even listener
+        
+
+        FilteredList < Book > filteredData = new FilteredList < > (booksAsList, e-> true);
+        searchField.setOnKeyReleased(e-> {
+            searchField.textProperty().addListener((ObservableValue, oldValue, newValue)-> {
+                filteredData.setPredicate((Predicate <? super Book> ) book-> {
+                    if (newValue == null || newValue.isEmpty()) {
                         return true;
                     }
                     String lower = newValue.toLowerCase();
-                    if(book.getTitle().toLowerCase().contains(lower)){
+                    if (book.getTitle().toLowerCase().contains(lower)) {
                         return true;
-                    }else if(book.getSubject().toLowerCase().contains(lower)){
+                    } else if (book.getSubject().toLowerCase().contains(lower)) {
                         return true;
                     }
                     return false;
                 });
             });
 
-            SortedList<Book> sortedData = new SortedList<>(filteredData);
+            SortedList < Book > sortedData = new SortedList < > (filteredData);
             sortedData.comparatorProperty().bind(table.comparatorProperty());
             table.setItems(sortedData);
         });
@@ -125,90 +134,87 @@ public class HomeController implements Initializable{
     public void initialize(URL arg0, ResourceBundle arg1) {
         titleCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTitle()));
         subjectCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getSubject()));
-        yearCol.setCellValueFactory (data -> new SimpleIntegerProperty(data.getValue().getPubYear()).asObject());
+        yearCol.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getPubYear()).asObject());
         pagesCol.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getNumPages()).asObject());
         ratingCol.setCellValueFactory(data -> new SimpleDoubleProperty(data.getValue().getRating()).asObject());
         start();
     }
 
 
-// ==================================================================================================
+    // ==================================================================================================
 
 
-    private void start(){
+    private void start() {
         library.initialize();
         this.booksCopy = library.getCatalog();
         this.filter = new Filter(booksCopy);
         this.table.setItems(bookList(booksCopy));
     }
 
-    private void addToTable(Book newBook){
+    private void addToTable(Book newBook) {
         table.getItems().add(newBook);
     }
 
-    private void updateFilters(){
+    private void updateFilters() {
         booksCopy = library.getCatalog();
         filter = new Filter(booksCopy);
     }
-    private boolean textFieldEmpty(){
-        if( titleInput.getText().isEmpty()      ||
-            subjectInput.getText().isEmpty()    ||
-            pagesInput.getText().isEmpty()      ||
-            yearInput.getText().isEmpty()       ||
+    private boolean textFieldEmpty() {
+        if (titleInput.getText().isEmpty() ||
+            subjectInput.getText().isEmpty() ||
+            pagesInput.getText().isEmpty() ||
+            yearInput.getText().isEmpty() ||
             ratingInput.getText().isEmpty())
-                return true;
+            return true;
         return false;
     }
 
-    private void checkForUpdates(){
+    private void checkForUpdates() {
         booksCopy = library.getCatalog();
         bookList(booksCopy);
     }
-    private void clearTextFields(){
-        titleInput.clear(); 
+    private void clearTextFields() {
+        titleInput.clear();
         subjectInput.clear();
         pagesInput.clear();
         yearInput.clear();
         ratingInput.clear();
-        
+
     }
 
-    ObservableList<Book> bookList(Book[] book){
+    ObservableList < Book > bookList(Book[] book) {
         booksAsList = FXCollections.observableArrayList();
 
-        for(Book b : book){
-            if(b.getRating() == -1)
+        for (Book b: book) {
+            if (b.getRating() == -1)
                 continue;
-                booksAsList.add(new Book
-                (
-                    b.getTitle(), 
-                    b.getSubject(), 
-                    b.getPubYear(), 
-                    b.getNumPages(), 
-                    b.getRating())
-                );
+            booksAsList.add(new Book(
+                b.getTitle(),
+                b.getSubject(),
+                b.getPubYear(),
+                b.getNumPages(),
+                b.getRating()));
         }
         return booksAsList;
     }
 
 
-    private void triggerWarning(ActionEvent event){
+    private void triggerWarning(ActionEvent event) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Add Book Error");
         alert.setHeaderText("Please make sure all fields are fill out");
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.get() == ButtonType.OK){
-        }
+        Optional < ButtonType > result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {}
     }
 
-    private void triggerSuccessDialog(ActionEvent event) throws IOException { 
+    private void triggerSuccessDialog(ActionEvent event) throws IOException {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Congratulations");
         alert.setHeaderText("Your book has been successfully added!");
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.get() == ButtonType.OK){
+        Optional < ButtonType > result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
             clearTextFields();
         }
-    } 
+    }
 
 }

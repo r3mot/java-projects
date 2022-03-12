@@ -1,26 +1,50 @@
 package midterm.Backend.Sort;
 
+import java.util.Comparator;
 import midterm.Backend.Book;
+
 
 public class Filter extends QuickSort {
 
-    private static int PAGES = 1;
-    private int YEAR = 2;
-    private int RATING = 3;
     private Book[] toSort;
 
     public Filter(Book[] toSort){
         this.toSort = toSort;
     }
+    
     public Book[] filterPages(){
-        return sort(toSort, PAGES);
+        Comparator<Book> byPages = new ComparePages();
+        return quickSort(toSort, 0, toSort.length - 1, byPages);
     }
 
     public Book[] filterYear(){
-        return sort(toSort, YEAR);
+        Comparator<Book> byYear = new CompareYear();
+        return quickSort(toSort, 0, toSort.length - 1, byYear);
     }
 
-    public Book[] filterRating() {
-        return sort(toSort, RATING);
+    public Book[] filterRating(){
+        Comparator<Book> byRating = new CompareRating();
+        return quickSort(toSort, 0, toSort.length - 1, byRating);
+    }
+
+    private static class CompareYear implements Comparator<Book> {
+        @Override
+        public int compare(Book a, Book b){
+            return a.getPubYear() - b.getPubYear();
+        }
+    }
+
+    private static class ComparePages implements Comparator<Book> {
+        @Override
+        public int compare(Book a, Book b){
+            return a.getNumPages() - b.getNumPages();
+        }
+    }
+
+    private static class CompareRating implements Comparator<Book> {
+        @Override
+        public int compare(Book a, Book b){
+            return b.getRating() - a.getRating();
+        }
     }
 }

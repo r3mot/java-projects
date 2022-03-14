@@ -116,15 +116,15 @@
                <font>
                   <Font size="15.0" />
                </font></TextField>
-            <TextField fx:id="yearInput" layoutX="57.0" layoutY="273.0" prefHeight="38.0" prefWidth="209.0" promptText="Year" styleClass="newBookFields">
+            <TextField fx:id="yearInput" layoutX="57.0" layoutY="273.0" onKeyTyped="#checkYearInputType" prefHeight="38.0" prefWidth="209.0" promptText="Year" styleClass="newBookFields">
                <font>
                   <Font size="15.0" />
                </font></TextField>
-            <TextField fx:id="pagesInput" layoutX="57.0" layoutY="373.0" prefHeight="38.0" prefWidth="209.0" promptText="Pages" styleClass="newBookFields">
+            <TextField fx:id="pagesInput" layoutX="57.0" layoutY="373.0" onKeyTyped="#checkPagesInputType" prefHeight="38.0" prefWidth="209.0" promptText="Pages" styleClass="newBookFields">
                <font>
                   <Font size="15.0" />
                </font></TextField>
-            <TextField fx:id="ratingInput" layoutX="57.0" layoutY="473.0" prefHeight="38.0" prefWidth="209.0" promptText="Rating" styleClass="newBookFields">
+            <TextField fx:id="ratingInput" layoutX="57.0" layoutY="473.0" onKeyTyped="#checkRatingInputType" prefHeight="38.0" prefWidth="209.0" promptText="Rating" styleClass="newBookFields">
                <font>
                   <Font size="15.0" />
                </font></TextField>
@@ -138,9 +138,9 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="warning1" layoutX="112.0" layoutY="245.0" text="Please Enter A Number" textFill="#f80000" />
-            <Label fx:id="warning2" layoutX="112.0" layoutY="344.0" text="Please Enter A Number" textFill="RED" />
-            <Label fx:id="warning3" layoutX="112.0" layoutY="437.0" text="Please Enter A Number" textFill="RED" />
+            <Label fx:id="yearWarning" layoutX="112.0" layoutY="245.0" text="Please Enter A Number" textFill="#f80000" visible="false" />
+            <Label fx:id="pagesWarning" layoutX="112.0" layoutY="344.0" text="Please Enter A Number" textFill="RED" visible="false" />
+            <Label fx:id="ratingWarning" layoutX="112.0" layoutY="437.0" text="Please Enter A Number" textFill="RED" visible="false" />
          </children>
       </Pane>
    </children>

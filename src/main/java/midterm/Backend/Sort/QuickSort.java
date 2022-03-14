@@ -1,24 +1,23 @@
 package midterm.Backend.Sort;
 
 import java.util.Comparator;
-
 import midterm.Backend.Book;
 
 /* Custome quicksort algo - uses custom comparators to determine which obj property to sort*/
 
 public class QuickSort {
 
-    public static Book[] quickSort(Book[] data, int low, int high, Comparator < Book > comp) {
+    public static Book[] quickSort(Book[] data, int low, int high, Comparator < Book > comparator) {
 
         int i = low;
         int j = high;
         Book pivot = data[low + (high - low) / 2];
 
         while (i <= j) {
-            while (i < high && comp.compare(data[i], pivot) < 0) {
+            while (i < high && comparator.compare(data[i], pivot) < 0) {
                 i++;
             }
-            while (j > low && comp.compare(data[j], pivot) > 0) {
+            while (j > low && comparator.compare(data[j], pivot) > 0) {
                 j--;
             }
 
@@ -30,9 +29,9 @@ public class QuickSort {
         }
 
         if (low < j)
-            quickSort(data, low, j, comp);
+            quickSort(data, low, j, comparator);
         if (i < high)
-            quickSort(data, i, high, comp);
+            quickSort(data, i, high, comparator);
 
         return data;
     }

@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
-
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
@@ -25,7 +24,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import midterm.Backend.Book;
@@ -41,8 +39,7 @@ public class HomeController implements Initializable {
     @FXML private Pane pane;
     @FXML private Pane leftPane, leftPaneInitial;
     @FXML private AnchorPane anchor;
-    @FXML private Button addBookBtn, cancelBtn;
-    @FXML private Button hiddenBtn, b1;
+    @FXML private Button addBookBtn, cancelBtn, b1;
     @FXML private RadioButton pagesFilterBtn;
     @FXML private RadioButton ratingFilterBtn;
     @FXML private RadioButton subjectFilterBtn;
@@ -59,23 +56,20 @@ public class HomeController implements Initializable {
     @FXML private TextField subjectInput;
     @FXML private TextField titleInput;
     @FXML private TextField yearInput;
-    @FXML private Label addBookLabel;
-    @FXML private Label warning1, warning2, warning3;
+    @FXML private Label yearWarning, pagesWarning, ratingWarning;
     @FXML private ImageView image;
     @FXML private ToggleGroup filters;
-    private ObservableList < Book > booksAsList;
-    private Book[] booksCopy;
-
     @FXML private ImageView close;
     @FXML private ImageView minimize;
     @FXML private Pane navbar;
+    private ObservableList < Book > booksAsList;
+    private Book[] booksCopy;
 
-   
+
+//============================================ Button Controllers ==========================================================
 
     @FXML
     void addBookOnClick(ActionEvent event) throws IOException {
-
-        checkInputTypes();
 
         if (textFieldEmpty())
             triggerWarning(event);
@@ -113,41 +107,75 @@ public class HomeController implements Initializable {
     }
 
     @FXML
+    /* Closes the program */
     void closeOnClick(MouseEvent event) {
         Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
         stage.close();
     }
 
     @FXML
+    /* Minimizes the program */
     void minimizeOnClick(MouseEvent event) {
         Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
         stage.setIconified(true);
     }
 
     @FXML
+    /* Triggers animation when ADD BOOK btn clicked */
     private void b1OnClick(ActionEvent event){
         slideLeft();
-
      }
 
      @FXML
     private void cancelOnClick(ActionEvent event){
         slideRight();
      }
-    
-    /* - Uses Key event to determine whether or not a user is typing
+
+//============================================ Keyboard Event Controllers ==================================================
+
+    @FXML
+    /* Checks input type in text field - populates error messages */
+    void checkYearInputType(KeyEvent event) {
+        yearInput.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
+            if(yearInput.getText().matches("[0-9]*")){
+                yearWarning.setVisible(false);
+            }else{
+                yearWarning.setVisible(true);
+            }
+        }); 
+    }
+    @FXML
+    void checkPagesInputType(KeyEvent event) {
+        pagesInput.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
+            if(pagesInput.getText().matches("[0-9]*")){
+                pagesWarning.setVisible(false);
+            }else{
+                pagesWarning.setVisible(true);
+            }
+        }); 
+    }
+    @FXML
+    void checkRatingInputType(KeyEvent event) {
+        ratingInput.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
+            if(ratingInput.getText().matches("[0-9]*")){
+                ratingWarning.setVisible(false);
+            }else{
+                ratingWarning.setVisible(true);
+            }
+        }); 
+    }
+
+     @FXML
+    void searchCatalog(KeyEvent event) {
+        /* - Uses Key event to determine whether or not a user is typing
         - On key release, assign event listener to the search field
         - Type: ObjectProperty<Predicate<? super E>>
         - the predicate matches the element in the filtered list
         - Converts the filtered list to a sorted list
         - Displays the searched values in the table (if any)
     */
-    @FXML
-    void searchCatalog(KeyEvent event) {
-
-        update(); // Custom even listener
+        update(); // Custom event listener
         
-
         FilteredList < Book > filteredData = new FilteredList < > (booksAsList, e-> true);
         searchField.setOnKeyReleased(e-> {
             searchField.textProperty().addListener((ObservableValue, oldValue, newValue)-> {
@@ -164,27 +192,24 @@ public class HomeController implements Initializable {
                     return false;
                 });
             });
-
             SortedList < Book > sortedData = new SortedList < > (filteredData);
             sortedData.comparatorProperty().bind(table.comparatorProperty());
             table.setItems(sortedData);
         });
     }
 
+//============================================ Initializers && Listeners ===================================================
+
     @Override
+    /* Initialize table */
     public void initialize(URL arg0, ResourceBundle arg1) {
         titleCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTitle()));
         subjectCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getSubject()));
         yearCol.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getPubYear()).asObject());
         pagesCol.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getNumPages()).asObject());
         ratingCol.setCellValueFactory(data -> new SimpleDoubleProperty(data.getValue().getRating()).asObject());
-        beforeSlide();
         start();
     }
-
-
-    /* End of Action Events for GUI */
-    // ==================================================================================================
 
 
    /* Sets all necessary data in library and GUI table */
@@ -193,13 +218,21 @@ public class HomeController implements Initializable {
         this.booksCopy = library.getCatalog();
         this.filter = new Filter(booksCopy);
         this.table.setItems(bookList(booksCopy));
-        clearWarnings();
+        setVisibility(false);
+    }
+
+    /* Ensures table and library are in sync */
+    private void update() {
+        booksCopy = library.getCatalog();
+        filter = new Filter(booksCopy);
+        bookList(booksCopy);
     }
 
     private void addToTable(Book newBook) {
         table.getItems().add(newBook);
     }
 
+    /* Sanity checks input fields */
     private boolean textFieldEmpty() {
         if (titleInput.getText().isEmpty() ||
             subjectInput.getText().isEmpty() ||
@@ -208,31 +241,6 @@ public class HomeController implements Initializable {
             ratingInput.getText().isEmpty())
             return true;
         return false;
-    }
-
-    private void checkInputTypes(){
-        if(!yearInput.getText().matches("[0-9]*")){
-            warning1.setVisible(true);
-        }
-        if(!pagesInput.getText().matches("[0-9]*")){
-            warning2.setVisible(true);
-        }
-        if(!ratingInput.getText().matches("[0-9]*")){
-            warning3.setVisible(true);
-        }
-    }
-
-    private void clearWarnings(){
-        warning1.setVisible(false);
-        warning2.setVisible(false);
-        warning3.setVisible(false);
-    }
-
-    /* Ensures table and library are in sync */
-    private void update() {
-        booksCopy = library.getCatalog();
-        filter = new Filter(booksCopy);
-        bookList(booksCopy);
     }
 
     private void clearTextFields() {
@@ -261,6 +269,7 @@ public class HomeController implements Initializable {
         return booksAsList;
     }
 
+//============================================ Dialog Popups ===============================================================
 
     /* User did not fill out all text fields */
     private void triggerWarning(ActionEvent event) {
@@ -282,7 +291,8 @@ public class HomeController implements Initializable {
         }
     }
 
-    /* The following are related to the slide transition animation */
+//============================================ Animations ==================================================================
+
     private void slideLeft(){
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.8));
@@ -290,7 +300,7 @@ public class HomeController implements Initializable {
         slide.setToX(-961);
         slide.play();
         leftPaneInitial.setTranslateX(0);
-        afterSlide();
+        setVisibility(true);
         slide.setOnFinished((e->{
         }));
     }
@@ -302,33 +312,21 @@ public class HomeController implements Initializable {
         slide.setToX(0);
         slide.play();
         leftPaneInitial.setTranslateX(0);
-        beforeSlide();
+        setVisibility(false);
         slide.setOnFinished((e->{
         }));
     }
 
-    private void beforeSlide(){
-        leftPane.setVisible(false);
-        titleInput.setVisible(false);
-        subjectInput.setVisible(false);
-        pagesInput.setVisible(false);
-        yearInput.setVisible(false);
-        ratingInput.setVisible(false);
-        addBookBtn.setVisible(false);
-        leftPaneInitial.setVisible(true);
-        b1.setVisible(true);
+    /* Visibility of textfields / Scene panes */
+    private void setVisibility(boolean update){
+        leftPane.setVisible(update);
+        titleInput.setVisible(update);
+        subjectInput.setVisible(update);
+        pagesInput.setVisible(update);
+        yearInput.setVisible(update);
+        ratingInput.setVisible(update);
+        addBookBtn.setVisible(update);
+        leftPaneInitial.setVisible(!update);
+        b1.setVisible(!update);
     }
-
-    private void afterSlide(){
-        leftPane.setVisible(true);
-        titleInput.setVisible(true);
-        subjectInput.setVisible(true);
-        pagesInput.setVisible(true);
-        yearInput.setVisible(true);
-        ratingInput.setVisible(true);
-        addBookBtn.setVisible(true);
-        leftPaneInitial.setVisible(false);
-        b1.setVisible(false);
-    }
-
 }

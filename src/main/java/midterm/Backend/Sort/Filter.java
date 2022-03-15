@@ -1,6 +1,7 @@
 package midterm.Backend.Sort;
 
 import java.util.Comparator;
+
 import midterm.Backend.Book;
 
 
@@ -14,6 +15,7 @@ public class Filter extends QuickSort {
 
 
 //======================== Public access to filtering =====================================================================
+
 
     public Book[] filterPages() {
         Comparator < Book > byPages = new ComparePages();

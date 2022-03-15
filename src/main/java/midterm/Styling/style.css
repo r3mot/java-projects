@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap');
-
+/* Global */
 *{
     fx-primary: rgb(127,0,52);
     fx-secondary: rgb(228,177,8);
@@ -30,7 +29,7 @@
     -fx-border-color: black;
     -fx-border-width: 2px;
     -fx-font-size: 16;
-    -fx-font-weight: 10px;
+    font-weight: 10px;
 }
 #b1:hover {
     -fx-background-color: black;
@@ -41,7 +40,7 @@
     -fx-border-width: 2px;
     -fx-text-fill: white;
     -fx-font-size: 14;
-    -fx-font-weight: 10px;
+    font-weight: 10px;
 }
 #addBookBtn:hover{
     -fx-background-color:white;
@@ -53,11 +52,40 @@
     -fx-border-width: 2px;
     -fx-text-fill: white;
     -fx-font-size: 14;
-    -fx-font-weight: 10px;
+    font-weight: 10px;
 }
 #cancelBtn:hover{
     -fx-background-color:white;
     -fx-text-fill: black;
+}
+
+.radio-button .radio {
+    -fx-border-width: 1px;
+    -fx-border-color: #000;
+    -fx-background-color: white;
+    -fx-background-image: null;
+    -fx-border-radius: 15px;
+    -fx-padding: 4px;
+}
+.radio-button .radio:selected {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:armed {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:determinate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:indeterminate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button .dot {
+    -fx-background-radius: 15px;
+    -fx-padding: 8px;
 }
 
 /* Text Field */

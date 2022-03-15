@@ -9,6 +9,7 @@ public class Generator {
     private Book[] randomBooks = new Book[50];
     private Set < Integer > yearsUsed = new HashSet < Integer > ();
     private int[] subjectCount = new int[5];
+    private int max = 0;
     private String[] subjects = new String[] {
         "Programming",
         "Data Structures",
@@ -18,37 +19,40 @@ public class Generator {
     };
 
 
-    public Book[] getRandomBooks() {
+    public Book[] generateCatalog() {
         return generateRandomBooks();
+    }
+
+    public int getMax(){
+        return max;
     }
 
     private int randomYear() {
         return (int)(1 + (Math.random() * (2022 - 1980) + 1980));
     }
 
-    private int randomIndex() {
+    private int subjectIndex() {
         return (int)(Math.floor(Math.random() * (4 + 1)));
     }
 
-    private double roundedToOneDecimal(double input) {
+    private int randomPages() {
+        return (int)(1 + (Math.random() * (1000 - 50) + 50));
+    }
+
+    private double round(double input) {
         DecimalFormat df = new DecimalFormat("0.0");
         double rounded = Double.parseDouble(df.format(input));
         return rounded;
     }
 
-    private int generateRandPages() {
-        return (int)(1 + (Math.random() * (1000 - 50) + 50));
-    }
-
-    private double generateRandRating() {
+    private double randomRating() {
         double rating = (0.1 + (Math.random() * (10 - 0.1)));
-        return roundedToOneDecimal(rating);
+        return round(rating);
     }
 
-    private int generateRandYear() {
+    private int randomUniqueYear() {
 
         int year = randomYear();
-
         do {
             if (!yearsUsed.contains(year))
                 break;
@@ -59,13 +63,13 @@ public class Generator {
         return year;
     }
 
-    private String generateRandSubject() {
+    private String randomSubject() {
 
-        int randomIndex = randomIndex();
+        int randomIndex = subjectIndex();
         do {
             if (subjectCount[randomIndex] != 5)
                 break;
-            randomIndex = randomIndex();
+            randomIndex = subjectIndex();
         } while (true);
 
         subjectCount[randomIndex]++;
@@ -80,25 +84,23 @@ public class Generator {
     }
 
     private void fillInitialBooks() {
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 20; i++) 
             randomBooks[i] = addBook(i);
-        }
     }
 
-    /* Workaround so GUI doesn't return null when attempting to pull from book array*/
+    /* Workaround so GUI doesn't return null when iterating through book array */
     private void fillTempBooks() {
-        for (int j = 20; j < 50; j++) {
+        for (int j = 20; j < 50; j++) 
             randomBooks[j] = new Book("", "", -1, -1, -1);
-        }
     }
 
     private Book addBook(int i) {
         Book book = new Book();
         book.setTitle("Book " + (i + 1));
-        book.setSubject(generateRandSubject());
-        book.setYear(generateRandYear());
-        book.setPages(generateRandPages());
-        book.setRating(generateRandRating());
+        book.setSubject(randomSubject());
+        book.setYear(randomUniqueYear());
+        book.setPages(randomPages());
+        book.setRating(randomRating());
         return book;
 
     }

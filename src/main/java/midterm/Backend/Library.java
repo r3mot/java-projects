@@ -21,6 +21,6 @@ public class Library {
     /* Randomly generates the first 20 books in the catalog*/
     public void initialize(){
         catalog = new Book[50];
-        catalog = random.getRandomBooks();
+        catalog = random.generateCatalog();
     }
 }

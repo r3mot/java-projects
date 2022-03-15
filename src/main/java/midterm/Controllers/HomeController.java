@@ -65,8 +65,7 @@ public class HomeController implements Initializable {
     private ObservableList < Book > booksAsList;
     private Book[] booksCopy;
 
-
-//============================================ Button Controllers ==========================================================
+//============================================ Mouse Event Controllers =====================================================
 
     @FXML
     void addBookOnClick(ActionEvent event) throws IOException {
@@ -84,7 +83,7 @@ public class HomeController implements Initializable {
 
         addToTable(newBook);
         triggerSuccessDialog(event);
-        slideRight();
+        animationSlideRight();
         update();
     }
 
@@ -123,15 +122,18 @@ public class HomeController implements Initializable {
     @FXML
     /* Triggers animation when ADD BOOK btn clicked */
     private void b1OnClick(ActionEvent event){
-        slideLeft();
+        animationSlideLeft();
      }
 
      @FXML
     private void cancelOnClick(ActionEvent event){
-        slideRight();
+        animationSlideRight();
      }
 
+    
+
 //============================================ Keyboard Event Controllers ==================================================
+
 
     @FXML
     /* Checks input type in text field - populates error messages */
@@ -147,7 +149,7 @@ public class HomeController implements Initializable {
     @FXML
     void checkPagesInputType(KeyEvent event) {
         pagesInput.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
-            if(pagesInput.getText().matches("[0-9]*")){
+            if(pagesInput.getText().matches("[0-9]*")){ 
                 pagesWarning.setVisible(false);
             }else{
                 pagesWarning.setVisible(true);
@@ -157,7 +159,7 @@ public class HomeController implements Initializable {
     @FXML
     void checkRatingInputType(KeyEvent event) {
         ratingInput.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
-            if(ratingInput.getText().matches("[0-9]*")){
+            if(ratingInput.getText().matches("[0-9]*")){ 
                 ratingWarning.setVisible(false);
             }else{
                 ratingWarning.setVisible(true);
@@ -293,7 +295,7 @@ public class HomeController implements Initializable {
 
 //============================================ Animations ==================================================================
 
-    private void slideLeft(){
+    private void animationSlideLeft(){
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.8));
         slide.setNode(leftPane);
@@ -305,7 +307,7 @@ public class HomeController implements Initializable {
         }));
     }
 
-    private void slideRight(){
+    private void animationSlideRight(){
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.8));
         slide.setNode(leftPane);

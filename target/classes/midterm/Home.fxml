@@ -17,9 +17,6 @@
 <AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="739.0" prefWidth="1304.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="midterm.Controllers.HomeController">
    <children>
       <RadioButton fx:id="yearFilterBtn" layoutX="1183.0" layoutY="313.0" mnemonicParsing="false" onAction="#yearFilterOnClick" text="Year">
-         <font>
-            <Font size="15.0" />
-         </font>
          <toggleGroup>
             <ToggleGroup fx:id="filters" />
          </toggleGroup>
@@ -28,17 +25,11 @@
          </cursor>
       </RadioButton>
       <RadioButton fx:id="pagesFilterBtn" layoutX="1183.0" layoutY="364.0" mnemonicParsing="false" onAction="#pagesFilterOnClick" text="Pages" toggleGroup="$filters">
-         <font>
-            <Font size="15.0" />
-         </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </RadioButton>
       <RadioButton fx:id="ratingFilterBtn" layoutX="1183.0" layoutY="411.0" mnemonicParsing="false" onAction="#ratingFilterOnClick" text="Rating" toggleGroup="$filters">
-         <font>
-            <Font size="15.0" />
-         </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -52,7 +43,7 @@
          <children>
             <ImageView fx:id="close" fitHeight="34.0" fitWidth="37.0" layoutX="1253.0" onMouseClicked="#closeOnClick" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@close.png" />
+                  <Image url="@../Images/close.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -60,7 +51,7 @@
             </ImageView>
             <ImageView fx:id="minimize" fitHeight="34.0" fitWidth="37.0" layoutX="1205.0" onMouseClicked="#minimizeOnClick" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@minimize.png" />
+                  <Image url="@../Images/minimize.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -84,16 +75,17 @@
          <font>
             <Font size="15.0" />
          </font></TextField>
+      <Button fx:id="searchBtn" layoutX="1073.0" layoutY="112.0" mnemonicParsing="false" onAction="#searchOnClick" prefHeight="25.0" prefWidth="69.0" text="Search" />
       <Pane fx:id="leftPaneInitial" layoutY="34.0" prefHeight="705.0" prefWidth="346.0">
          <children>
             <ImageView fx:id="image" fitHeight="230.0" fitWidth="239.0" layoutX="58.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@csudhLogo.jpeg" />
+                  <Image url="@../Images/csudhLogo.jpeg" />
                </image>
             </ImageView>
             <ImageView fx:id="image" fitHeight="283.0" fitWidth="357.0" layoutX="14.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@bull.png" />
+                  <Image url="@../Images/bull.png" />
                </image>
             </ImageView>
             <Button fx:id="b1" layoutX="103.0" layoutY="490.0" mnemonicParsing="false" onAction="#b1OnClick" prefHeight="49.0" prefWidth="140.0" style="-fx-border-radius: 20px;" styleClass="btn" text="ADD BOOK">
@@ -111,23 +103,28 @@
             <TextField fx:id="titleInput" layoutX="57.0" layoutY="73.0" prefHeight="38.0" prefWidth="209.0" promptText="Title" styleClass="newBookFields">
                <font>
                   <Font size="15.0" />
-               </font></TextField>
+               </font>
+            </TextField>
             <TextField fx:id="subjectInput" layoutX="57.0" layoutY="173.0" prefHeight="38.0" prefWidth="209.0" promptText="Subject" styleClass="newBookFields">
                <font>
                   <Font size="15.0" />
-               </font></TextField>
+               </font>
+            </TextField>
             <TextField fx:id="yearInput" layoutX="57.0" layoutY="273.0" onKeyTyped="#checkYearInputType" prefHeight="38.0" prefWidth="209.0" promptText="Year" styleClass="newBookFields">
                <font>
                   <Font size="15.0" />
-               </font></TextField>
+               </font>
+            </TextField>
             <TextField fx:id="pagesInput" layoutX="57.0" layoutY="373.0" onKeyTyped="#checkPagesInputType" prefHeight="38.0" prefWidth="209.0" promptText="Pages" styleClass="newBookFields">
                <font>
                   <Font size="15.0" />
-               </font></TextField>
+               </font>
+            </TextField>
             <TextField fx:id="ratingInput" layoutX="57.0" layoutY="473.0" onKeyTyped="#checkRatingInputType" prefHeight="38.0" prefWidth="209.0" promptText="Rating" styleClass="newBookFields">
                <font>
                   <Font size="15.0" />
-               </font></TextField>
+               </font>
+            </TextField>
             <Button fx:id="cancelBtn" layoutX="178.0" layoutY="592.0" mnemonicParsing="false" onAction="#cancelOnClick" prefHeight="25.0" prefWidth="88.0" style="-fx-border-radius: 20;" styleClass="btn" text="Cancel">
                <cursor>
                   <Cursor fx:constant="HAND" />

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane fx:id="gameAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="battleship.Controllers.GameController">
+   <children>
+      <Pane fx:id="computerHidden" layoutX="105.0" layoutY="61.0" onMouseClicked="#getClickPosition" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: blue;" />
+      <Pane fx:id="computerBoard" layoutX="550.0" layoutY="61.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: red;" />
+      <Pane fx:id="humanBoard" layoutX="105.0" layoutY="455.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: green;" />
+      <Pane fx:id="humanHidden" layoutX="542.0" layoutY="455.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: yellow;" />
+      <Pane fx:id="numbers" layoutX="105.0" layoutY="23.0" prefHeight="32.0" prefWidth="300.0" />
+      <Pane fx:id="numbers3" layoutX="105.0" layoutY="416.0" prefHeight="32.0" prefWidth="300.0" />
+      <Pane fx:id="numbers4" layoutX="542.0" layoutY="416.0" prefHeight="32.0" prefWidth="300.0" />
+      <Pane fx:id="letters" layoutX="68.0" layoutY="61.0" prefHeight="300.0" prefWidth="25.0" />
+      <Pane fx:id="letters2" layoutX="517.0" layoutY="61.0" prefHeight="300.0" prefWidth="25.0" />
+      <Pane fx:id="letters3" layoutX="68.0" layoutY="455.0" prefHeight="300.0" prefWidth="25.0" />
+      <Pane fx:id="letters4" layoutX="513.0" layoutY="455.0" prefHeight="300.0" prefWidth="25.0" />
+      <Pane fx:id="numbers2" layoutX="550.0" layoutY="23.0" prefHeight="32.0" prefWidth="300.0" />
+      <ImageView fitHeight="89.0" fitWidth="154.0" layoutX="405.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/Logos/plane.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

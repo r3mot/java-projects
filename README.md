@@ -6,7 +6,7 @@
 
 - 🔭 I’m currently working on **Battleship**
 
-- 🌱 I’m currently learning **Java, C++, Rust, Ruby, and JS**
+- 🌱 I’m currently learning Rust, Ruby, and JS**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">

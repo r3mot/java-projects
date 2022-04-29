@@ -17,4 +17,8 @@
 
 
 ![Alt text](src/main/resources/Images/ScreenShots/scene1.png?raw=true "Starting Screen")
+![Alt text](src/main/resources/Images/ScreenShots/scene2.png?raw=true "Place your ships!")
+![Alt text](src/main/resources/Images/ScreenShots/scene4.png?raw=true "Try to beat the computer")
+![Alt text](src/main/resources/Images/ScreenShots/last.png?raw=true "Don't be fooled. You are better than you think!")
+
 

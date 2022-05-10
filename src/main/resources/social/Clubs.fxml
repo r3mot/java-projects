@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="clubs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Home.ClubController">
+   <children>
+      <ScrollPane layoutY="110.0" prefHeight="690.0" prefWidth="780.0">
+        <content>
+          <AnchorPane fx:id="scrollAnchor" maxHeight="2000.0" maxWidth="766.0" minHeight="0.0" minWidth="0.0" prefHeight="1400.0" prefWidth="766.0" />
+        </content>
+      </ScrollPane>
+      <Label alignment="CENTER" layoutX="153.0" layoutY="14.0" prefHeight="87.0" prefWidth="474.0" text="Explore Your Interests">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

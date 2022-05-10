@@ -9,6 +9,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import social.App;
+import social.Objects.CurrentUser;
 
 public class LoginFormController {
 
@@ -43,6 +44,7 @@ public class LoginFormController {
 
         if(success)
         {
+            CurrentUser.setUsername(username.getText());
             App.setRoot("Home");
         }
     }

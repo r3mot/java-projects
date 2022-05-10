@@ -11,5 +11,11 @@ public class Query {
     public static final String GET_PASSWORD = "PASSWORD";
     public static final String GET_FIRST_NAME = "F_NAME";
     public static final String GET_LAST_NAME = "L_NAME";
+    public static final String GET_MAJOR = "MAJOR";
+    public static final String GET_STANDING = "STANDING";
+    public static final String GET_YEAR = "YEAR";
+    public static final String GET_DREAM_JOB = "D_JOB";
+    public static final String GET_IMAGE = "IMAGE";
+    public static final String GET_CLUBS = "CLUBS";
 
 }

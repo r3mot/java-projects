@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import social.Objects.CurrentUser;
 
 public class ProfileController implements Initializable {
 
@@ -38,6 +39,8 @@ public class ProfileController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
         displayProfile();
+
+        CurrentUser.setName(firstname.getText(), lastname.getText());
         
     }
 

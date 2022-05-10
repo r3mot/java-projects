@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import social.Database.QueryStrings.Query;
 import social.Database.QueryStrings.Insert;
@@ -18,6 +19,46 @@ public class Database {
 
     private DatabaseHelper dbHelper = new DatabaseHelper();
     private Connection connection;
+
+
+    /**
+     * 
+     * @return user profile data
+     * @throws SQLException
+     * 
+     * Gathers all user data and returns an ArrayList of strings
+     * to store in local storage for the scope of the program
+     */
+    public ArrayList<String> getUserData() throws SQLException{
+
+        ResultSet rs;
+        PreparedStatement ps;
+        ArrayList<String> data = new ArrayList<>();
+
+        connection = dbHelper.getConnection();
+
+        ps = connection.prepareStatement(Query.ALL_COLUMNS_BY_USERNAME);
+        ps.setString(1, CurrentUser.username);
+        rs = ps.executeQuery();
+
+        while(rs.next()){
+            data.add(rs.getString(Query.GET_USERNAME));
+            data.add(rs.getString(Query.GET_FIRST_NAME));
+            data.add(rs.getString(Query.GET_LAST_NAME));
+            data.add(rs.getString(Query.GET_MAJOR));
+            data.add(rs.getString(Query.GET_STANDING));
+            data.add(rs.getString(Query.GET_YEAR));
+            data.add(rs.getString(Query.GET_DREAM_JOB));
+            data.add(rs.getString(Query.GET_IMAGE));
+            data.add(rs.getString(Query.GET_CLUBS));
+        }
+
+        ps.close();
+        rs.close();
+        connection.close();
+
+        return data;
+    }
 
     /**
      * 

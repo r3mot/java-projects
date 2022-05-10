@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 
@@ -14,6 +15,10 @@ public class ProfileController implements Initializable {
 
     @FXML private AnchorPane friendAnchor;
     @FXML private AnchorPane postsAnchor;
+
+    @FXML private Tab postTab;
+    @FXML private Tab aboutTab;
+    @FXML private Tab friendsTab;
 
     @FXML private Label clubs;
     @FXML private Label firstname;

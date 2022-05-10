@@ -38,11 +38,13 @@ public class HomeController implements Initializable {
         try{
 
             profilePane = FXMLLoader.load(App.class.getResource("Profile.fxml"));
-            feedPane = FXMLLoader.load(App.class.getResource("Feed.fxml"));
-            clubPane = FXMLLoader.load(App.class.getResource("Clubs.fxml"));
-            friendPane = FXMLLoader.load(App.class.getResource("Friends.fxml"));
+            // feedPane = FXMLLoader.load(App.class.getResource("Feed.fxml"));
+            // clubPane = FXMLLoader.load(App.class.getResource("Clubs.fxml"));
+            // friendPane = FXMLLoader.load(App.class.getResource("Friends.fxml"));
 
-        }catch(IOException ioe) {}
+        }catch(IOException ioe) {
+            System.out.println("Error Caused by ( " + ioe.getCause().getLocalizedMessage() + ")");
+        }
         
     }
 

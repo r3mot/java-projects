@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Home.HomeController">
+   <children>
+      <Pane id="sidePanes" fx:id="leftPane" prefHeight="800.0" prefWidth="218.0">
+         <children>
+            <Button id="profile" fx:id="profile" alignment="TOP_LEFT" graphicTextGap="15.0" layoutY="200.0" mnemonicParsing="false" onAction="#navigate" prefHeight="67.0" prefWidth="216.0" styleClass="nav" text="Profile">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </Button>
+            <Button id="feed" fx:id="feed" alignment="TOP_LEFT" graphicTextGap="15.0" layoutY="267.0" mnemonicParsing="false" onAction="#navigate" prefHeight="67.0" prefWidth="216.0" styleClass="nav" text="Feed">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets top="20.0" />
+               </padding></Button>
+            <Button id="clubs" fx:id="clubs" alignment="TOP_LEFT" graphicTextGap="15.0" layoutY="334.0" mnemonicParsing="false" onAction="#navigate" prefHeight="67.0" prefWidth="216.0" styleClass="nav" text="Clubs">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets top="20.0" />
+               </padding></Button>
+            <Button id="friends" fx:id="friends" alignment="TOP_LEFT" graphicTextGap="15.0" layoutX="1.0" layoutY="401.0" mnemonicParsing="false" onAction="#navigate" prefHeight="67.0" prefWidth="216.0" styleClass="nav" text="Friends">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></Button>
+            <Button layoutX="46.0" layoutY="713.0" mnemonicParsing="false" onAction="#logout" prefHeight="29.0" prefWidth="124.0" styleClass="logout" text="LOG OUT">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="33.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../final_project/final/src/main/resources/social/Images/HomeScreen/header_logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="contentPane" layoutX="220.0" prefHeight="800.0" prefWidth="780.0" />
+   </children>
+</AnchorPane>

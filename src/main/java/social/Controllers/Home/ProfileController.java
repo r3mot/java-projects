@@ -8,7 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 public class ProfileController implements Initializable {
@@ -37,25 +39,65 @@ public class ProfileController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
+        displayProfile();
         
     }
 
-    @FXML
-    void displayAbout(ActionEvent event) {
+    private void displayProfile(){
+
+        initFeed();
+        initAbout();
+        initFriends();
+    }
+
+    private void initFeed(){
 
     }
 
-    @FXML
-    void displayFriends(ActionEvent event) {
+    private void initAbout(){
+
+        // addPicture("");
+
+        firstName("");
+        lastName("");
+        major("");
+        standing("");
+        year("");
+        dreamJob("");
+
 
     }
 
-    @FXML
-    void displayPosts(ActionEvent event) {
+    private void initFriends(){
 
     }
 
+    private void firstName(String first){
+        this.firstname.setText(first);
+    }
 
+    private void lastName(String last){
+        this.lastname.setText(last);
+    }
 
+    private void major(String major){
+        this.major.setText(major);
+    }
 
+    private void standing(String standing){
+        this.standing.setText(standing);
+    }
+
+    private void year(String year){
+        this.year.setText(year);
+    }
+
+    private void dreamJob(String job){
+        this.job.setText(job);
+    }
+
+    private void addPicture(String url){
+        profilePicture.setFill(new ImagePattern(new Image(url)));
+    }
 }
+

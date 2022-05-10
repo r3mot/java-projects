@@ -1,6 +1,7 @@
 package social.Controllers.Home;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,6 +11,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import social.Database.LocalStorage.UserData;
+import social.Debug.Flag;
 import social.Objects.CurrentUser;
 
 public class ProfileController implements Initializable {
@@ -31,12 +34,20 @@ public class ProfileController implements Initializable {
 
     @FXML private Circle profilePicture;
 
+    private UserData userData;
+
 
     /**
      * Start of Controller class
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        try {
+            userData = new UserData();
+        } catch (SQLException e) { 
+            Flag.DEBUG("Collecting User Data", e); 
+        }
         
         displayProfile();
 
@@ -59,12 +70,12 @@ public class ProfileController implements Initializable {
 
         // addPicture("");
 
-        firstName("");
-        lastName("");
-        major("");
-        standing("");
-        year("");
-        dreamJob("");
+        firstName(userData.getFirstName());
+        lastName(userData.getLastName());
+        major(userData.getMajor());
+        standing(userData.getStanding());
+        year(userData.getYear());
+        dreamJob(userData.getDreamJob());
 
 
     }

@@ -59,12 +59,12 @@ public class CredentialManager {
 
         while(rs.next()){
 
-            String user = rs.getString(Query.USERNAME);
-            String pass = rs.getString(Query.PASSWORD);
+            String user = rs.getString(Query.GET_USERNAME);
+            String pass = rs.getString(Query.GET_PASSWORD);
 
             // Getting current full name in same query 
-            String first = rs.getString(Query.FIRST_NAME);
-            String last = rs.getString(Query.LAST_NAME);
+            String first = rs.getString(Query.GET_FIRST_NAME);
+            String last = rs.getString(Query.GET_LAST_NAME);
 
             if(user.equals(username) && pass.equals(password)){
                 loginResult = true;

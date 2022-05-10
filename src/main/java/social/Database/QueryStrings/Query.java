@@ -4,11 +4,12 @@ public class Query {
 
     private Query(){}
 
-    public final static String VALID_LOGIN = "SELECT * FROM USERS WHERE USERNAME=? AND PASSWORD=?";
+    public static final String VALID_LOGIN = "SELECT * FROM USERS WHERE USERNAME=? AND PASSWORD=?";
+    public static final String ALL_COLUMNS_BY_USERNAME = "SELECT * FROM USERS WHERE USERNAME=?";
 
-    public final static String USERNAME = "USERNAME";
-    public final static String PASSWORD = "PASSWORD";
-    public final static String FIRST_NAME = "F_NAME";
-    public final static String LAST_NAME = "L_NAME";
+    public static final String GET_USERNAME = "USERNAME";
+    public static final String GET_PASSWORD = "PASSWORD";
+    public static final String GET_FIRST_NAME = "F_NAME";
+    public static final String GET_LAST_NAME = "L_NAME";
 
 }

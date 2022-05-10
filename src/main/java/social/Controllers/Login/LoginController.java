@@ -1,4 +1,4 @@
-package social;
+package social.Controllers.Login;
 
 
 import java.io.IOException;
@@ -14,10 +14,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import social.App;
 
 public class LoginController implements Initializable {
     
-
     @FXML private Pane loginPane;
     @FXML private Pane createUserPane;
     @FXML private Pane formsPane;
@@ -31,9 +31,29 @@ public class LoginController implements Initializable {
     @FXML private Label createLabel;
     @FXML private Label welcomeLabel;
 
-    private Pane tempLoginPane;
-    private Pane tempCreateUserPane;
+    private Pane loginForm;
+    private Pane createUserForm;
 
+
+     /**
+     * Start of controller class.
+     * Load FXML files (login / create account forms)
+     */
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+
+        try {   // Get FXML resources on load
+
+            createUserForm = FXMLLoader.load(App.class.getResource("CreateUserForm.fxml"));
+            loginForm = FXMLLoader.load(App.class.getResource("LoginForm.fxml"));
+            loginPane.getChildren().add(loginForm);
+            createUserPane.getChildren().add(createUserForm);
+
+            prepareTransitionPane();
+
+        }catch(IOException e) { System.out.println(e.getCause());}
+        
+    }
 
     /**
      * 
@@ -73,29 +93,9 @@ public class LoginController implements Initializable {
             createUserPane.setVisible(true);
         }));
     }
-
-    /**
-     * Start of controller class
-     */
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-
-        try {
-
-            tempCreateUserPane = FXMLLoader.load(getClass().getResource("CreateUserPane.fxml"));
-            tempLoginPane = FXMLLoader.load(getClass().getResource("LoginPane.fxml"));
-            loginPane.getChildren().add(tempLoginPane);
-            createUserPane.getChildren().add(tempCreateUserPane);
-
-            prepareTransitionPane();
-
-        }catch(IOException e) { System.out.println(e.getCause());}
-        
-    }
-
     
     /**
-     * Helpers for Transition animations
+     * Helper for Transition animations
      */
     private void prepareTransitionLeft(){
         createUserPane.setVisible(false);
@@ -105,6 +105,9 @@ public class LoginController implements Initializable {
         createLabel.setVisible(false);
     }
 
+    /**
+     * Helper for Transition animations
+     */
     private void prepareTransitionRight(){
         loginPane.setVisible(false);
         goToCreateUser.setVisible(true);
@@ -113,6 +116,9 @@ public class LoginController implements Initializable {
         createLabel.setVisible(true);
     }
 
+    /**
+     * Helper for Transition animations
+     */
     private void prepareTransitionPane(){
         createUserPane.setVisible(false);
         createLabel.setVisible(false);

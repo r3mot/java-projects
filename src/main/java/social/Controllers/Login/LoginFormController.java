@@ -1,4 +1,4 @@
-package social;
+package social.Controllers.Login;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

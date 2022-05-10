@@ -1,4 +1,4 @@
-package social;
+package social.Controllers.Login;
 
 import java.io.File;
 import java.net.URL;
@@ -22,6 +22,17 @@ public class CreateUserController implements Initializable{
     @FXML private TextField username;
     @FXML private TextField year;
     private Image profilepicture;
+
+
+    
+    /**
+     * Start of controller class
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // TODO Auto-generated method stub
+        
+    }
 
     /**
      * 
@@ -57,12 +68,6 @@ public class CreateUserController implements Initializable{
         if (file != null) {
             this.profilepicture = new Image(file.toURI().toString()); 
         }
-        
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
         
     }
 

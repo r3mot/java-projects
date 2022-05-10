@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Home.ProfileController">
+   <children>
+      <Pane prefHeight="144.0" prefWidth="780.0">
+         <children>
+            <ImageView fitHeight="144.0" fitWidth="780.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../../../../final_project/final/src/main/resources/social/Images/GUI/background_image.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <TabPane layoutY="246.0" prefHeight="554.0" prefWidth="780.0" stylesheets="@../../../../../../final_project/final/src/main/java/social/Styling/profile.css" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="Posts">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="484.0" prefWidth="754.0">
+                     <children>
+                        <ScrollPane layoutX="-10.0" prefHeight="520.0" prefWidth="780.0">
+                          <content>
+                            <AnchorPane fx:id="postsAnchor" minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="757.0" />
+                          </content>
+                        </ScrollPane>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+          <Tab closable="false" text="About">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="484.0" prefWidth="773.0">
+                     <children>
+                        <Line endX="-100.0" endY="321.0" layoutX="475.0" layoutY="77.0" startX="-100.0" />
+                        <Label layoutX="139.0" layoutY="92.0" prefHeight="17.0" prefWidth="207.0" text="Major">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="139.0" layoutY="149.0" prefHeight="17.0" prefWidth="207.0" text="Standing">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="139.0" layoutY="206.0" prefHeight="17.0" prefWidth="207.0" text="Graduation Year">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="139.0" layoutY="263.0" prefHeight="17.0" prefWidth="207.0" text="Dream Job">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="major" alignment="TOP_LEFT" layoutX="409.0" layoutY="92.0" prefHeight="17.0" prefWidth="207.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="standing" alignment="TOP_LEFT" layoutX="409.0" layoutY="149.0" prefHeight="17.0" prefWidth="207.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="year" alignment="TOP_LEFT" layoutX="409.0" layoutY="206.0" prefHeight="17.0" prefWidth="207.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="job" alignment="TOP_LEFT" layoutX="409.0" layoutY="263.0" prefHeight="17.0" prefWidth="207.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="139.0" layoutY="320.0" prefHeight="17.0" prefWidth="207.0" text="Clubs">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="clubs" alignment="TOP_LEFT" layoutX="409.0" layoutY="320.0" prefHeight="88.0" prefWidth="315.0" wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab closable="false" text="Friends">
+            <content>
+              <AnchorPane fx:id="friendAnchor" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Circle fx:id="profilePicture" fill="DODGERBLUE" layoutX="390.0" layoutY="144.0" radius="72.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" />
+      <Label fx:id="firstname" alignment="CENTER_RIGHT" layoutX="94.0" layoutY="144.0" prefHeight="36.0" prefWidth="200.0" text="Corey">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lastname" layoutX="480.0" layoutY="144.0" prefHeight="36.0" prefWidth="200.0" text="Mendrella">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

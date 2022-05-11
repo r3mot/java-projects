@@ -8,10 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
 import social.Database.QueryStrings.Query;
-import social.Database.LocalStorage.Data;
 import social.Database.QueryStrings.Index;
 import social.Database.QueryStrings.Insert;
 import social.Objects.CurrentUser;

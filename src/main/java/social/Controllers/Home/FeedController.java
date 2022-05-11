@@ -34,6 +34,7 @@ public class FeedController implements Initializable {
     @FXML private Button createPost;
     @FXML private AnchorPane feedPane;
 
+    private Database db;
     private GlobalFeedData data;
     private Post feed;
     private int yPosition;
@@ -41,18 +42,28 @@ public class FeedController implements Initializable {
     private boolean maxMet;
     private String content;
 
+
+    /**
+     * 
+     * @param event user created new psot
+     * @throws SQLException
+     * 
+     * Add new post to database and local storage
+     * Updates the current scene to reflect the 
+     * addition of the new post
+     */
     @FXML
-    void post(ActionEvent event) {
+    void post(ActionEvent event) throws SQLException {
 
         displayPopup();
 
-        data.addPost(new Post(CurrentUser.name, 
-                                content, 
-                                CurrentUser.imageURL, 
-                                getDate(), 
-                                0));
+        feed = new Post(CurrentUser.name, content, CurrentUser.imageURL, getDate(), 0);
 
-        initFeed();                        
+        data.addPost(feed);
+
+        initFeed(); 
+        
+        db.addUserPost(feed);
         
     }
 
@@ -68,6 +79,7 @@ public class FeedController implements Initializable {
             Flag.DEBUG(e.getCause().toString());
         }
         
+        db = new Database();
         initFeed();
     }
 
@@ -95,6 +107,12 @@ public class FeedController implements Initializable {
     }
 
 
+    /**
+     * Popup for user to create new post
+     * Creates a textarea for the user to provide their content
+     * When the user is finished, the content is sent to the database
+     * as well as local storage
+     */
     private void displayPopup(){
 
         Alert alert = new Alert(AlertType.ERROR);
@@ -137,6 +155,13 @@ public class FeedController implements Initializable {
 
     }
 
+    /**
+     * 
+     * @param i
+     * @return
+     * 
+     * Limits the user to 120 characters per post
+     */
     private EventHandler<KeyEvent> maxChars(final Integer i){
         return new EventHandler<KeyEvent>(){
             @Override
@@ -150,6 +175,12 @@ public class FeedController implements Initializable {
         };
     }
 
+    /**
+     * 
+     * @return current date
+     * 
+     * Used for keeping track of when a post is created
+     */
     private String getDate(){
         String format = "MM-dd-yyy";
         SimpleDateFormat simpledate = new SimpleDateFormat(format);

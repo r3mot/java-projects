@@ -15,16 +15,37 @@ import social.Database.LocalStorage.Data;
 import social.Database.QueryStrings.Index;
 import social.Database.QueryStrings.Insert;
 import social.Objects.CurrentUser;
+import social.Objects.Post;
 import social.Objects.User;
 import social.Debug.Flag;
 
 public class Database {
 
     private DatabaseHelper dbHelper = new DatabaseHelper();
-    private Connection connection;
+    private Connection connection = dbHelper.getConnection();
 
 
 
+    public void addUserPost(Post post) throws SQLException{
+        
+        PreparedStatement ps;
+
+        ps = connection.prepareStatement(Insert.NEW_POST);
+
+        ps.setString(1, CurrentUser.username);
+        ps.setString(2, post.getPostName());
+        ps.setString(3, post.getPostContent());
+        ps.setString(4, post.getPostDate());
+        ps.setString(5, post.getPostURL());
+        ps.executeUpdate();
+        ps.close();
+
+    }
+    /**
+     * 
+     * @return global feed
+     * @throws SQLException
+     */
     public ArrayList<ArrayList<String>> getGlobalFeed() throws SQLException{
         
         ArrayList<ArrayList<String>> feed = new ArrayList<ArrayList<String>>();
@@ -33,29 +54,28 @@ public class Database {
         PreparedStatement ps;
         ResultSet rs;
 
-        connection = dbHelper.getConnection();
         ps = connection.prepareStatement(Query.GLOBAL_FEED);
         rs = ps.executeQuery();
 
         while(rs.next()){
 
-            row.add(Index.POST_ID, String.valueOf(rs.getInt(Query.GET_POSTID)));
-            row.add(Index.POST_USERNAME, rs.getString(Query.GET_USERNAME));
-            row.add(Index.POST_NAME, rs.getString(Query.GET_FULL_NAME));
-            row.add(Index.POST_CONTENT, rs.getString(Query.GET_POST_CONTENT));
-            row.add(Index.POST_DATE, rs.getString(Query.GET_POST_DATE));
-            row.add(Index.POST_URL, rs.getString(Query.GET_IMAGE));
+            // row.add(Index.POST_ID, String.valueOf(rs.getInt(Query.GET_POSTID)));
+            // row.add(Index.POST_USERNAME, rs.getString(Query.GET_USERNAME));
+            row.add(0, rs.getString(Query.GET_FULL_NAME));
+            row.add(1, rs.getString(Query.GET_POST_CONTENT));
+            row.add(2, rs.getString(Query.GET_POST_DATE));
+            row.add(3, rs.getString(Query.GET_IMAGE));
             feed.add(row);
             
         }
 
         ps.close();
         rs.close();
-        connection.close();
 
         return feed;
     
     }
+    
     /**
      * 
      * @return user feed
@@ -76,7 +96,6 @@ public class Database {
         PreparedStatement ps;
         ResultSet rs;
 
-        connection = dbHelper.getConnection();
         ps = connection.prepareStatement(Query.USER_FEED);
         ps.setString(1, CurrentUser.username);
         rs = ps.executeQuery();
@@ -90,25 +109,11 @@ public class Database {
             row.add(Index.POST_DATE, rs.getString(Query.GET_POST_DATE));
             row.add(Index.POST_URL, rs.getString(Query.GET_IMAGE));
             feed.add(row);
-            
-
-            // feed.get(row).add(Index.POST_ID, String.valueOf(rs.getInt(Query.GET_POSTID)));
-            // feed.get(row).add(Index.POST_USERNAME, rs.getString(Query.GET_USERNAME));
-            // feed.get(row).add(Index.POST_NAME, rs.getString(Query.GET_FULL_NAME));
-            // feed.get(row).add(Index.POST_CONTENT, rs.getString(Query.GET_POST_CONTENT));
-            // feed.get(row).add(Index.POST_DATE, rs.getString(Query.GET_POST_DATE));
-            // feed.get(row).add(Index.POST_URL, rs.getString(Query.GET_IMAGE));
-
-            // System.out.println("Row: " + row + ", POSTID: " + feed.get(row).get(Index.POST_ID));
-
-            // feed.add(new ArrayList<>());
-            // row++;
 
         }
 
         ps.close();
         rs.close();
-        connection.close();
 
         return feed;
     
@@ -128,8 +133,6 @@ public class Database {
         PreparedStatement ps;
         ArrayList<String> data = new ArrayList<>();
 
-        connection = dbHelper.getConnection();
-
         ps = connection.prepareStatement(Query.ALL_COLUMNS_BY_USERNAME);
         ps.setString(1, CurrentUser.username);
         rs = ps.executeQuery();
@@ -148,7 +151,6 @@ public class Database {
 
         ps.close();
         rs.close();
-        connection.close();
 
         return data;
     }
@@ -180,8 +182,6 @@ public class Database {
         ps.setString(9, user.getImage().getUrl());
         ps.executeUpdate();
         ps.close();
-
-        connection.close();
 
     }
 
@@ -216,7 +216,6 @@ public class Database {
 
         ps.close();
         rs.close();
-        connection.close();
 
         return exists;
     }
@@ -244,8 +243,6 @@ public class Database {
         ps.setInt(6, 0);
         ps.executeUpdate();
         ps.close();
-
-        connection.close();
 
     }
 

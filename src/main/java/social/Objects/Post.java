@@ -94,4 +94,20 @@ public class Post extends Pane {
        picture.setFill(new ImagePattern(new Image(this.imageURL)));
 
     }
+
+    public String getPostName(){
+        return this.name;
+    }
+
+    public String getPostContent(){
+        return this.content;
+    }
+
+    public String getPostURL(){
+        return this.imageURL;
+    }
+
+    public String getPostDate(){
+        return this.date;
+    }
 }

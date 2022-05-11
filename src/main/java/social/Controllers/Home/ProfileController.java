@@ -64,16 +64,22 @@ public class ProfileController implements Initializable {
         initFeed();
         initAbout();
         initFriends();
+        addPicture(CurrentUser.imageURL);
     }
 
     private void initFeed(){
 
+        String name="";
+        String content="";
+        String imageURL="";
+        String date="";
+
         for(int i = 0; i < userData.getNumPosts(); i++){
 
-            String name = userData.getPostName(i);
-            String content = userData.getPostContent(i);
-            String imageURL = userData.getPostImage(i);
-            String date = userData.getPostDate(i);
+            name = userData.getPostName(i);
+            content = userData.getPostContent(i);
+            imageURL = userData.getPostImage(i);
+            date = userData.getPostDate(i);
 
             userFeed = new Post(name, content, imageURL, date, yPostion);
             postsAnchor.getChildren().addAll(userFeed);
@@ -81,6 +87,8 @@ public class ProfileController implements Initializable {
             yPostion += userFeed.getPrefHeight() + 2;
             
         }
+
+        CurrentUser.setImage(imageURL);
 
     }
 

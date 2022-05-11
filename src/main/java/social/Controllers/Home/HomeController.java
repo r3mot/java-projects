@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import social.App;
+import social.Objects.CurrentUser;
 
 public class HomeController implements Initializable {
 
@@ -35,6 +36,7 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
+        CurrentUser.setUsername("cmendrella");
         try{
 
             profilePane = FXMLLoader.load(App.class.getResource("Profile.fxml"));

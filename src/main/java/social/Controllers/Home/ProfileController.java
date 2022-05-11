@@ -2,6 +2,7 @@ package social.Controllers.Home;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import javafx.scene.shape.Circle;
 import social.Database.LocalStorage.UserData;
 import social.Debug.Flag;
 import social.Objects.CurrentUser;
+import social.Objects.Post;
 
 public class ProfileController implements Initializable {
 
@@ -35,6 +37,8 @@ public class ProfileController implements Initializable {
     @FXML private Circle profilePicture;
 
     private UserData userData;
+    private Post userFeed;
+    private int yPostion;
 
 
     /**
@@ -51,7 +55,7 @@ public class ProfileController implements Initializable {
         
         displayProfile();
 
-        CurrentUser.setName(firstname.getText(), lastname.getText());
+        CurrentUser.setName(userData.getFirstName(), userData.getLastName());
         
     }
 
@@ -63,6 +67,20 @@ public class ProfileController implements Initializable {
     }
 
     private void initFeed(){
+
+        
+        for(int i = 0; i < userData.getNumPosts(); i++){
+
+            String name = userData.getPostName();
+            String content = userData.getPostContent();
+            String imageURL = userData.getPostImage();
+            String date = userData.getPostDate();
+
+            userFeed = new Post(name, content, imageURL, date, yPostion);
+
+            yPostion += userFeed.getPrefWidth();
+            
+        }
 
     }
 

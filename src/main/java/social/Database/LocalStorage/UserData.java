@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import social.Database.Database;
+import social.Database.QueryStrings.Index;
 
 public class UserData {
 
@@ -17,51 +18,78 @@ public class UserData {
     private final int IMAGE = 7;
     private final int CLUBS = 8;
     
-    private ArrayList<String> data;
+    private ArrayList<String> profileData;
+    private ArrayList<String> feedData;
     private Database db;
 
     public UserData() throws SQLException {
 
         this.db = new Database();
-        this.data = db.getUserData();
+        this.profileData = db.getUserData();
+        this.feedData = db.getUserFeed();
 
     }
 
-    // public ArrayList<String> getData(){
-    //     return this.data;
-    // }
-
+    // Profile
     public String getFirstName(){
-        return this.data.get(FIRSTNAME);
+        return this.profileData.get(FIRSTNAME);
     }
 
     public String getLastName(){
-        return this.data.get(LASTNAME);
+        return this.profileData.get(LASTNAME);
     }
 
     public String getMajor(){
-        return this.data.get(MAJOR);
+        return this.profileData.get(MAJOR);
     }
 
     public String getStanding(){
-        return this.data.get(STANDING);
+        return this.profileData.get(STANDING);
     }
 
     public String getYear(){
-        return this.data.get(YEAR);
+        return this.profileData.get(YEAR);
     }
 
     public String getDreamJob(){
-        return this.data.get(DREAM_JOB);
+        return this.profileData.get(DREAM_JOB);
     }
 
     public String getImageURL(){
-        return this.data.get(IMAGE);
+        return this.profileData.get(IMAGE);
     }
 
     public String getClubs(){
-        return this.data.get(CLUBS);
+        return this.profileData.get(CLUBS);
     }
 
 
+    // Feed
+    public String getPostID(){
+        return this.feedData.get(Index.POST_ID);
+    }
+
+    public String getPostUsername(){
+        return this.feedData.get(Index.POST_USERNAME);
+    }
+
+    public String getPostContent(){
+        return this.feedData.get(Index.POST_CONTENT);
+    }
+
+    public String getPostName(){
+        return this.feedData.get(Index.POST_NAME);
+    }
+
+    public String getPostDate(){
+        return this.feedData.get(Index.POST_DATE);
+    }
+
+    public String getPostImage(){
+        return this.feedData.get(Index.POST_URL);
+    }
+
+    public int getNumPosts(){
+        return this.feedData.size() - 1;
+    }
 }

@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import social.Database.QueryStrings.Query;
+import social.Database.LocalStorage.Data;
+import social.Database.QueryStrings.Index;
 import social.Database.QueryStrings.Insert;
 import social.Objects.CurrentUser;
 import social.Objects.User;
@@ -20,6 +22,46 @@ public class Database {
     private DatabaseHelper dbHelper = new DatabaseHelper();
     private Connection connection;
 
+
+    /**
+     * 
+     * @return user feed
+     * @throws SQLException
+     * 
+     * Gathers all user posts and returns an ArrayList of strings
+     * to store in local storage for the scope of the program
+     * 
+     * Any new posts will be retained in local storage to
+     * limit the number of queries 
+     */
+    public ArrayList<String> getUserFeed() throws SQLException{
+        
+        ArrayList<String> feed = new ArrayList<>();
+        PreparedStatement ps;
+        ResultSet rs;
+
+        connection = dbHelper.getConnection();
+        ps = connection.prepareStatement(Query.USER_FEED);
+        rs = ps.executeQuery();
+
+        while(rs.next()){
+
+            feed.add(Index.POST_ID, String.valueOf(rs.getInt(Query.GET_POSTID)));
+            feed.add(Index.POST_USERNAME, rs.getString(Query.GET_USERNAME));
+            feed.add(Index.POST_NAME, rs.getString(Query.GET_FULL_NAME));
+            feed.add(Index.POST_CONTENT, rs.getString(Query.GET_POST_CONTENT));
+            feed.add(Index.POST_DATE, rs.getString(Query.GET_POST_DATE));
+            feed.add(Index.POST_URL, rs.getString(Query.GET_IMAGE));
+
+        }
+
+        ps.close();
+        rs.close();
+        connection.close();
+
+        return feed;
+    
+    }
 
     /**
      * 

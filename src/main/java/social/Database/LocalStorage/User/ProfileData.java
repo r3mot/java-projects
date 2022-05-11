@@ -2,10 +2,7 @@ package social.Database.LocalStorage.User;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
 import social.Database.Database;
-import social.Database.QueryStrings.Index;
 
 public class ProfileData {
 

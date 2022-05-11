@@ -1,6 +1,5 @@
 package social.Controllers.Login;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -30,15 +30,20 @@ public class LoginController implements Initializable {
     @FXML private Button studentLogin;
     @FXML private Button clubLogin;
 
-    @FXML private ImageView addIcon;
-    @FXML private ImageView loginIcon;
-    @FXML private Label createLabel;
-    @FXML private Label welcomeLabel;
+    @FXML private ImageView icon;
+    @FXML private Label label;
 
     private Pane userLoginForm;
     private Pane clubLoginForm;
     private Pane createUserForm;
     private Pane createClubForm;
+
+    private final String STUDENT_LOGIN = "Student Login";
+    private final String STUDENT_CREATE = "Add New Student";
+    private final String CLUB_LOGIN = "Club Login";
+    private final String CLUB_CREATE = "Add New Club";
+    private final String LOGIN_URL = "file:final/src/main/resources/Images/UI/password.png";
+    private final String ADD_URL = "file:final/src/main/resources/Images/UI/add-friend.png";
 
 
      /**
@@ -48,7 +53,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
-        try {   // Get FXML resources on load
+        try {  
 
             createUserForm = FXMLLoader.load(App.class.getResource("CreateUserForm.fxml"));
             userLoginForm = FXMLLoader.load(App.class.getResource("LoginForm.fxml"));
@@ -66,6 +71,10 @@ public class LoginController implements Initializable {
     }
 
 
+    /**
+     * 
+     * @param event display club login form
+     */
     @FXML
     void clubLogin(ActionEvent event){
 
@@ -74,8 +83,14 @@ public class LoginController implements Initializable {
 
         clubLogin.setVisible(false);
         studentLogin.setVisible(true);
+
+        label.setText(CLUB_LOGIN);
     }
 
+    /**
+     * 
+     * @param event display student login form
+     */
     @FXML
     void studentLogin(ActionEvent event){
 
@@ -84,6 +99,8 @@ public class LoginController implements Initializable {
 
         clubLogin.setVisible(true);
         studentLogin.setVisible(false);
+
+        label.setText(STUDENT_LOGIN);
     }
 
     /**
@@ -94,11 +111,12 @@ public class LoginController implements Initializable {
     @FXML
     void createClub(ActionEvent event) throws IOException{
 
-        // createClubForm = FXMLLoader.load(App.class.getResource("CreateClubForm.fxml"));
         createUserPane.getChildren().clear();
         createUserPane.getChildren().add(createClubForm);
         club.setVisible(false);
         user.setVisible(true);
+
+        label.setText(CLUB_CREATE);
     }
 
     /**
@@ -114,6 +132,7 @@ public class LoginController implements Initializable {
         club.setVisible(true);
         user.setVisible(false);
 
+        label.setText(STUDENT_CREATE);
     }
     
     /**
@@ -134,6 +153,7 @@ public class LoginController implements Initializable {
             loginPane.setVisible(true);
             goToCreateUser.setVisible(true);
             goToLogin.setVisible(false);
+            icon.setImage(new Image(LOGIN_URL));
         }));
         
     }
@@ -155,6 +175,7 @@ public class LoginController implements Initializable {
         slide.setOnFinished((e->{
             createUserPane.setVisible(true);
             club.setVisible(true);
+            icon.setImage(new Image(ADD_URL));
         }));
     }
     
@@ -165,12 +186,11 @@ public class LoginController implements Initializable {
         createUserPane.setVisible(false);
         goToCreateUser.setVisible(false);
         goToLogin.setVisible(true);
-        welcomeLabel.setVisible(true);
-        createLabel.setVisible(false);
         club.setVisible(false);
         user.setVisible(false);
 
         clubLogin.setVisible(true);
+        label.setText(STUDENT_LOGIN);
 
     }
 
@@ -181,11 +201,11 @@ public class LoginController implements Initializable {
         loginPane.setVisible(false);
         goToCreateUser.setVisible(false);
         goToLogin.setVisible(true);
-        welcomeLabel.setVisible(false);
-        createLabel.setVisible(true);
 
         clubLogin.setVisible(false);
         studentLogin.setVisible(false);
+
+        label.setText(STUDENT_CREATE);
     }
 
     /**
@@ -193,10 +213,11 @@ public class LoginController implements Initializable {
      */
     private void prepareTransitionPane(){
         createUserPane.setVisible(false);
-        createLabel.setVisible(false);
         club.setVisible(false);
         user.setVisible(false);
         studentLogin.setVisible(false);
+        label.setText(STUDENT_LOGIN);
+        icon.setImage(new Image(LOGIN_URL));
     }
 
 }

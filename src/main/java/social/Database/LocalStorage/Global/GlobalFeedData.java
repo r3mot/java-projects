@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import social.Database.Database;
-import social.Database.QueryStrings.Index;
 import social.Objects.Post;
 
 public class GlobalFeedData {

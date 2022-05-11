@@ -24,6 +24,38 @@ public class Database {
     private Connection connection;
 
 
+
+    public ArrayList<ArrayList<String>> getGlobalFeed() throws SQLException{
+        
+        ArrayList<ArrayList<String>> feed = new ArrayList<ArrayList<String>>();
+        ArrayList<String> row = new ArrayList<>();
+
+        PreparedStatement ps;
+        ResultSet rs;
+
+        connection = dbHelper.getConnection();
+        ps = connection.prepareStatement(Query.GLOBAL_FEED);
+        rs = ps.executeQuery();
+
+        while(rs.next()){
+
+            row.add(Index.POST_ID, String.valueOf(rs.getInt(Query.GET_POSTID)));
+            row.add(Index.POST_USERNAME, rs.getString(Query.GET_USERNAME));
+            row.add(Index.POST_NAME, rs.getString(Query.GET_FULL_NAME));
+            row.add(Index.POST_CONTENT, rs.getString(Query.GET_POST_CONTENT));
+            row.add(Index.POST_DATE, rs.getString(Query.GET_POST_DATE));
+            row.add(Index.POST_URL, rs.getString(Query.GET_IMAGE));
+            feed.add(row);
+            
+        }
+
+        ps.close();
+        rs.close();
+        connection.close();
+
+        return feed;
+    
+    }
     /**
      * 
      * @return user feed

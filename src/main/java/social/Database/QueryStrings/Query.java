@@ -8,6 +8,7 @@ public class Query {
     public static final String ALL_COLUMNS_BY_USERNAME = "SELECT * FROM USERS WHERE USERNAME=?";
 
     // FEED
+    public static final String GLOBAL_FEED = "SELECT * FROM POSTS";
     public static final String USER_FEED = "SELECT * FROM POSTS WHERE USERNAME=?";
     public static final String GET_POSTID = "POSTID";
     public static final String GET_POST_CONTENT = "CONTENT";

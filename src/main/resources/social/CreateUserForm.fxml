@@ -8,12 +8,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Login.CreateUserController">
    <children>
-      <TextField fx:id="firstname" layoutX="92.0" layoutY="128.0" prefHeight="25.0" prefWidth="266.0" promptText="First Name" />
-      <TextField fx:id="lastname" layoutX="92.0" layoutY="168.0" prefHeight="25.0" prefWidth="266.0" promptText="Last Name" />
-      <TextField fx:id="major" layoutX="92.0" layoutY="208.0" prefHeight="25.0" prefWidth="266.0" promptText="Major" />
-      <TextField fx:id="standing" layoutX="92.0" layoutY="248.0" prefHeight="25.0" prefWidth="266.0" promptText="Standing (i.e. Freshman, Sophomore)" />
-      <TextField fx:id="year" layoutX="92.0" layoutY="288.0" prefHeight="25.0" prefWidth="266.0" promptText="Graduating Year" />
-      <TextField fx:id="dreamjob" layoutX="92.0" layoutY="328.0" prefHeight="25.0" prefWidth="266.0" promptText="Dream Job" />
+      <TextField id="loginField" fx:id="firstname" layoutX="92.0" layoutY="128.0" prefHeight="25.0" prefWidth="266.0" promptText="First Name" />
+      <TextField id="loginField" fx:id="lastname" layoutX="92.0" layoutY="168.0" prefHeight="25.0" prefWidth="266.0" promptText="Last Name" />
+      <TextField id="loginField" fx:id="major" layoutX="92.0" layoutY="208.0" prefHeight="25.0" prefWidth="266.0" promptText="Major" />
+      <TextField id="loginField" fx:id="standing" layoutX="92.0" layoutY="248.0" prefHeight="25.0" prefWidth="266.0" promptText="Standing (i.e. Freshman, Sophomore)" />
+      <TextField id="loginField" fx:id="year" layoutX="92.0" layoutY="288.0" prefHeight="25.0" prefWidth="266.0" promptText="Graduating Year" />
+      <TextField id="loginField" fx:id="dreamjob" layoutX="92.0" layoutY="328.0" prefHeight="25.0" prefWidth="266.0" promptText="Dream Job" />
       <Label alignment="CENTER" layoutX="92.0" layoutY="46.0" prefHeight="59.0" prefWidth="266.0" text="About You">
          <font>
             <Font size="25.0" />
@@ -24,9 +24,9 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <TextField fx:id="username" layoutX="92.0" layoutY="500.0" prefHeight="25.0" prefWidth="266.0" promptText="Username" />
-      <TextField fx:id="password" layoutX="92.0" layoutY="540.0" prefHeight="25.0" prefWidth="266.0" promptText="Password" />
+      <TextField id="loginField" fx:id="username" layoutX="92.0" layoutY="500.0" prefHeight="25.0" prefWidth="266.0" promptText="Username" />
+      <TextField id="loginField" fx:id="password" layoutX="92.0" layoutY="540.0" prefHeight="25.0" prefWidth="266.0" promptText="Password" />
       <Button layoutX="92.0" layoutY="368.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="25.0" prefWidth="266.0" text="Upload Profile Picture" />
-      <Button layoutX="92.0" layoutY="580.0" mnemonicParsing="false" onAction="#create" prefHeight="25.0" prefWidth="266.0" text="Done" />
+      <Button fx:id="done" layoutX="92.0" layoutY="580.0" mnemonicParsing="false" onAction="#create" prefHeight="25.0" prefWidth="266.0" text="Done" />
    </children>
 </AnchorPane>

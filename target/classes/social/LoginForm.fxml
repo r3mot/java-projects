@@ -15,7 +15,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <PasswordField id="txt" fx:id="password" layoutX="96.0" layoutY="323.0" prefHeight="25.0" prefWidth="258.0" promptText="Password">
+      <PasswordField id="txt" fx:id="password" layoutX="96.0" layoutY="323.0" onKeyPressed="#enter" prefHeight="25.0" prefWidth="258.0" promptText="Password">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>

@@ -98,43 +98,19 @@ public class ProfileController implements Initializable {
 
     private void initAbout(){
 
-        addPicture(CurrentUser.imageURL);
-        firstName(profileData.getFirstName());
-        lastName(profileData.getLastName());
-        major(profileData.getMajor());
-        standing(profileData.getStanding());
-        year(profileData.getYear());
-        dreamJob(profileData.getDreamJob());
+        this.profilePicture.setFill(new ImagePattern(new Image(CurrentUser.imageURL)));
+        this.firstname.setText(profileData.getFirstName());
+        this.lastname.setText(profileData.getLastName());
+        this.major.setText(profileData.getMajor());
+        this.standing.setText(profileData.getStanding());
+        this.year.setText(profileData.getYear());
+        this.job.setText(profileData.getDreamJob());
 
 
     }
 
     private void initFriends(){
 
-    }
-
-    private void firstName(String first){
-        this.firstname.setText(first);
-    }
-
-    private void lastName(String last){
-        this.lastname.setText(last);
-    }
-
-    private void major(String major){
-        this.major.setText(major);
-    }
-
-    private void standing(String standing){
-        this.standing.setText(standing);
-    }
-
-    private void year(String year){
-        this.year.setText(year);
-    }
-
-    private void dreamJob(String job){
-        this.job.setText(job);
     }
 
     private void addPicture(String url){

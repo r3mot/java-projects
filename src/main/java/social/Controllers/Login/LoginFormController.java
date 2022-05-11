@@ -10,6 +10,8 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import social.App;
 import social.Database.CredentialManager;
 import social.Objects.CurrentUser;
@@ -25,6 +27,33 @@ public class LoginFormController {
     private CredentialManager credentials = new CredentialManager();
 
 
+    /**
+     * 
+     * @param event
+     * @throws ClassNotFoundException
+     * @throws IOException
+     * @throws SQLException
+     * 
+     * User clicked enter after entering their password
+     * Attempt login
+     */
+    @FXML 
+    void enter(KeyEvent event) throws ClassNotFoundException, IOException, SQLException {
+        if(event.getCode().equals(KeyCode.ENTER)){
+            login(null);
+        }
+    }
+    
+    /**
+     * 
+     * @param event
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * 
+     * If successful login (valid credentials & non-empty text fields)
+     * Execute the login process
+     */
     @FXML
     void login(ActionEvent event) throws IOException, ClassNotFoundException, SQLException {
 
@@ -35,6 +64,13 @@ public class LoginFormController {
         showError();
     }
 
+    /**
+     * 
+     * @throws IOException
+     * 
+     * Switch scene
+     * Set current user's username to be used throughout program
+     */
     private void execLogin() throws IOException{
 
         CurrentUser.setUsername(username.getText());
@@ -43,6 +79,14 @@ public class LoginFormController {
     }
 
 
+    /**
+     * 
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * 
+     * Sanity check
+     */
     private boolean success() throws ClassNotFoundException, SQLException{
 
         boolean result = credentials.login(username.getText(), password.getText());
@@ -53,6 +97,12 @@ public class LoginFormController {
     }
 
 
+    /**
+     * Shows error TextField when user enters
+     * incorrect username / password
+     * or when the user does not fill out
+     * the textfields 
+     */
     private void showError(){
         loginError.setText("Invalid Username or Password");
     }

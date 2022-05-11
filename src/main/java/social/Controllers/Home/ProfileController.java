@@ -50,7 +50,7 @@ public class ProfileController implements Initializable {
         try {
             userData = new UserData();
         } catch (SQLException e) { 
-            Flag.DEBUG("Collecting User Data", e); 
+            Flag.DEBUG(e.getCause().toString()); 
         }
         
         displayProfile();
@@ -68,17 +68,17 @@ public class ProfileController implements Initializable {
 
     private void initFeed(){
 
-        
         for(int i = 0; i < userData.getNumPosts(); i++){
 
-            String name = userData.getPostName();
-            String content = userData.getPostContent();
-            String imageURL = userData.getPostImage();
-            String date = userData.getPostDate();
+            String name = userData.getPostName(i);
+            String content = userData.getPostContent(i);
+            String imageURL = userData.getPostImage(i);
+            String date = userData.getPostDate(i);
 
             userFeed = new Post(name, content, imageURL, date, yPostion);
+            postsAnchor.getChildren().addAll(userFeed);
 
-            yPostion += userFeed.getPrefWidth();
+            yPostion += userFeed.getPrefHeight() + 2;
             
         }
 

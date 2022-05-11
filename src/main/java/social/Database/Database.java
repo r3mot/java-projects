@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import social.Database.QueryStrings.Query;
 import social.Database.LocalStorage.Data;
@@ -34,24 +35,42 @@ public class Database {
      * Any new posts will be retained in local storage to
      * limit the number of queries 
      */
-    public ArrayList<String> getUserFeed() throws SQLException{
+    public ArrayList<ArrayList<String>> getUserFeed() throws SQLException{
         
-        ArrayList<String> feed = new ArrayList<>();
+        ArrayList<ArrayList<String>> feed = new ArrayList<ArrayList<String>>();
+        ArrayList<String> row = new ArrayList<>();
+        // feed.add(new ArrayList<String>());
+
         PreparedStatement ps;
         ResultSet rs;
 
         connection = dbHelper.getConnection();
         ps = connection.prepareStatement(Query.USER_FEED);
+        ps.setString(1, CurrentUser.username);
         rs = ps.executeQuery();
 
         while(rs.next()){
 
-            feed.add(Index.POST_ID, String.valueOf(rs.getInt(Query.GET_POSTID)));
-            feed.add(Index.POST_USERNAME, rs.getString(Query.GET_USERNAME));
-            feed.add(Index.POST_NAME, rs.getString(Query.GET_FULL_NAME));
-            feed.add(Index.POST_CONTENT, rs.getString(Query.GET_POST_CONTENT));
-            feed.add(Index.POST_DATE, rs.getString(Query.GET_POST_DATE));
-            feed.add(Index.POST_URL, rs.getString(Query.GET_IMAGE));
+            row.add(Index.POST_ID, String.valueOf(rs.getInt(Query.GET_POSTID)));
+            row.add(Index.POST_USERNAME, rs.getString(Query.GET_USERNAME));
+            row.add(Index.POST_NAME, rs.getString(Query.GET_FULL_NAME));
+            row.add(Index.POST_CONTENT, rs.getString(Query.GET_POST_CONTENT));
+            row.add(Index.POST_DATE, rs.getString(Query.GET_POST_DATE));
+            row.add(Index.POST_URL, rs.getString(Query.GET_IMAGE));
+            feed.add(row);
+            
+
+            // feed.get(row).add(Index.POST_ID, String.valueOf(rs.getInt(Query.GET_POSTID)));
+            // feed.get(row).add(Index.POST_USERNAME, rs.getString(Query.GET_USERNAME));
+            // feed.get(row).add(Index.POST_NAME, rs.getString(Query.GET_FULL_NAME));
+            // feed.get(row).add(Index.POST_CONTENT, rs.getString(Query.GET_POST_CONTENT));
+            // feed.get(row).add(Index.POST_DATE, rs.getString(Query.GET_POST_DATE));
+            // feed.get(row).add(Index.POST_URL, rs.getString(Query.GET_IMAGE));
+
+            // System.out.println("Row: " + row + ", POSTID: " + feed.get(row).get(Index.POST_ID));
+
+            // feed.add(new ArrayList<>());
+            // row++;
 
         }
 
@@ -222,7 +241,7 @@ public class Database {
             }
             generatedPassword = sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            Flag.DEBUG("Error hashing password", e);
+            Flag.DEBUG(e.getCause().toString());
         }
 
         return generatedPassword;

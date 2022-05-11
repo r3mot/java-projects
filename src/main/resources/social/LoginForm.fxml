@@ -26,7 +26,6 @@
          </cursor>
       </Button>
       <Hyperlink fx:id="forgotPasswordLink" alignment="CENTER" layoutX="96.0" layoutY="379.0" prefHeight="23.0" prefWidth="167.0" text="Forgot Password" textAlignment="CENTER" />
-      <Label fx:id="usernameError" alignment="CENTER" layoutX="96.0" layoutY="223.0" prefHeight="17.0" prefWidth="258.0" textFill="#f80000" />
-      <Label fx:id="passwordError" alignment="CENTER" layoutX="96.0" layoutY="299.0" prefHeight="17.0" prefWidth="258.0" textFill="RED" />
+      <Label fx:id="loginError" alignment="CENTER" layoutX="96.0" layoutY="223.0" prefHeight="17.0" prefWidth="258.0" textFill="#f80000" />
    </children>
 </AnchorPane>

@@ -2,6 +2,7 @@ package social.Database.LocalStorage;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import social.Database.Database;
 import social.Database.QueryStrings.Index;
@@ -19,7 +20,7 @@ public class UserData {
     private final int CLUBS = 8;
     
     private ArrayList<String> profileData;
-    private ArrayList<String> feedData;
+    private ArrayList<ArrayList<String>> feedData;
     private Database db;
 
     public UserData() throws SQLException {
@@ -65,31 +66,31 @@ public class UserData {
 
 
     // Feed
-    public String getPostID(){
-        return this.feedData.get(Index.POST_ID);
+    public String getPostID(int postNum){
+        return this.feedData.get(postNum).get(Index.POST_ID);
     }
 
-    public String getPostUsername(){
-        return this.feedData.get(Index.POST_USERNAME);
+    public String getPostUsername(int postNum){
+        return this.feedData.get(postNum).get(Index.POST_USERNAME);
     }
 
-    public String getPostContent(){
-        return this.feedData.get(Index.POST_CONTENT);
+    public String getPostContent(int postNum){
+        return this.feedData.get(postNum).get(Index.POST_CONTENT);
     }
 
-    public String getPostName(){
-        return this.feedData.get(Index.POST_NAME);
+    public String getPostName(int postNum){
+        return this.feedData.get(postNum).get(Index.POST_NAME);
     }
 
-    public String getPostDate(){
-        return this.feedData.get(Index.POST_DATE);
+    public String getPostDate(int postNum){
+        return this.feedData.get(postNum).get(Index.POST_DATE);
     }
 
-    public String getPostImage(){
-        return this.feedData.get(Index.POST_URL);
+    public String getPostImage(int postNum){
+        return this.feedData.get(postNum).get(Index.POST_URL);
     }
 
     public int getNumPosts(){
-        return this.feedData.size() - 1;
+        return this.feedData.size();
     }
 }

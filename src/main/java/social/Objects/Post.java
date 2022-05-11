@@ -2,7 +2,9 @@ package social.Objects;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 public class Post extends Pane {
@@ -85,7 +87,11 @@ public class Post extends Pane {
 
     private void setImage(){
         
-        //TODO: Get user image from SQL database
+       picture = new Circle();
+       picture.setRadius(27);
+       picture.setLayoutX(45);
+       picture.setLayoutY(47);
+       picture.setFill(new ImagePattern(new Image(this.imageURL)));
 
     }
 }

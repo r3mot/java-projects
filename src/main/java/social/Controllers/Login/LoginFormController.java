@@ -44,7 +44,12 @@ public class LoginFormController {
 
 
     private boolean success() throws ClassNotFoundException, SQLException{
-        return credentials.login(username.getText(), password.getText());
+
+        boolean result = credentials.login(username.getText(), password.getText());
+        if(!result){
+            showError();
+        }
+        return result;
     }
 
 

@@ -2,12 +2,11 @@ package social.Debug;
 
 public class Flag {
     
-    private static boolean debugging = false;
+    private static boolean debugging = true;
 
-    public static void DEBUG(String error, Exception e){
+    public static void DEBUG(String error){
         if(debugging){
-            System.out.println(error);
-            System.out.println("Caused by: " + e.getCause());
+            System.out.println("Caused by: " + error);
         }
     }
 }

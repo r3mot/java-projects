@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 import social.Database.QueryStrings.Query;
 import social.Debug.Flag;
+import social.Objects.CurrentUser;
 
 public class CredentialManager {
 
@@ -68,8 +69,8 @@ public class CredentialManager {
 
             if(user.equals(username) && pass.equals(password)){
                 loginResult = true;
-                // TODO: set current user's name
-                // User.setCurrentName(first + " " + last);
+
+                CurrentUser.setName(first, last);
                 break;
             }
 
@@ -107,7 +108,7 @@ public class CredentialManager {
             }
             generatedPassword = sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            Flag.DEBUG("Error hashing password", e);
+            Flag.DEBUG(e.getCause().toString());
         }
 
         return generatedPassword;

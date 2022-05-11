@@ -29,9 +29,26 @@ public class CredentialManager {
      * The boolean nature of the method is used to determine error handling
      * on the login screen (i.e. informing the user of incorrect credentials)
      */
-    public boolean login(String username, String password) throws ClassNotFoundException, SQLException{
-        return loginSuccessful(username, password);
+    public boolean userLogin(String username, String password) throws ClassNotFoundException, SQLException{
+        return validUserLogin(username, password);
     }
+
+    /**
+     * 
+     * @param email
+     * @param password
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * 
+     * When club attempts to login, the method will return true or false
+     * The boolean nature of the method is used to determine error handling
+     * on the login screen (i.e. informing the club of incorrect credentials)
+     */
+    public boolean clubLogin(String email, String password) throws ClassNotFoundException, SQLException{
+        return validClubLogin(email, password);
+    }
+    
 
         /**
      * 
@@ -44,7 +61,7 @@ public class CredentialManager {
      * Checks entered username and password against
      * the database
      */
-    private boolean loginSuccessful(String username, String password) throws ClassNotFoundException, SQLException{
+    private boolean validUserLogin(String username, String password) throws ClassNotFoundException, SQLException{
 
         boolean loginResult = false;
         PreparedStatement ps;
@@ -53,7 +70,7 @@ public class CredentialManager {
         password = hash(password);
 
         connection = dbHelper.getConnection();
-        ps = connection.prepareStatement(Query.VALID_LOGIN);
+        ps = connection.prepareStatement(Query.VALID_USER_LOGIN);
         ps.setString(1, username);
         ps.setString(2, password);
         rs = ps.executeQuery();
@@ -71,6 +88,56 @@ public class CredentialManager {
                 loginResult = true;
 
                 CurrentUser.setName(first, last);
+                break;
+            }
+
+           
+        }
+
+        ps.close();
+        rs.close();
+        connection.close();
+
+        return loginResult;
+    }
+
+            /**
+     * 
+     * @param un
+     * @param pw
+     * @return valid login
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * 
+     * Checks entered username and password against
+     * the database
+     */
+    private boolean validClubLogin(String email, String password) throws ClassNotFoundException, SQLException{
+
+        boolean loginResult = false;
+        PreparedStatement ps;
+        ResultSet rs;
+
+        password = hash(password);
+
+        connection = dbHelper.getConnection();
+        ps = connection.prepareStatement(Query.VALID_CLUB_LOGIN);
+        ps.setString(1, email);
+        ps.setString(2, password);
+        rs = ps.executeQuery();
+
+        while(rs.next()){
+
+            String eml = rs.getString(Query.GET_EMAIL);
+            String pass = rs.getString(Query.GET_PASSWORD);
+
+            // Getting current full name in same query 
+            String first = rs.getString(Query.GET_CLUB_NAME);
+
+            if(eml.equals(email) && pass.equals(password)){
+                loginResult = true;
+
+                CurrentUser.setName(first, "");
                 break;
             }
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Login.CreateClubController">
+   <children>
+      <TextField id="loginField" fx:id="name" layoutX="92.0" layoutY="151.0" prefHeight="25.0" prefWidth="266.0" promptText="Name" />
+      <TextField id="loginField" fx:id="purpose" layoutX="92.0" layoutY="191.0" prefHeight="25.0" prefWidth="266.0" promptText="Purpose" />
+      <TextField id="loginField" fx:id="mainContact" layoutX="92.0" layoutY="231.0" prefHeight="25.0" prefWidth="266.0" promptText="Primary Contact" />
+      <TextField id="loginField" fx:id="email" layoutX="92.0" layoutY="466.0" prefHeight="25.0" prefWidth="266.0" promptText="Email" />
+      <TextField id="loginField" fx:id="website" layoutX="92.0" layoutY="271.0" prefHeight="25.0" prefWidth="266.0" promptText="Website" />
+      <Label alignment="CENTER" layoutX="92.0" layoutY="69.0" prefHeight="59.0" prefWidth="266.0" text="Club Information">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="92.0" layoutY="383.0" prefHeight="59.0" prefWidth="266.0" text="Create Log In">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField id="loginField" fx:id="password" layoutX="92.0" layoutY="502.0" prefHeight="25.0" prefWidth="266.0" promptText="Password" />
+      <Button layoutX="92.0" layoutY="313.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="25.0" prefWidth="266.0" text="Upload Logo" />
+      <Button fx:id="done" layoutX="92.0" layoutY="542.0" mnemonicParsing="false" onAction="#create" prefHeight="25.0" prefWidth="266.0" text="Done" />
+   </children>
+</AnchorPane>

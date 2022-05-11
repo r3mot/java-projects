@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Login.LoginFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Login.ClubLoginFormController">
    <children>
-      <TextField id="txt" fx:id="username" layoutX="96.0" layoutY="247.0" prefHeight="25.0" prefWidth="258.0" promptText="User Name">
+      <TextField id="txt" fx:id="email" layoutX="96.0" layoutY="247.0" prefHeight="25.0" prefWidth="258.0" promptText="Email">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -28,7 +28,7 @@
       </Button>
       <Hyperlink fx:id="forgotPasswordLink" alignment="CENTER" layoutX="96.0" layoutY="379.0" prefHeight="23.0" prefWidth="167.0" text="Forgot Password" textAlignment="CENTER" />
       <Label fx:id="loginError" alignment="CENTER" layoutX="96.0" layoutY="223.0" prefHeight="17.0" prefWidth="258.0" textFill="#f80000" />
-      <Label alignment="CENTER" layoutY="48.0" prefHeight="110.0" prefWidth="450.0" text="Student Login">
+      <Label alignment="CENTER" layoutY="48.0" prefHeight="110.0" prefWidth="450.0" text="Club Login">
          <font>
             <Font size="40.0" />
          </font>

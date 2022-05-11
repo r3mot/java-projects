@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import social.Database.QueryStrings.Query;
 import social.Database.QueryStrings.Index;
 import social.Database.QueryStrings.Insert;
+import social.Objects.Club;
 import social.Objects.CurrentUser;
 import social.Objects.Post;
 import social.Objects.User;
@@ -152,6 +153,27 @@ public class Database {
         rs.close();
 
         return data;
+    }
+
+    public void createClub(Club club) throws SQLException{
+
+        PreparedStatement ps;
+
+        String hashedPassword = hash(club.getPassword());
+        connection = dbHelper.getConnection();
+
+        ps = connection.prepareStatement(Insert.NEW_CLUB);
+        ps.setString(1, club.getEmail());
+        ps.setString(2, hashedPassword);
+        ps.setString(3, club.getName());
+        ps.setString(4, club.getPurpose());
+        ps.setString(5, club.getMainContact());
+        ps.setString(6, club.getWebsite());
+        ps.setString(7, club.getIcon().getUrl());
+
+        ps.executeUpdate();
+        ps.close();
+
     }
 
     /**

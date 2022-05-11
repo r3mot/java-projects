@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -17,52 +16,25 @@ import social.App;
 import social.Database.CredentialManager;
 import social.Objects.CurrentUser;
 
-public class LoginFormController {
+public class ClubLoginFormController {
 
+    @FXML private TextField email;
     @FXML private Hyperlink forgotPasswordLink;
     @FXML private Button loginButton;
-    @FXML private PasswordField password;
-    @FXML private TextField username;
     @FXML private Label loginError;
-    @FXML private RadioButton club;
+    @FXML private PasswordField password;
 
     private CredentialManager credentials = new CredentialManager();
 
-
     @FXML
-    void selectedClub(ActionEvent event){
-        
-    }
-
-    /**
-     * 
-     * @param event
-     * @throws ClassNotFoundException
-     * @throws IOException
-     * @throws SQLException
-     * 
-     * User clicked enter after entering their password
-     * Attempt login
-     */
-    @FXML 
-    void enter(KeyEvent event) throws ClassNotFoundException, IOException, SQLException {
+    void enter(KeyEvent event) throws ClassNotFoundException, SQLException, IOException {
         if(event.getCode().equals(KeyCode.ENTER)){
             login(null);
         }
     }
-    
-    /**
-     * 
-     * @param event
-     * @throws IOException
-     * @throws ClassNotFoundException
-     * @throws SQLException
-     * 
-     * If successful login (valid credentials & non-empty text fields)
-     * Execute the login process
-     */
+
     @FXML
-    void login(ActionEvent event) throws IOException, ClassNotFoundException, SQLException {
+    void login(ActionEvent event) throws ClassNotFoundException, SQLException, IOException {
 
         if(success()){
             execLogin();
@@ -71,7 +43,7 @@ public class LoginFormController {
         showError();
     }
 
-    /**
+     /**
      * 
      * @throws IOException
      * 
@@ -80,7 +52,7 @@ public class LoginFormController {
      */
     private void execLogin() throws IOException{
 
-        CurrentUser.setUsername(username.getText());
+        CurrentUser.setUsername(email.getText());
         App.setRoot("Home");
 
     }
@@ -96,7 +68,7 @@ public class LoginFormController {
      */
     private boolean success() throws ClassNotFoundException, SQLException{
 
-        boolean result = credentials.userLogin(username.getText(), password.getText());
+        boolean result = credentials.userLogin(email.getText(), password.getText());
         if(!result){
             showError();
         }

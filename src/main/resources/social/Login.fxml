@@ -17,12 +17,12 @@
             <Pane fx:id="createUserPane" prefHeight="650.0" prefWidth="450.0" />
             <Pane fx:id="transitionPane" prefHeight="650.0" prefWidth="450.0" style="-fx-background-color: #424d57;">
                <children>
-                  <Button id="transitionButton" fx:id="goToCreateUser" layoutX="121.0" layoutY="485.0" mnemonicParsing="false" onAction="#slideLeft" prefHeight="40.0" prefWidth="209.0" styleClass="signUp" text="&lt;-- SIGN UP">
+                  <Button id="transitionButton" fx:id="goToLogin" layoutX="121.0" layoutY="485.0" mnemonicParsing="false" onAction="#slideLeft" prefHeight="40.0" prefWidth="209.0" styleClass="signUp" text="LOG IN">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button id="transitionButton" fx:id="goToLogin" layoutX="121.0" layoutY="485.0" mnemonicParsing="false" onAction="#slideRight" prefHeight="40.0" prefWidth="209.0" styleClass="signIn" text="LOG IN --&gt;">
+                  <Button id="transitionButton" fx:id="goToCreateUser" layoutX="121.0" layoutY="485.0" mnemonicParsing="false" onAction="#slideRight" prefHeight="40.0" prefWidth="209.0" styleClass="signIn" text="SIGN UP">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -47,6 +47,17 @@
                         <Image url="@../../../../../../final_project/final/src/main/resources/social/Images/GUI/add-friend.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="club" layoutX="120.0" layoutY="541.0" mnemonicParsing="false" onAction="#createClub" prefHeight="40.0" prefWidth="209.0" text="CREATE CLUB">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="user" layoutX="120.0" layoutY="541.0" mnemonicParsing="false" onAction="#createUser" prefHeight="40.0" prefWidth="209.0" text="CREATE USER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="clubLogin" layoutX="120.0" layoutY="541.0" mnemonicParsing="false" onAction="#clubLogin" prefHeight="40.0" prefWidth="209.0" text="CLUB LOGIN" />
+                  <Button fx:id="studentLogin" layoutX="120.0" layoutY="541.0" mnemonicParsing="false" onAction="#studentLogin" prefHeight="40.0" prefWidth="209.0" text="STUDENT LOGIN" />
                </children>
             </Pane>
          </children>

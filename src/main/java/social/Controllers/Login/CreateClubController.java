@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,68 +16,44 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import social.Database.Database;
-import social.Objects.User;
+import social.Objects.Club;
 
-public class CreateUserController implements Initializable {
+public class CreateClubController  implements Initializable {
 
-    @FXML private TextField dreamjob;
-    @FXML private TextField firstname;
-    @FXML private TextField lastname;
-    @FXML private TextField major;
-    @FXML private TextField password;
-    @FXML private TextField standing;
-    @FXML private TextField username;
-    @FXML private TextField year;
+    @FXML private TextField name;
     @FXML private Button done;
+    @FXML private TextField email;
+    @FXML private TextField password;
+    @FXML private TextField mainContact;
+    @FXML private TextField purpose;
+    @FXML private TextField website;
 
-    private Image profilepicture;
+    private Image clubIcon;
     private List<TextField> textFields;
     private PseudoClass error;
 
     private Database db;
-    private User user;
+    private Club club;
 
-
-    /**
-     * 
-     * @param event
-     * 
-     * Create a new user account
-     * @throws SQLException
-     */
     @FXML
     void create(ActionEvent event) throws SQLException {
 
         db = new Database();
         if(inputValid()){
-            this.user = new User
+            this.club = new Club
             (
-                firstname.getText(),
-                lastname.getText(), 
-                major.getText(), 
-                standing.getText(), 
-                year.getText(), 
-                dreamjob.getText(), 
-                profilepicture, 
-                username.getText(), 
-                password.getText()
+                name.getText(),
+                purpose.getText(),
+                mainContact.getText(),
+                website.getText(),
+                email.getText(),
+                password.getText(),
+                clubIcon
             );
-
-            db.createUser(this.user);
-        }
-        else{
-            System.out.println("Nope");
+            db.createClub(this.club);
         }
     }
 
-
-    /**
-     * 
-     * @param event
-     * 
-     * Allows user to upload profile picture on account creation
-     * Currently allows jpg and png files
-     */
     @FXML
     void uploadImage(ActionEvent event) {
 
@@ -87,12 +64,12 @@ public class CreateUserController implements Initializable {
         File file = fileChooser.showOpenDialog(null);
 
         if (file != null) {
-            this.profilepicture = new Image(file.toURI().toString()); 
+            this.clubIcon = new Image(file.toURI().toString()); 
         }
         
     }
 
-    /**
+        /**
      * 
      * @return valid input
      * 
@@ -112,11 +89,9 @@ public class CreateUserController implements Initializable {
         return valid;
     }
 
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-        textFields = Arrays.asList(firstname, lastname,major, standing, year, dreamjob, username, password);
+        @Override
+        public void initialize(URL location, ResourceBundle resources) {
+            textFields = Arrays.asList(name, purpose, mainContact, website, email, password);
 
         error = PseudoClass.getPseudoClass("error");
         
@@ -126,5 +101,9 @@ public class CreateUserController implements Initializable {
             });
             tf.pseudoClassStateChanged(error, false);
         }
-    }
+            
+        }
+
+
+
 }

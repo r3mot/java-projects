@@ -21,8 +21,11 @@ public class Database {
     private DatabaseHelper dbHelper = new DatabaseHelper();
     private Connection connection = dbHelper.getConnection();
 
-
-
+    /**
+     * 
+     * @param post
+     * @throws SQLException
+     */
     public void addUserPost(Post post) throws SQLException{
         
         PreparedStatement ps;
@@ -46,7 +49,6 @@ public class Database {
     public ArrayList<ArrayList<String>> getGlobalFeed() throws SQLException{
         
         ArrayList<ArrayList<String>> feed = new ArrayList<ArrayList<String>>();
-        ArrayList<String> row = new ArrayList<>();
 
         PreparedStatement ps;
         ResultSet rs;
@@ -56,8 +58,7 @@ public class Database {
 
         while(rs.next()){
 
-            // row.add(Index.POST_ID, String.valueOf(rs.getInt(Query.GET_POSTID)));
-            // row.add(Index.POST_USERNAME, rs.getString(Query.GET_USERNAME));
+            ArrayList<String> row = new ArrayList<>();
             row.add(0, rs.getString(Query.GET_FULL_NAME));
             row.add(1, rs.getString(Query.GET_POST_CONTENT));
             row.add(2, rs.getString(Query.GET_POST_DATE));
@@ -68,6 +69,7 @@ public class Database {
 
         ps.close();
         rs.close();
+
 
         return feed;
     
@@ -87,7 +89,7 @@ public class Database {
     public ArrayList<ArrayList<String>> getUserFeed() throws SQLException{
         
         ArrayList<ArrayList<String>> feed = new ArrayList<ArrayList<String>>();
-        ArrayList<String> row = new ArrayList<>();
+
         // feed.add(new ArrayList<String>());
 
         PreparedStatement ps;
@@ -98,7 +100,7 @@ public class Database {
         rs = ps.executeQuery();
 
         while(rs.next()){
-
+            ArrayList<String> row = new ArrayList<>();
             row.add(Index.POST_ID, String.valueOf(rs.getInt(Query.GET_POSTID)));
             row.add(Index.POST_USERNAME, rs.getString(Query.GET_USERNAME));
             row.add(Index.POST_NAME, rs.getString(Query.GET_FULL_NAME));

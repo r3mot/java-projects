@@ -24,7 +24,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import social.Database.Database;
-import social.Database.LocalStorage.GlobalFeedData;
+import social.Database.LocalStorage.Global.GlobalFeedData;
 import social.Debug.Flag;
 import social.Objects.CurrentUser;
 import social.Objects.Post;
@@ -92,7 +92,7 @@ public class FeedController implements Initializable {
         yPosition = 0;
         feedPane.getChildren().clear();
 
-        for(int i = 0; i < data.getNumPosts(); i++){
+        for(int i = data.getNumPosts()-1; i >= 0; i--){
 
             String name = data.getPostName(i);
             String content = data.getPostContent(i);

@@ -1,4 +1,4 @@
-package social.Database.LocalStorage;
+package social.Database.LocalStorage.Global;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -40,13 +40,6 @@ public class GlobalFeedData {
 
     }
     
-    // public String getPostID(int postNum){
-    //     return this.feedData.get(postNum).get(Index.POST_ID);
-    // }
-
-    // public String getPostUsername(int postNum){
-    //     return this.feedData.get(postNum).get(Index.POST_USERNAME);
-    // }
 
     public String getPostContent(int postNum){
         return this.feedData.get(postNum).get(1);

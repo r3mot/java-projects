@@ -12,7 +12,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import social.Database.LocalStorage.UserData;
+import social.Database.LocalStorage.User.FeedData;
+import social.Database.LocalStorage.User.ProfileData;
 import social.Debug.Flag;
 import social.Objects.CurrentUser;
 import social.Objects.Post;
@@ -36,8 +37,8 @@ public class ProfileController implements Initializable {
 
     @FXML private Circle profilePicture;
 
-    private UserData userData;
-    private Post userFeed;
+    private ProfileData profileData;
+    private FeedData feedData;
     private int yPostion;
 
 
@@ -48,17 +49,22 @@ public class ProfileController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
         try {
-            userData = new UserData();
+            profileData = new ProfileData();
+            feedData = new FeedData();
         } catch (SQLException e) { 
             Flag.DEBUG(e.getCause().toString()); 
         }
         
         displayProfile();
 
-        CurrentUser.setName(userData.getFirstName(), userData.getLastName());
+        CurrentUser.setName(profileData.getFirstName(), profileData.getLastName());
         
     }
 
+    /**
+     * Displays all profile data
+     * Calls the helper methods below
+     */
     private void displayProfile(){
 
         initFeed();
@@ -69,39 +75,36 @@ public class ProfileController implements Initializable {
 
     private void initFeed(){
 
-        String name="";
-        String content="";
-        String imageURL="";
-        String date="";
 
-        for(int i = 0; i < userData.getNumPosts(); i++){
+        Post userFeed;
 
-            name = userData.getPostName(i);
-            content = userData.getPostContent(i);
-            imageURL = userData.getPostImage(i);
-            date = userData.getPostDate(i);
+        for(int i = feedData.getNumPosts()-1; i >= 0; i--){
+
+            String name = feedData.getPostName(i);
+            String content = feedData.getPostContent(i);
+            String imageURL = feedData.getPostImage(i);
+            String date = feedData.getPostDate(i);
 
             userFeed = new Post(name, content, imageURL, date, yPostion);
             postsAnchor.getChildren().addAll(userFeed);
 
             yPostion += userFeed.getPrefHeight() + 2;
+
+            CurrentUser.setImage(imageURL);
             
         }
-
-        CurrentUser.setImage(imageURL);
 
     }
 
     private void initAbout(){
 
-        // addPicture("");
-
-        firstName(userData.getFirstName());
-        lastName(userData.getLastName());
-        major(userData.getMajor());
-        standing(userData.getStanding());
-        year(userData.getYear());
-        dreamJob(userData.getDreamJob());
+        addPicture(CurrentUser.imageURL);
+        firstName(profileData.getFirstName());
+        lastName(profileData.getLastName());
+        major(profileData.getMajor());
+        standing(profileData.getStanding());
+        year(profileData.getYear());
+        dreamJob(profileData.getDreamJob());
 
 
     }

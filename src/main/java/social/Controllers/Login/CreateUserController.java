@@ -27,6 +27,7 @@ public class CreateUserController implements Initializable {
     @FXML private TextField standing;
     @FXML private TextField username;
     @FXML private TextField year;
+    @FXML private TextField picutreUrl;
     @FXML private Button done;
 
     private Image profilepicture;
@@ -90,6 +91,8 @@ public class CreateUserController implements Initializable {
             this.profilepicture = new Image(file.toURI().toString()); 
         }
         
+        String fileName = file.getName();
+        picutreUrl.setText(fileName);
     }
 
     /**
@@ -116,7 +119,7 @@ public class CreateUserController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        textFields = Arrays.asList(firstname, lastname,major, standing, year, dreamjob, username, password);
+        textFields = Arrays.asList(firstname, lastname,major, standing, year, dreamjob, username, password, picutreUrl);
 
         error = PseudoClass.getPseudoClass("error");
         

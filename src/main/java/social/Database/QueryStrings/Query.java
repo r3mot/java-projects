@@ -5,7 +5,10 @@ public class Query {
     private Query(){}
 
    
+    //FRIENDs
+    public static final String USER_FRIENDS = "SELECT * FROM USERS";
 
+    // CLUBS
     public static final String VALID_CLUB_LOGIN = "SELECT * FROM CLUBS WHERE EMAIL=? AND PASSWORD=?";
     public static final String GET_EMAIL = "EMAIL";
     public static final String GET_CLUB_NAME = "NAME";

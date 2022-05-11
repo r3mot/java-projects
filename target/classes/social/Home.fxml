@@ -61,9 +61,9 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="33.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="172.0" fitWidth="169.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../final_project/final/src/main/resources/social/Images/HomeScreen/header_logo.png" />
+                  <Image url="@../Images/Dashboard/header_logo.png" />
                </image>
             </ImageView>
          </children>

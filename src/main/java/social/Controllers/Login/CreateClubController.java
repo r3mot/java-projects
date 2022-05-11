@@ -14,19 +14,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import social.Database.Database;
 import social.Objects.Club;
 
 public class CreateClubController  implements Initializable {
 
-    @FXML private TextField name;
     @FXML private Button done;
     @FXML private TextField email;
-    @FXML private TextField password;
     @FXML private TextField mainContact;
+    @FXML private TextField name;
+    @FXML private TextField password;
     @FXML private TextField purpose;
     @FXML private TextField website;
+    @FXML private TextField logo;
 
     private Image clubIcon;
     private List<TextField> textFields;
@@ -66,6 +68,9 @@ public class CreateClubController  implements Initializable {
         if (file != null) {
             this.clubIcon = new Image(file.toURI().toString()); 
         }
+
+        String fileName = file.getName();
+        logo.setText(fileName);
         
     }
 

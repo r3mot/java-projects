@@ -113,7 +113,7 @@ public class FeedController implements Initializable {
      */
     private void displayPopup(){
 
-        Alert alert = new Alert(AlertType.ERROR);
+        Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Create A Post");
         alert.setHeaderText("Share Your Thoughts!");
 

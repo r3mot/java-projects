@@ -1,1 +1,106 @@
 @import "login.css";
+@import "homepage.css";
+@import "feed.css";
+@import "profile.css";
+@import "post.css";
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap'); */
+
+*{
+    fx-primary:  #424d57;
+    fx-secondary:  #bebebe;
+    fx-shadow: #f8dcf1;
+
+}
+
+
+#textField {
+    -fx-font-size: 30px;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+#btn{
+
+    -fx-font-size: 12px;  
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-font-weight: bold;
+    -fx-text-fill:black;
+    -fx-border-radius: 20;
+    -fx-background-radius:20;
+}
+
+#btn:hover {
+    -fx-background-color:black;
+    -fx-text-fill:white;
+}
+
+
+#transitionButton{
+    -fx-background-radius: 20;
+    -fx-font-size: 12px;  
+}
+
+#transitionButton:hover {
+    -fx-background-color:black;
+    -fx-text-fill:white;
+}
+
+#logOut {
+    -fx-background-color: fx-primary;
+    -fx-border-color: white;
+    -fx-text-fill:white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-font-size: 12px;  
+}
+
+#logOut:hover {
+    -fx-background-color:black;
+    -fx-text-fill:white;
+}
+
+#txt {
+    /* -fx-effect: dropshadow(one-pass-box, fx-secondary,  5,0.5,5,5); */
+    -fx-background-color: rgb(223, 217, 217);
+    -fx-prompt-text-fill: black;
+    -fx-border-color:transparent transparent black transparent ;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-prompt-text-size: 10;
+    -fx-font-size: 12;
+    
+}
+
+#txt:error {
+    -fx-prompt-text-fill: red;
+}
+
+.signUp {
+    -fx-background-color: fx-primary;
+    -fx-border-radius: 20;
+    -fx-text-fill:white;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-font-size: 16;
+    -fx-font-weight: 10px;
+}
+
+.signUp:hover {
+    -fx-background-color: rgb(72, 66, 85);
+}
+
+.signIn {
+    -fx-background-color: fx-primary;
+    -fx-border-radius: 20;
+    -fx-text-fill:white;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-font-size: 16;
+    -fx-font-weight: 10px;
+}
+
+.signIn:hover {
+    -fx-background-color: rgb(63, 63, 124);
+}

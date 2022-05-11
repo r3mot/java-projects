@@ -1,0 +1,10 @@
+#post-text-area {
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-text-color: black;
+}
+
+#post-date-label{
+    -fx-font-size: 10;
+}
+

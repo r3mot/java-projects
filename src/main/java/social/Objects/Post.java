@@ -9,8 +9,8 @@ import javafx.scene.shape.Circle;
 
 public class Post extends Pane {
     
-    private int PREF_WIDTH = 763;
-    private int PREF_HEIGHT = 250;
+    private int PREF_WIDTH = 738;
+    private int PREF_HEIGHT = 163;
 
     private Label dateLabel;
     private Label nameLabel;
@@ -52,10 +52,10 @@ public class Post extends Pane {
 
         contentTA = new TextArea();
         contentTA.setId("post-text-area");
-        contentTA.setPrefWidth(622);
-        contentTA.setPrefHeight(74);
-        contentTA.setLayoutX(23);
-        contentTA.setLayoutY(85);
+        contentTA.setPrefWidth(433);
+        contentTA.setPrefHeight(87);
+        contentTA.setLayoutX(277);
+        contentTA.setLayoutY(55);
         contentTA.setDisable(true);
         contentTA.setWrapText(true);
         contentTA.setText(this.content);
@@ -66,10 +66,10 @@ public class Post extends Pane {
 
         dateLabel = new Label();
         dateLabel.setId("post-date-label");
-        dateLabel.setPrefWidth(160);
+        dateLabel.setPrefWidth(100);
         dateLabel.setPrefHeight(17);
-        dateLabel.setLayoutX(83);
-        dateLabel.setLayoutY(40);
+        dateLabel.setLayoutX(141);
+        dateLabel.setLayoutY(90);
         dateLabel.setText(this.date);
 
     }
@@ -78,19 +78,19 @@ public class Post extends Pane {
 
         nameLabel = new Label();
         nameLabel.setId("post-name-label");
-        nameLabel.setPrefWidth(126);
-        nameLabel.setPrefHeight(17);
-        nameLabel.setLayoutX(83);
-        nameLabel.setLayoutY(19);
+        nameLabel.setPrefWidth(136);
+        nameLabel.setPrefHeight(20);
+        nameLabel.setLayoutX(141);
+        nameLabel.setLayoutY(63);
         nameLabel.setText(this.name);
     }
 
     private void setImage(){
         
        picture = new Circle();
-       picture.setRadius(27);
-       picture.setLayoutX(45);
-       picture.setLayoutY(47);
+       picture.setRadius(41);
+       picture.setLayoutX(79);
+       picture.setLayoutY(83);
        picture.setFill(new ImagePattern(new Image(this.imageURL)));
 
     }

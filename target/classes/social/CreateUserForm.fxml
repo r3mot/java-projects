@@ -9,31 +9,36 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Login.CreateUserController">
    <children>
-      <TextField id="loginField" fx:id="firstname" layoutX="92.0" layoutY="128.0" prefHeight="25.0" prefWidth="266.0" promptText="First Name" />
-      <TextField id="loginField" fx:id="lastname" layoutX="92.0" layoutY="168.0" prefHeight="25.0" prefWidth="266.0" promptText="Last Name" />
-      <TextField id="loginField" fx:id="major" layoutX="92.0" layoutY="208.0" prefHeight="25.0" prefWidth="266.0" promptText="Major" />
-      <TextField id="loginField" fx:id="standing" layoutX="92.0" layoutY="248.0" prefHeight="25.0" prefWidth="266.0" promptText="Standing (i.e. Freshman, Sophomore)" />
-      <TextField id="loginField" fx:id="year" layoutX="92.0" layoutY="288.0" prefHeight="25.0" prefWidth="266.0" promptText="Graduating Year" />
-      <TextField id="loginField" fx:id="dreamjob" layoutX="92.0" layoutY="328.0" prefHeight="25.0" prefWidth="266.0" promptText="Dream Job" />
-      <Label alignment="CENTER" layoutX="92.0" layoutY="46.0" prefHeight="59.0" prefWidth="266.0" text="About You">
+      <TextField id="txt" fx:id="firstname" layoutX="92.0" layoutY="128.0" prefHeight="25.0" prefWidth="266.0" promptText="First Name" />
+      <TextField id="txt" fx:id="lastname" layoutX="92.0" layoutY="168.0" prefHeight="25.0" prefWidth="266.0" promptText="Last Name" />
+      <TextField id="txt" fx:id="major" layoutX="92.0" layoutY="208.0" prefHeight="25.0" prefWidth="266.0" promptText="Major" />
+      <TextField id="txt" fx:id="standing" layoutX="92.0" layoutY="248.0" prefHeight="25.0" prefWidth="266.0" promptText="Standing (i.e. Freshman, Sophomore)" />
+      <TextField id="txt" fx:id="year" layoutX="92.0" layoutY="288.0" prefHeight="25.0" prefWidth="266.0" promptText="Graduating Year" />
+      <TextField id="txt" fx:id="dreamjob" layoutX="92.0" layoutY="328.0" prefHeight="25.0" prefWidth="266.0" promptText="Dream Job" />
+      <Label id="loginLabels" alignment="CENTER" layoutX="92.0" layoutY="46.0" prefHeight="59.0" prefWidth="266.0" styleClass="loginLabels" text="About You">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="92.0" layoutY="421.0" prefHeight="59.0" prefWidth="266.0" text="Create Log In">
+      <Label id="loginLabels" alignment="CENTER" layoutX="92.0" layoutY="421.0" prefHeight="59.0" prefWidth="266.0" styleClass="loginLabels" text="Create Log In">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <TextField id="loginField" fx:id="username" layoutX="92.0" layoutY="500.0" prefHeight="25.0" prefWidth="266.0" promptText="Username" />
-      <TextField id="loginField" fx:id="password" layoutX="92.0" layoutY="540.0" prefHeight="25.0" prefWidth="266.0" promptText="Password" />
-      <Button layoutX="92.0" layoutY="368.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="25.0" prefWidth="266.0" text="Upload Profile Picture">
+      <TextField id="txt" fx:id="username" layoutX="92.0" layoutY="500.0" prefHeight="25.0" prefWidth="266.0" promptText="Username" />
+      <TextField id="txt" fx:id="password" layoutX="92.0" layoutY="540.0" prefHeight="25.0" prefWidth="266.0" promptText="Password" />
+      <Button id="btn" layoutX="286.0" layoutY="367.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="27.0" prefWidth="72.0" text="Upload">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="done" layoutX="92.0" layoutY="580.0" mnemonicParsing="false" onAction="#create" prefHeight="25.0" prefWidth="266.0" text="Done">
+      <Button id="btn" fx:id="done" layoutX="150.0" layoutY="581.0" mnemonicParsing="false" onAction="#create" prefHeight="25.0" prefWidth="150.0" text="Finish">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
+      <TextField id="txt" fx:id="picutreUrl" editable="false" layoutX="92.0" layoutY="368.0" prefHeight="25.0" prefWidth="181.0" promptText="Profile Picture">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </TextField>
    </children>
 </AnchorPane>

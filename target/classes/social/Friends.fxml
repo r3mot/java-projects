@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Home.FriendController">
+   <children>
+      <ScrollPane layoutY="110.0" prefHeight="690.0" prefWidth="780.0">
+        <content>
+          <AnchorPane fx:id="contentPane" minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="765.0" />
+        </content>
+      </ScrollPane>
+      <Label alignment="CENTER" layoutX="153.0" layoutY="9.0" prefHeight="87.0" prefWidth="474.0" text="Your Connections">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

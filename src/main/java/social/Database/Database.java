@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javafx.scene.image.Image;
 import social.Database.QueryStrings.Query;
 import social.Database.QueryStrings.Index;
 import social.Database.QueryStrings.Insert;
@@ -121,6 +122,44 @@ public class Database {
 
     /**
      * 
+     * @return
+     * @throws SQLException
+     */
+    public ArrayList<User> getFriends() throws SQLException{
+
+        ResultSet rs;
+        PreparedStatement ps;
+        User user;
+        ArrayList<User> friends = new ArrayList<>();
+
+        ps = connection.prepareStatement(Query.USER_FRIENDS);
+        // ps.setString(1, CurrentUser.username);
+        rs = ps.executeQuery();
+
+ 
+
+        while(rs.next()){
+
+            user = new User(rs.getString(Query.GET_FIRST_NAME), 
+            rs.getString(Query.GET_LAST_NAME), 
+            rs.getString(Query.GET_MAJOR), 
+            rs.getString(Query.GET_STANDING), 
+            rs.getString(Query.GET_YEAR), 
+            rs.getString(Query.GET_DREAM_JOB), 
+            new Image(rs.getString(Query.GET_IMAGE)), 
+            rs.getString(Query.GET_USERNAME),
+            "");
+
+            friends.add(user);
+        }
+
+        ps.close();
+        rs.close();
+
+        return friends;
+    }
+    /**
+     * 
      * @return user profile data
      * @throws SQLException
      * 
@@ -155,6 +194,11 @@ public class Database {
         return data;
     }
 
+    /**
+     * 
+     * @param club
+     * @throws SQLException
+     */
     public void createClub(Club club) throws SQLException{
 
         PreparedStatement ps;

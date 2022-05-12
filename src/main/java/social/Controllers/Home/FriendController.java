@@ -41,11 +41,10 @@ public class FriendController implements Initializable {
     private int rightX = 402;
     private int rightY = 30;
 
-    @FXML
-    void goBack(ActionEvent event) {
-        split.setDividerPosition(0, 99.63);
-    }
 
+    /**
+     * Start of controller class
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         db = new Database();
@@ -58,6 +57,21 @@ public class FriendController implements Initializable {
         
     }
 
+    /**
+     * 
+     * @param event return to friends list
+     */
+    @FXML
+    void goBack(ActionEvent event) {
+        split.setDividerPosition(0, 99.63);
+    }
+
+    /**
+     * 
+     * @throws SQLException
+     * 
+     * Show friends list
+     */
     private void displayFriends() throws SQLException{
 
         friends = db.getFriends();
@@ -69,16 +83,18 @@ public class FriendController implements Initializable {
                 try {
                     displayFriendProfile(friend.getUsername());
                 } catch (SQLException e1) {
-                    e1.printStackTrace();
+                    Flag.DEBUG(e1.getCause().toString());
                 }
             });
 
+            // Left Side
             if(i % 2 == 0){
                 friend.setX(leftX);
                 friend.setY(leftY);
                 allFriendsPane.getChildren().add(friend);
                 leftY += 250;
             }
+            // Right Side
             else{
                 friend.setX(rightX);
                 friend.setY(rightY);
@@ -91,6 +107,13 @@ public class FriendController implements Initializable {
 
     }
 
+    /**
+     * 
+     * @param username of friend
+     * @throws SQLException
+     * 
+     * Show friends profile
+     */
     private void displayFriendProfile(String username) throws SQLException{
         
         split.setDividerPosition(0, 0);

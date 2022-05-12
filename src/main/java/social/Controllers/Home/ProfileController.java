@@ -75,6 +75,9 @@ public class ProfileController implements Initializable {
         addPicture(CurrentUser.imageURL);
     }
 
+    /**
+     * Display all user's posts
+     */
     private void initFeed(){
 
         Post userFeed;
@@ -96,6 +99,9 @@ public class ProfileController implements Initializable {
         }
     }
 
+    /**
+     * Display about me page
+     */
     private void initAbout(){
 
         this.profilePicture.setFill(new ImagePattern(new Image(CurrentUser.imageURL)));
@@ -109,10 +115,17 @@ public class ProfileController implements Initializable {
 
     }
 
+    /**
+     * Display all friends
+     */
     private void initFriends(){
 
     }
 
+    /**
+     * 
+     * @param url profile picture
+     */
     private void addPicture(String url){
         profilePicture.setFill(new ImagePattern(new Image(url)));
     }

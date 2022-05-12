@@ -3,6 +3,9 @@ package social.Controllers.Home;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import javafx.concurrent.ScheduledService;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -11,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 import social.Database.LocalStorage.User.FeedData;
 import social.Database.LocalStorage.User.ProfileData;
 import social.Debug.Flag;
@@ -57,7 +61,6 @@ public class ProfileController implements Initializable {
         displayProfile();
 
         CurrentUser.setName(profileData.getFirstName(), profileData.getLastName());
-        
     }
 
     /**
@@ -73,7 +76,6 @@ public class ProfileController implements Initializable {
     }
 
     private void initFeed(){
-
 
         Post userFeed;
 
@@ -92,7 +94,6 @@ public class ProfileController implements Initializable {
             CurrentUser.setImage(imageURL);
             
         }
-
     }
 
     private void initAbout(){
@@ -115,5 +116,6 @@ public class ProfileController implements Initializable {
     private void addPicture(String url){
         profilePicture.setFill(new ImagePattern(new Image(url)));
     }
+
 }
 

@@ -35,6 +35,7 @@ public class GlobalFeedData {
 
         feedData.add(row);
 
+        System.out.println(feedData.toString());
         
 
     }

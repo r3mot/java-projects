@@ -115,8 +115,8 @@ public class LoginController implements Initializable {
         createUserPane.getChildren().add(createClubForm);
         club.setVisible(false);
         user.setVisible(true);
-
         label.setText(CLUB_CREATE);
+        
     }
 
     /**

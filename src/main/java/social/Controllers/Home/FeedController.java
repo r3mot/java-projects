@@ -55,13 +55,13 @@ public class FeedController implements Initializable {
 
         displayPopup();
 
-        feed = new Post(CurrentUser.name, content, CurrentUser.imageURL, getDate(), 0);
+        Post newPost = new Post(CurrentUser.name, content, CurrentUser.imageURL, getDate(), 0);
 
-        data.addPost(feed);
+        data.addPost(newPost);
 
         initFeed(); 
         
-        db.addUserPost(feed);
+        db.addUserPost(newPost);
         
     }
 

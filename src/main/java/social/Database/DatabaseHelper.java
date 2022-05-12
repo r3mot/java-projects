@@ -5,9 +5,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import social.Database.QueryStrings.Path;
+import social.Debug.Flag;
 
 
 public class DatabaseHelper {
+
+    private Connection connection;
     
     public boolean databaseExists(String dbFilePath){
         File dbFile = new File(dbFilePath);
@@ -19,18 +22,16 @@ public class DatabaseHelper {
         try {
             Class.forName(Path.CLASS);
         } catch (ClassNotFoundException e1) {
-            System.out.println("CONNECTION ERROR : / . . . .");
+            Flag.DEBUG("CONNECTION ERROR");
         }
 
-        Connection connection;
-
   
-        System.out.println("path exists");
+        Flag.PROCESS("Path to database exists");
 
         try {
             connection = DriverManager.getConnection(Path.DB);
             
-            System.out.println("Connected to database...");
+            Flag.PROCESS("Connected to database...");
 
             return connection;
         } catch (SQLException e) {

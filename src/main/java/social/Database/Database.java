@@ -8,12 +8,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javafx.scene.image.Image;
 import social.Database.QueryStrings.Query;
 import social.Database.QueryStrings.Index;
 import social.Database.QueryStrings.Insert;
 import social.Objects.Club;
 import social.Objects.CurrentUser;
+import social.Objects.FriendPane;
 import social.Objects.Post;
 import social.Objects.User;
 import social.Debug.Flag;
@@ -22,6 +22,47 @@ public class Database {
 
     private DatabaseHelper dbHelper = new DatabaseHelper();
     private Connection connection = dbHelper.getConnection();
+
+
+    /**
+     * 
+     * @param username
+     * @return
+     * @throws SQLException
+     * 
+     * Returns an arraylist of user data
+     */
+    public ArrayList<String> getUser(String username) throws SQLException{
+
+        ArrayList<String> user = new ArrayList<>();
+        for(int i = 0; i < 7; i++){
+            user.add("");
+        }
+        PreparedStatement ps;
+        ResultSet rs;
+
+        ps = connection.prepareStatement(Query.GET_REQUESTED_USER);
+        ps.setString(1, username);
+        rs = ps.executeQuery();
+
+        while(rs.next())
+        {
+            user.set(0,rs.getString(Query.GET_FIRST_NAME));
+            user.set(1,rs.getString(Query.GET_LAST_NAME));
+            user.set(2,rs.getString(Query.GET_MAJOR));
+            user.set(3,rs.getString(Query.GET_STANDING));
+            user.set(4,rs.getString(Query.GET_YEAR));
+            user.set(5,rs.getString(Query.GET_DREAM_JOB));
+            user.set(6, rs.getString(Query.GET_IMAGE));
+        }
+
+
+        ps.close();
+        rs.close();
+
+
+        return user;
+    }
 
     /**
      * 
@@ -125,32 +166,31 @@ public class Database {
      * @return
      * @throws SQLException
      */
-    public ArrayList<User> getFriends() throws SQLException{
+    public ArrayList<FriendPane> getFriends() throws SQLException{
 
         ResultSet rs;
         PreparedStatement ps;
-        User user;
-        ArrayList<User> friends = new ArrayList<>();
+
+        ArrayList<FriendPane> friends = new ArrayList<>();
+        FriendPane friend;
 
         ps = connection.prepareStatement(Query.USER_FRIENDS);
-        // ps.setString(1, CurrentUser.username);
         rs = ps.executeQuery();
-
- 
 
         while(rs.next()){
 
-            user = new User(rs.getString(Query.GET_FIRST_NAME), 
-            rs.getString(Query.GET_LAST_NAME), 
-            rs.getString(Query.GET_MAJOR), 
-            rs.getString(Query.GET_STANDING), 
-            rs.getString(Query.GET_YEAR), 
-            rs.getString(Query.GET_DREAM_JOB), 
-            new Image(rs.getString(Query.GET_IMAGE)), 
-            rs.getString(Query.GET_USERNAME),
-            "");
+            if(rs.getString(Query.GET_USERNAME).equals(CurrentUser.username)){
+                continue;
+            }
 
-            friends.add(user);
+            friend = new FriendPane
+            (
+                rs.getString(Query.GET_FIRST_NAME),
+                rs.getString(Query.GET_USERNAME),
+                rs.getString(Query.GET_IMAGE)
+            );
+
+            friends.add(friend);
         }
 
         ps.close();

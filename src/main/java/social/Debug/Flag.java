@@ -9,4 +9,10 @@ public class Flag {
             System.out.println("Caused by: " + error);
         }
     }
+
+    public static void PROCESS(String message){
+        if(debugging){
+            System.out.println(message);
+        }
+    }
 }

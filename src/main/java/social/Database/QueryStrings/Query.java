@@ -6,7 +6,10 @@ public class Query {
 
    
     //FRIENDs
-    public static final String USER_FRIENDS = "SELECT * FROM USERS";
+    public static final String USER_FRIENDS = "SELECT USERNAME, F_NAME, IMAGE FROM USERS";
+
+    //USER
+    public static final String GET_REQUESTED_USER = "SELECT F_NAME, L_NAME, MAJOR, STANDING, YEAR, D_JOB, IMAGE FROM USERS WHERE USERNAME=?";
 
     // CLUBS
     public static final String VALID_CLUB_LOGIN = "SELECT * FROM CLUBS WHERE EMAIL=? AND PASSWORD=?";

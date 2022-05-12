@@ -9,21 +9,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
-public class Friend extends Pane {
+public class FriendPane extends Pane {
 
     private Circle icon;
     private Label name_label;
     private Button click;
-    private String username;
+    private String usernameReturn;
     
-    public Friend(String name, String username, String url, int x, int y) {
+    public FriendPane(String name, String username, String url) {
 
-        this.username = username;
-
+        usernameReturn = username;
         setPrefWidth(255);
         setPrefHeight(133);
-        setLayoutX(x);
-        setLayoutY(y);
 
         setIcon(url, username);
         setName(name);
@@ -33,6 +30,14 @@ public class Friend extends Pane {
 
         getChildren().addAll(icon, name_label);
 
+    }
+
+    public void setX(int x){
+        setLayoutX(x);
+    }
+
+    public void setY(int y){
+        setLayoutY(y);
     }
 
     private void setIcon(String url, String username){
@@ -58,6 +63,10 @@ public class Friend extends Pane {
     }
 
     public Circle getClicked(){
-        return icon;
+        return this.icon;
+    }
+
+    public String getUsername(){
+        return usernameReturn;
     }
 }

@@ -41,7 +41,7 @@ public class HomeController implements Initializable {
 
             profilePane = FXMLLoader.load(App.class.getResource("Profile.fxml"));
             feedPane = FXMLLoader.load(App.class.getResource("Feed.fxml"));
-            // clubPane = FXMLLoader.load(App.class.getResource("Clubs.fxml"));
+            clubPane = FXMLLoader.load(App.class.getResource("Clubs.fxml"));
             friendPane = FXMLLoader.load(App.class.getResource("Friends.fxml"));
 
         }catch(IOException ioe) {

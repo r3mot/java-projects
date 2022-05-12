@@ -13,9 +13,17 @@ public class Query {
 
     // CLUBS
     public static final String VALID_CLUB_LOGIN = "SELECT * FROM CLUBS WHERE EMAIL=? AND PASSWORD=?";
-    public static final String GET_EMAIL = "EMAIL";
+    public static final String GET_CLUB_EMAIL = "EMAIL";
     public static final String GET_CLUB_NAME = "NAME";
-    
+    public static final String GET_CLUB_PURPOSE = "PURPOSE";
+    public static final String GET_CLUB_CONTACT = "CONTACT";
+    public static final String GET_CLUB_WEBSITE = "WEBSITE";
+    public static final String GET_CLUB_ICON = "ICON";
+    public static final String GET_THE_CLUBS = "SELECT * FROM CLUBS";
+    public static final String GET_ALL_CLUBS = "SELECT EMAIL, NAME, PURPOSE, CONTACT, WEBSITE, ICON FROM CLUBS";
+    public static final String GET_CLUB = "SELECT EMAIL, NAME, PURPOSE, CONTACT, WEBSITE, ICON FROM CLUBS WHERE EMAIL=?";
+    public static final String ADD_CLUB = "INSERT CLUBS INTO USERS WHERE USERNAME=?";
+
     // FEED
     public static final String GLOBAL_FEED = "SELECT NAME, CONTENT, DATE, IMAGE FROM POSTS";
     public static final String USER_FEED = "SELECT * FROM POSTS WHERE USERNAME=?";

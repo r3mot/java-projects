@@ -23,6 +23,7 @@ public class ClubLoginFormController {
     @FXML private Button loginButton;
     @FXML private Label loginError;
     @FXML private PasswordField password;
+    
 
     private CredentialManager credentials = new CredentialManager();
 

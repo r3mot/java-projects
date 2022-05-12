@@ -33,10 +33,7 @@ public class GlobalFeedData {
         row.add(date);
         row.add(url);
 
-        feedData.add(row);
-
-        System.out.println(feedData.toString());
-        
+        feedData.add(row);   
 
     }
     

@@ -12,6 +12,9 @@
 
 }
 
+.split-pane-divider {
+    -fx-background-color: transparent;
+ }
 
 #textField {
     -fx-font-size: 30px;

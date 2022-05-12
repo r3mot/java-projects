@@ -16,8 +16,6 @@ public class FeedData {
         this.db = new Database();
         this.feedData = db.getUserFeed();
 
-        System.out.println(feedData.toString());
-
     }
 
      // Feed

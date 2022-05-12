@@ -50,9 +50,13 @@ public class CreateClubController  implements Initializable {
                 website.getText(),
                 email.getText(),
                 password.getText(),
-                clubIcon
+                clubIcon.getUrl()
             );
-            db.createClub(this.club);
+            // db.createClub(this.club);
+        }
+
+        for(TextField fields : textFields){
+            fields.clear();
         }
     }
 
@@ -62,7 +66,9 @@ public class CreateClubController  implements Initializable {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
         FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+        FileChooser.ExtensionFilter extFilterJPEG = new FileChooser.ExtensionFilter("JPEG files (*.jpeg)", "*.JPEG");
+
+        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG, extFilterJPEG);
         File file = fileChooser.showOpenDialog(null);
 
         if (file != null) {
@@ -96,16 +102,17 @@ public class CreateClubController  implements Initializable {
 
         @Override
         public void initialize(URL location, ResourceBundle resources) {
+
             textFields = Arrays.asList(name, purpose, mainContact, website, email, password);
 
-        error = PseudoClass.getPseudoClass("error");
-        
-        for(TextField tf : textFields){
-            tf.setOnKeyTyped(e ->{
+            error = PseudoClass.getPseudoClass("error");
+            
+            for(TextField tf : textFields){
+                tf.setOnKeyTyped(e ->{
+                    tf.pseudoClassStateChanged(error, false);
+                });
                 tf.pseudoClassStateChanged(error, false);
-            });
-            tf.pseudoClassStateChanged(error, false);
-        }
+            }
             
         }
 

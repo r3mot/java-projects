@@ -128,7 +128,7 @@ public class CredentialManager {
 
         while(rs.next()){
 
-            String eml = rs.getString(Query.GET_EMAIL);
+            String eml = rs.getString(Query.GET_CLUB_EMAIL);
             String pass = rs.getString(Query.GET_PASSWORD);
 
             // Getting current full name in same query 

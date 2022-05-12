@@ -12,6 +12,7 @@ import social.Database.QueryStrings.Query;
 import social.Database.QueryStrings.Index;
 import social.Database.QueryStrings.Insert;
 import social.Objects.Club;
+import social.Objects.ClubPane;
 import social.Objects.CurrentUser;
 import social.Objects.FriendPane;
 import social.Objects.Post;
@@ -23,6 +24,97 @@ public class Database {
     private DatabaseHelper dbHelper = new DatabaseHelper();
     private Connection connection = dbHelper.getConnection();
 
+
+    public ArrayList<ClubPane> getClubs() throws SQLException{
+
+        ArrayList<ClubPane> clubs = new ArrayList<ClubPane>();
+
+        ClubPane clubPane;
+
+        PreparedStatement ps;
+        ResultSet rs;
+
+        connection = dbHelper.getConnection();
+        
+        ps = connection.prepareStatement(Query.GET_THE_CLUBS);
+
+        rs = ps.executeQuery();
+
+        int index = 0;
+        while(rs.next()){
+
+            String name = rs.getString(Query.GET_CLUB_NAME);
+            String purpose = rs.getString(Query.GET_CLUB_PURPOSE);
+            String contact = rs.getString(Query.GET_CLUB_CONTACT);
+            String website = rs.getString(Query.GET_CLUB_WEBSITE);
+            String email = rs.getString(Query.GET_CLUB_EMAIL);
+            String icon = rs.getString(Query.GET_CLUB_ICON);
+
+            clubPane = new ClubPane(new Club(name, purpose, contact, website, email, "", icon));
+
+            clubs.add(index, clubPane);
+            index++;
+        }
+
+        System.out.println("CLUBS: " + clubs.toString());
+        ps.close();
+        rs.close();
+
+        return clubs;
+
+    }
+    /**
+     * 
+     * @param name of club
+     * @throws SQLException
+     * 
+     * Fetches current user from database
+     * Adds the selected club to the user profile
+     */
+    public void addClub(String email, String username) throws SQLException{
+
+        
+        ArrayList<String> toAdd = getClub(email);
+        PreparedStatement ps;
+
+        connection = dbHelper.getConnection();
+        
+        ps = connection.prepareStatement(Insert.ADD_CLUB_TO_USER);
+        ps.setString(1, toAdd.toString());
+        ps.setString(2, CurrentUser.username);
+
+        ps.close();
+        
+    }
+
+    public ArrayList<String> getClub(String email) throws SQLException{
+
+        ArrayList<String> club = new ArrayList<>();
+        PreparedStatement ps;
+        ResultSet rs;
+        String currentList ="";
+        connection = dbHelper.getConnection();
+        
+        ps = connection.prepareStatement(Query.GET_CLUB);
+        ps.setString(1, email);
+        rs = ps.executeQuery();
+
+        while(rs.next()){
+
+            club.add(rs.getString(Query.GET_CLUB_EMAIL));
+            club.add(rs.getString(Query.GET_CLUB_NAME));
+            club.add(rs.getString(Query.GET_CLUB_PURPOSE));
+            club.add(rs.getString(Query.GET_CLUB_CONTACT));
+            club.add(rs.getString(Query.GET_CLUB_WEBSITE));
+            club.add(rs.getString(Query.GET_CLUB_ICON));
+
+        }
+
+        ps.close();
+        rs.close();
+
+        return club;
+    }
 
     /**
      * 
@@ -234,31 +326,31 @@ public class Database {
         return data;
     }
 
-    /**
-     * 
-     * @param club
-     * @throws SQLException
-     */
-    public void createClub(Club club) throws SQLException{
+    // /**
+    //  * 
+    //  * @param club
+    //  * @throws SQLException
+    //  */
+    // public void createClub(Club club) throws SQLException{
 
-        PreparedStatement ps;
+    //     PreparedStatement ps;
 
-        String hashedPassword = hash(club.getPassword());
-        connection = dbHelper.getConnection();
+    //     String hashedPassword = hash(club.getPassword());
+    //     connection = dbHelper.getConnection();
 
-        ps = connection.prepareStatement(Insert.NEW_CLUB);
-        ps.setString(1, club.getEmail());
-        ps.setString(2, hashedPassword);
-        ps.setString(3, club.getName());
-        ps.setString(4, club.getPurpose());
-        ps.setString(5, club.getMainContact());
-        ps.setString(6, club.getWebsite());
-        ps.setString(7, club.getIcon().getUrl());
+    //     ps = connection.prepareStatement(Insert.NEW_CLUB);
+    //     ps.setString(1, club.getEmail());
+    //     ps.setString(2, hashedPassword);
+    //     ps.setString(3, club.getName());
+    //     ps.setString(4, club.getPurpose());
+    //     ps.setString(5, club.getMainContact());
+    //     ps.setString(6, club.getWebsite());
+    //     ps.setString(7, club.getIcon().getUrl());
 
-        ps.executeUpdate();
-        ps.close();
+    //     ps.executeUpdate();
+    //     ps.close();
 
-    }
+    // }
 
     /**
      * 

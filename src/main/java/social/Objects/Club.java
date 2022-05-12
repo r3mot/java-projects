@@ -10,7 +10,7 @@ public class Club {
     private String website;
     private String email;
     private String password;
-    private Image icon;
+    private String icon;
 
     public Club(String name,
                 String purpose,
@@ -18,7 +18,7 @@ public class Club {
                 String website,
                 String email,
                 String password,
-                Image icon)
+                String icon)
     {
         
         this.name = name;
@@ -54,7 +54,7 @@ public class Club {
         return this.password;
     }
 
-    public Image getIcon(){
+    public String getIcon(){
         return this.icon;
     }
 }

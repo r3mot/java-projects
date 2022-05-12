@@ -103,6 +103,7 @@ public class FriendController implements Initializable {
             }
         }
 
+
         contentPane.getChildren().add(allFriendsPane);
 
     }

@@ -61,6 +61,7 @@ public class ProfileController implements Initializable {
         displayProfile();
 
         CurrentUser.setName(profileData.getFirstName(), profileData.getLastName());
+        
     }
 
     /**

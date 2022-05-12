@@ -63,6 +63,39 @@ public class Database {
         return clubs;
 
     }
+
+    public ArrayList<ClubPane> getClubsJoined() throws SQLException{
+
+        ArrayList<ClubPane> clubsJoined = new ArrayList<ClubPane>();
+        ClubPane club;
+
+        PreparedStatement ps;
+        ResultSet rs;
+
+        ps = connection.prepareStatement(Query.GET_CLUBS_JOIN);
+        ps.setString(1, CurrentUser.username);
+        rs = ps.executeQuery();
+
+        while(rs.next()){
+
+            String name = rs.getString(Query.GET_CLUB_NAME);
+            String purpose = rs.getString(Query.GET_CLUB_PURPOSE);
+            String contact = rs.getString(Query.GET_CLUB_CONTACT);
+            String website = rs.getString(Query.GET_CLUB_WEBSITE);
+            String email = rs.getString(Query.GET_CLUB_EMAIL);
+            String icon = rs.getString(Query.GET_CLUB_ICON);
+
+            club = new ClubPane(new Club(name, purpose, contact, website, email, "", icon));
+            clubsJoined.add(club);
+
+        }
+
+        ps.close();
+        rs.close();
+
+        return clubsJoined;
+    }
+
     /**
      * 
      * @param name of club
@@ -71,20 +104,23 @@ public class Database {
      * Fetches current user from database
      * Adds the selected club to the user profile
      */
-    public void addClub(String email, String username) throws SQLException{
+    public void addClub(Club club) throws SQLException{
 
         
-        ArrayList<String> toAdd = getClub(email);
         PreparedStatement ps;
 
-        connection = dbHelper.getConnection();
-        
-        ps = connection.prepareStatement(Insert.ADD_CLUB_TO_USER);
-        ps.setString(1, toAdd.toString());
-        ps.setString(2, CurrentUser.username);
+        ps = connection.prepareStatement(Insert.ADD_CLUB);
 
+        ps.setString(1, CurrentUser.username);
+        ps.setString(2, club.getEmail());
+        ps.setString(3, club.getName());
+        ps.setString(4, club.getPurpose());
+        ps.setString(5, club.getMainContact());
+        ps.setString(6, club.getWebsite());
+        ps.setString(7, club.getIcon());
+        ps.executeUpdate();
         ps.close();
-        
+
     }
 
     public ArrayList<String> getClub(String email) throws SQLException{
@@ -92,7 +128,7 @@ public class Database {
         ArrayList<String> club = new ArrayList<>();
         PreparedStatement ps;
         ResultSet rs;
-        String currentList ="";
+
         connection = dbHelper.getConnection();
         
         ps = connection.prepareStatement(Query.GET_CLUB);

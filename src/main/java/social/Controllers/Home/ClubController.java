@@ -51,10 +51,7 @@ public class ClubController implements Initializable {
     }
 
     private void clicked(ClubPane club) throws SQLException{
-
-        String email = club.getId();
-        db.addClub(email, CurrentUser.username);
-
+        db.addClub(club.getClub());
     }
 
 }

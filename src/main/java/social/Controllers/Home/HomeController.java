@@ -36,13 +36,14 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
-        CurrentUser.setUsername("cmendrella");
         try{
 
             profilePane = FXMLLoader.load(App.class.getResource("Profile.fxml"));
             feedPane = FXMLLoader.load(App.class.getResource("Feed.fxml"));
             clubPane = FXMLLoader.load(App.class.getResource("Clubs.fxml"));
             friendPane = FXMLLoader.load(App.class.getResource("Friends.fxml"));
+
+            contentPane.getChildren().add(profilePane);
 
         }catch(IOException ioe) {
             System.out.println("Error Caused by ( " + ioe.getCause().getLocalizedMessage() + ")");

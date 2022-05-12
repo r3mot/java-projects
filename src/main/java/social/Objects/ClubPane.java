@@ -68,13 +68,13 @@ public class ClubPane extends Pane {
         join.setText("JOIN");
         join.setTextFill(Color.WHITE);
         join.setStyle("-fx-background-color: #424d57;");
-        join.setOnAction(event -> {
-            try {
-                clicked(event);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        });
+        // join.setOnAction(event -> {
+        //     try {
+        //         clicked(event);
+        //     } catch (SQLException e) {
+        //         e.printStackTrace();
+        //     }
+        // });
 
     }
 
@@ -109,14 +109,10 @@ public class ClubPane extends Pane {
         icon.setFill(new ImagePattern(new Image(this.club.getIcon())));
     }
 
-    public Pane getClub(){
-        return this;
-    }
-
-    public void clicked(ActionEvent event) throws SQLException{
-        Database db = new Database();
-        db.addClub(this.getId(), CurrentUser.username);
-    }
+    // public void clicked(ActionEvent event) throws SQLException{
+    //     Database db = new Database();
+    //     db.addClub(getClub(), CurrentUser.username);
+    // }
 
 
     public Button getJoin(){
@@ -127,4 +123,11 @@ public class ClubPane extends Pane {
         setLayoutY(y);
     }
 
+    public Club getClub(){
+        return this.club;
+    }
+
+    public Circle getClicked(){
+        return this.club_icon;
+    }
 }

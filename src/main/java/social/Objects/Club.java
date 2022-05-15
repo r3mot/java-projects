@@ -1,6 +1,5 @@
 package social.Objects;
 
-import javafx.scene.image.Image;
 
 public class Club {
     
@@ -12,14 +11,8 @@ public class Club {
     private String password;
     private String icon;
 
-    public Club(String name,
-                String purpose,
-                String mainContact,
-                String website,
-                String email,
-                String password,
-                String icon)
-    {
+    // User for club creation
+    public Club(String name, String purpose, String mainContact, String website, String email, String password, String icon) {
         
         this.name = name;
         this.purpose = purpose;
@@ -28,6 +21,25 @@ public class Club {
         this.email = email;
         this.password = password;
         this.icon = icon;
+
+    }
+
+    public Club(String name, String purpose, String mainContact, String website, String email, String icon){
+
+        this.name = name;
+        this.purpose = purpose;
+        this.mainContact = mainContact;
+        this.website = website;
+        this.email = email;
+        this.icon = icon;
+    }
+
+    public Club(String name, String email, String icon){
+
+        this.name = name;
+        this.email = email;
+        this.icon = icon;
+
     }
 
     public String getName(){

@@ -1,6 +1,5 @@
 #post-text-area {
     -fx-font-size: 13;
-    -fx-font-weight: bold;
     -fx-text-color: black;
 }
 
@@ -8,3 +7,7 @@
     -fx-font-size: 10;
 }
 
+.feed-create-post-button {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}

@@ -3,7 +3,6 @@ package social.Controllers.Home;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import social.App;
-import social.Objects.CurrentUser;
 
 public class HomeController implements Initializable {
 
@@ -21,11 +19,15 @@ public class HomeController implements Initializable {
     @FXML private Button friends;
     @FXML private Pane leftPane;
     @FXML private Button profile;
+    @FXML private Button notifications;
+    @FXML private Button explore;
 
     private Pane profilePane;
     private Pane feedPane;
     private Pane clubPane;
     private Pane friendPane;
+    private Pane explorePane;
+    private Pane notificationPane;
 
 
     /**
@@ -37,18 +39,19 @@ public class HomeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
         try{
-
+        
             profilePane = FXMLLoader.load(App.class.getResource("Profile.fxml"));
             feedPane = FXMLLoader.load(App.class.getResource("Feed.fxml"));
+            explorePane = FXMLLoader.load(App.class.getResource("Explore.fxml"));
+            notificationPane = FXMLLoader.load(App.class.getResource("Notifications.fxml"));
             clubPane = FXMLLoader.load(App.class.getResource("Clubs.fxml"));
             friendPane = FXMLLoader.load(App.class.getResource("Friends.fxml"));
 
             contentPane.getChildren().add(profilePane);
 
         }catch(IOException ioe) {
-            System.out.println("Error Caused by ( " + ioe.getCause().getLocalizedMessage() + ")");
+            System.out.println("Error ( " + ioe.getCause().getLocalizedMessage() + " )");
         }
-        
         
     }
 
@@ -66,19 +69,23 @@ public class HomeController implements Initializable {
 
     /**
      * 
-     * @param event navigation button clicked
+     * @param navButton navigation button clicked
      * 
      * Allows user to navigate the app
      * through the main dashboard
      */
     @FXML
-    void navigate(ActionEvent event) {
+    void navigate(ActionEvent navButton) {
 
-        switch(sourceOf(event)){
+        switch(sourceOf(navButton)){
+
             case "profile" : displayProfile(); break;
             case "feed" : displayFeed(); break;
             case "clubs" : displayClubs(); break;
             case "friends" : displayFriends(); break;
+            case "explore" : displayExplorer(); break;
+            case "notifications" : displayNotifications(); break;
+
         }
 
     }
@@ -91,6 +98,16 @@ public class HomeController implements Initializable {
     private String sourceOf(ActionEvent event){
         Button clicked = (Button) event.getSource();
         return clicked.getId();
+    }
+
+    private void displayNotifications(){
+        contentPane.getChildren().clear();
+        contentPane.getChildren().add(notificationPane);
+    }
+
+    private void displayExplorer(){
+        contentPane.getChildren().clear();
+        contentPane.getChildren().add(explorePane);
     }
 
     /**
@@ -132,22 +149,4 @@ public class HomeController implements Initializable {
         contentPane.getChildren().add(friendPane);
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

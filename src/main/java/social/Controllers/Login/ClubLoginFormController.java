@@ -13,8 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import social.App;
-import social.Database.CredentialManager;
-import social.Objects.CurrentUser;
+import social.Database.Newer.LoginManager;
 
 public class ClubLoginFormController {
 
@@ -25,7 +24,7 @@ public class ClubLoginFormController {
     @FXML private PasswordField password;
     
 
-    private CredentialManager credentials = new CredentialManager();
+    private LoginManager loginManager = new LoginManager();
 
     @FXML
     void enter(KeyEvent event) throws ClassNotFoundException, SQLException, IOException {
@@ -35,7 +34,7 @@ public class ClubLoginFormController {
     }
 
     @FXML
-    void login(ActionEvent event) throws ClassNotFoundException, SQLException, IOException {
+    void login(ActionEvent event) throws IOException {
 
         if(success()){
             execLogin();
@@ -52,10 +51,7 @@ public class ClubLoginFormController {
      * Set current user's username to be used throughout program
      */
     private void execLogin() throws IOException{
-
-        CurrentUser.setUsername(email.getText());
         App.setRoot("Home");
-
     }
 
 
@@ -67,9 +63,9 @@ public class ClubLoginFormController {
      * 
      * Sanity check
      */
-    private boolean success() throws ClassNotFoundException, SQLException{
+    private boolean success() {
 
-        boolean result = credentials.userLogin(email.getText(), password.getText());
+        boolean result = loginManager.clubLogin(email.getText(), password.getText());
         if(!result){
             showError();
         }

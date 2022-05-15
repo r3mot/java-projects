@@ -1,38 +1,85 @@
 package social.Objects;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 public class FriendPane extends Pane {
 
-    private Circle icon;
-    private Label name_label;
-    private Button click;
-    private String usernameReturn;
-    
-    public FriendPane(String name, String username, String url) {
+    private final String STYLE_CLASS = "explorer-post-object";
+    private final String ADD_BUTTON_STYLE_CLASS = "explorer-add-friend-button";
+    private final String NAME_STYLE_CLASS = "explorer-name-label";
+    private final String IMAGE_STYLE_CLASS = "explorer-user-icon";
 
-        usernameReturn = username;
-        setPrefWidth(255);
-        setPrefHeight(133);
+    private final int PREF_WIDTH  = 723;
+    private final int PREF_HEIGHT = 100; //163
 
-        setIcon(url, username);
-        setName(name);
+    private Circle iconCircle;
+    private Label nameLabel;
+    private Button addButton;
 
-        setId("friendBG");
-        setStyle("-fx-background-color: #4b5763");
+    private User user;
+    private String fullname;
 
-        getChildren().addAll(icon, name_label);
+    public FriendPane(User user) {
+
+        this.user = user;
+        this.fullname = this.user.getFirstName() + " " + this.user.getLastName();
+
+        this.setPrefWidth(PREF_WIDTH);
+        this.setPrefHeight(PREF_HEIGHT);
+
+        setAddButton();
+        setIcon();
+        setName();
+
+        this.getStyleClass().add(STYLE_CLASS);
+        this.getChildren().addAll(iconCircle, nameLabel, addButton);
 
     }
 
-    public void setX(int x){
+    private void setAddButton(){
+
+        addButton = new Button();
+        addButton.setPrefWidth(62); //
+        addButton.setPrefHeight(35);
+        addButton.setLayoutX(582);
+        addButton.setLayoutY(34); //59
+        addButton.setId(this.user.getUsername());
+        addButton.setText("View");
+        addButton.getStyleClass().add(ADD_BUTTON_STYLE_CLASS);
+
+    }
+
+    private void setIcon(){
+
+        iconCircle = new Circle();
+        iconCircle.setRadius(41); //62
+        iconCircle.setLayoutX(79); //96
+        iconCircle.setLayoutY(49); //82
+        iconCircle.setFill(new ImagePattern(new Image(this.user.getImage())));
+        iconCircle.getStyleClass().add(IMAGE_STYLE_CLASS);
+
+    }
+
+    private void setName(){
+
+        nameLabel = new Label();
+        nameLabel.setPrefWidth(340); //287
+        nameLabel.setPrefHeight(37);
+        nameLabel.setLayoutX(168); //218
+        nameLabel.setLayoutY(35); //46
+        nameLabel.setText(this.fullname + " - " + this.user.getMajor());
+        nameLabel.setAlignment(Pos.CENTER);
+        nameLabel.getStyleClass().add(NAME_STYLE_CLASS);
+
+    }
+
+    public void setX(double x){
         setLayoutX(x);
     }
 
@@ -40,33 +87,20 @@ public class FriendPane extends Pane {
         setLayoutY(y);
     }
 
-    private void setIcon(String url, String username){
-        icon = new Circle();
-        icon.setRadius(47);
-        icon.setLayoutX(61);
-        icon.setLayoutY(67);
-        icon.setFill(new ImagePattern(new Image(url)));
-        icon.getStyleClass().add("friendImage");
-        icon.setId(username);
-
+    public User getFriend(){
+        return this.user;
     }
 
-    private void setName(String name){
-        name_label = new Label();
-        name_label.setPrefWidth(107);
-        name_label.setPrefHeight(17);
-        name_label.setLayoutX(128);
-        name_label.setLayoutY(52);
-        name_label.setText(name);
-        name_label.setTextFill(Color.WHITE);
-        name_label.setStyle("-fx-font-size: 20;");
+    public String getName(){
+        return this.fullname;
     }
 
-    public Circle getClicked(){
-        return this.icon;
+    public int getPaneHeight(){
+        return this.PREF_HEIGHT;
     }
 
-    public String getUsername(){
-        return usernameReturn;
+    public Button viewProfile(){
+        return this.addButton;
     }
+
 }

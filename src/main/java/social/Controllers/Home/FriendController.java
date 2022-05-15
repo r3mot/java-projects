@@ -2,10 +2,8 @@ package social.Controllers.Home;
 
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,9 +13,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import social.Database.Database;
-import social.Debug.Flag;
+import social.Database.Newer.Database;
 import social.Objects.FriendPane;
+import social.Objects.User;
 
 public class FriendController implements Initializable {
 
@@ -36,10 +34,8 @@ public class FriendController implements Initializable {
     private Database db;
     private ArrayList<FriendPane> friends;
 
-    private int leftX = 100;
-    private int leftY = 30;
-    private int rightX = 402;
-    private int rightY = 30;
+    private int layoutY;
+    private int layoutX;
 
 
     /**
@@ -47,13 +43,13 @@ public class FriendController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // db = new Database();
+
         db = new Database();
 
-        try {
-            displayFriends();
-        } catch (SQLException e) {
-            Flag.DEBUG(e.getCause().toString());
-        }
+        displayFriends();
+   
+        split.setDividerPosition(0, 99.63);
         
     }
 
@@ -66,67 +62,58 @@ public class FriendController implements Initializable {
         split.setDividerPosition(0, 99.63);
     }
 
-    /**
-     * 
-     * @throws SQLException
-     * 
-     * Show friends list
-     */
-    private void displayFriends() throws SQLException{
+    @FXML
+    void refreshFriendsList(ActionEvent event){
+        allFriendsPane.getChildren().clear();
+        displayFriends();
+    }
 
-        friends = db.getFriends();
+    private void displayFriends(){
 
-        for(int i = 0; i < friends.size(); i++){
+        layoutY = 20;
+        layoutX = 20;
 
-            FriendPane friend = friends.get(i);
-            friend.getClicked().setOnMouseClicked(e -> {
-                try {
-                    displayFriendProfile(friend.getUsername());
-                } catch (SQLException e1) {
-                    Flag.DEBUG(e1.getCause().toString());
-                }
-            });
+        friends = db.getUserFriends();
+        
+        for(int index = 0; index < friends.size(); index++){
+            
+            FriendPane friend = friends.get(index);
+            friend.setX(layoutX);
+            friend.setY(layoutY);
 
-            // Left Side
-            if(i % 2 == 0){
-                friend.setX(leftX);
-                friend.setY(leftY);
-                allFriendsPane.getChildren().add(friend);
-                leftY += 250;
-            }
-            // Right Side
-            else{
-                friend.setX(rightX);
-                friend.setY(rightY);
-                allFriendsPane.getChildren().add(friend);
-                rightY += 250;
-            }
+            setButtonAction(friend);
+
+            allFriendsPane.getChildren().addAll(friend);
+            layoutY += friend.getPaneHeight() + 20;
+
         }
 
-
-        contentPane.getChildren().add(allFriendsPane);
-
     }
+
 
     /**
      * 
      * @param username of friend
-     * @throws SQLException
      * 
      * Show friends profile
      */
-    private void displayFriendProfile(String username) throws SQLException{
+    private void displayFriendProfile(User friend) {
         
         split.setDividerPosition(0, 0);
+        
+        name.setText(friend.getFullName());
+        major.setText(friend.getMajor());
+        standing.setText(friend.getStanding());
+        year.setText(friend.getYear());
+        job.setText(friend.getDreamJob());
+        picture.setFill(new ImagePattern(new Image(friend.getImage())));
 
-        ArrayList<String> friend = db.getUser(username);
-        name.setText(friend.get(0) + " " + friend.get(1));
-        major.setText(friend.get(2));
-        standing.setText(friend.get(3));
-        year.setText(friend.get(4));
-        job.setText(friend.get(5));
-        picture.setFill(new ImagePattern(new Image(friend.get(6))));
+    }
 
+    private void setButtonAction(FriendPane friendPane){
+        friendPane.viewProfile().setOnAction(e ->{
+            displayFriendProfile(friendPane.getFriend());
+        });
     }
 
 }

@@ -3,6 +3,8 @@
 @import "feed.css";
 @import "profile.css";
 @import "post.css";
+@import "object.css";
+@import "explore.css";
 /* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap'); */
 
 *{
@@ -10,6 +12,10 @@
     fx-secondary:  #bebebe;
     fx-shadow: #f8dcf1;
 
+}
+
+#pane-object:hover {
+    -fx-effect: dropshadow(one-pass-box, #bebebe,  5,0.5,5,5);
 }
 
 .split-pane-divider {

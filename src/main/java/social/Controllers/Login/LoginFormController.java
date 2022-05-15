@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -12,10 +13,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import social.App;
-import social.Database.CredentialManager;
-import social.Objects.CurrentUser;
-
+import social.Database.Newer.LoginManager;
 public class LoginFormController {
 
     @FXML private Hyperlink forgotPasswordLink;
@@ -23,8 +23,20 @@ public class LoginFormController {
     @FXML private PasswordField password;
     @FXML private TextField username;
     @FXML private Label loginError;
+    @FXML private Pane forgotPasswordPane;
 
-    private CredentialManager credentials = new CredentialManager();
+    private Pane temp;
+
+    LoginManager loginManager = new LoginManager();
+
+    @FXML
+    void resetPassword(ActionEvent event) throws IOException{
+
+        temp = FXMLLoader.load(App.class.getResource("ForgotPassword.fxml"));
+        forgotPasswordPane.getChildren().add(temp);
+        forgotPasswordPane.setVisible(true);
+
+    }
 
     /**
      * 
@@ -54,9 +66,10 @@ public class LoginFormController {
      * Execute the login process
      */
     @FXML
-    void login(ActionEvent event) throws IOException, ClassNotFoundException, SQLException {
+    void login(ActionEvent event) throws IOException {
 
         if(success()){
+            loginManager.setCurrentUser(username.getText());
             execLogin();
         }
 
@@ -71,10 +84,7 @@ public class LoginFormController {
      * Set current user's username to be used throughout program
      */
     private void execLogin() throws IOException{
-
-        CurrentUser.setUsername(username.getText());
         App.setRoot("Home");
-
     }
 
 
@@ -86,9 +96,11 @@ public class LoginFormController {
      * 
      * Sanity check
      */
-    private boolean success() throws ClassNotFoundException, SQLException{
+    private boolean success() {
 
-        boolean result = credentials.userLogin(username.getText(), password.getText());
+        LoginManager loginManager = new LoginManager();
+        boolean result = loginManager.userLogin(username.getText(), password.getText());
+
         if(!result){
             showError();
         }

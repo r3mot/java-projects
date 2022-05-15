@@ -14,7 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
-import social.Database.Database;
+import social.Database.Newer.Database;
 import social.Objects.User;
 
 public class CreateUserController implements Initializable {
@@ -30,12 +30,15 @@ public class CreateUserController implements Initializable {
     @FXML private TextField picutreUrl;
     @FXML private Button done;
 
+    private String url;
+
     private Image profilepicture;
     private List<TextField> textFields;
     private PseudoClass error;
 
-    private Database db;
-    private User user;
+    // private Database db;
+    // private User user;
+    Database db;
 
 
     /**
@@ -48,25 +51,30 @@ public class CreateUserController implements Initializable {
     @FXML
     void create(ActionEvent event) throws SQLException {
 
-        db = new Database();
+        User user;
         if(inputValid()){
-            this.user = new User
+            user = new User
             (
+                username.getText(), 
+                password.getText(),
                 firstname.getText(),
                 lastname.getText(), 
                 major.getText(), 
                 standing.getText(), 
                 year.getText(), 
                 dreamjob.getText(), 
-                profilepicture, 
-                username.getText(), 
-                password.getText()
+                url
             );
 
-            db.createUser(this.user);
+            db.createUser(user);
+            
         }
         else{
             System.out.println("Nope");
+        }
+
+        for(TextField fields : textFields){
+            fields.clear();
         }
     }
 
@@ -81,12 +89,8 @@ public class CreateUserController implements Initializable {
     @FXML
     void uploadImage(ActionEvent event) {
 
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
-        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
-        File file = fileChooser.showOpenDialog(null);
-
+        File file = db.uploadImage();
+        url = file.toURI().toString();
         if (file != null) {
             this.profilepicture = new Image(file.toURI().toString()); 
         }
@@ -119,6 +123,7 @@ public class CreateUserController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        db = new Database();
         textFields = Arrays.asList(firstname, lastname,major, standing, year, dreamjob, username, password, picutreUrl);
 
         error = PseudoClass.getPseudoClass("error");

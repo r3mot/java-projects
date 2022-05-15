@@ -1,0 +1,51 @@
+*{
+    fx-primary:  #424d57;
+    fx-secondary:  #bebebe;
+}
+
+
+#exploreButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-border-color: transparent transparent white transparent;
+    -fx-border-width: 5;
+}
+
+.explorer-post-object {
+
+    -fx-effect: dropshadow(three-pass-box, #cecdcd, 3, 1.0, 0.5, 0);   
+    -fx-background-color:white;
+    -fx-border-color: #cecdcd;
+
+}
+
+.explorer-add-friend-button {
+
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    /* -fx-background-radius: 10;
+    -fx-border-radius: 10; */
+
+}
+
+.explorer-add-friend-button:hover {
+
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.explorer-name-label {
+
+    -fx-font-size: 15;
+
+}
+
+.explorer-user-icon {
+
+    -fx-stroke:#cecdcd;
+    -fx-stroke-type: outside;
+    -fx-stroke-width: 3;
+
+}

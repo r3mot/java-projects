@@ -1,21 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="clubs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Home.ClubController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Home.ClubController">
    <children>
-      <ScrollPane layoutY="110.0" prefHeight="690.0" prefWidth="780.0">
-        <content>
-          <AnchorPane fx:id="scrollAnchor" maxHeight="2000.0" maxWidth="766.0" minHeight="0.0" minWidth="0.0" prefHeight="1400.0" prefWidth="766.0" />
-        </content>
-      </ScrollPane>
-      <Label alignment="CENTER" layoutX="153.0" layoutY="14.0" prefHeight="87.0" prefWidth="474.0" text="Explore Your Interests">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
+      <SplitPane fx:id="split" dividerPositions="0.9961439588688946" layoutY="151.0" prefHeight="657.0" prefWidth="780.0">
+        <items>
+          <AnchorPane fx:id="allClubsPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <ScrollPane prefHeight="649.0" prefWidth="772.0">
+                    <content>
+                      <AnchorPane fx:id="contentPane" minHeight="0.0" minWidth="0.0" prefHeight="648.0" prefWidth="752.0" />
+                    </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane fx:id="clubProfilePane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Circle fx:id="picture" fill="DODGERBLUE" layoutX="272.0" layoutY="93.0" radius="53.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Line endX="-100.0" endY="321.0" layoutX="486.0" layoutY="223.0" startX="-100.0" />
+                  <Label fx:id="name" layoutX="348.0" layoutY="69.0" prefHeight="49.0" prefWidth="317.0" text="Full Name">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="115.0" layoutY="207.0" prefHeight="17.0" prefWidth="207.0" text="Name">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="115.0" layoutY="264.0" prefHeight="17.0" prefWidth="207.0" text="Purpose">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="115.0" layoutY="369.0" prefHeight="17.0" prefWidth="207.0" text="Main Contact">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="115.0" layoutY="432.0" prefHeight="17.0" prefWidth="207.0" text="Email">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="115.0" layoutY="498.0" prefHeight="17.0" prefWidth="207.0" text="Website">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="name" layoutX="434.0" layoutY="207.0" prefHeight="17.0" prefWidth="207.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="purpose" alignment="TOP_LEFT" layoutX="434.0" layoutY="264.0" lineSpacing="2.0" prefHeight="87.0" prefWidth="317.0" wrapText="true">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="contact" layoutX="434.0" layoutY="369.0" prefHeight="17.0" prefWidth="207.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="email" layoutX="434.0" layoutY="432.0" prefHeight="17.0" prefWidth="207.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="website" layoutX="434.0" layoutY="498.0" prefHeight="17.0" prefWidth="207.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="674.0" layoutY="79.0" mnemonicParsing="false" onAction="#goBack" styleClass="explorer-add-friend-button" text="BACK" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <Pane prefHeight="151.0" prefWidth="780.0" style="-fx-background-color: #424d57;">
+         <children>
+            <Label alignment="CENTER" layoutX="153.0" layoutY="17.0" prefHeight="87.0" prefWidth="474.0" text="Your Clubs" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Button id="upperButton" fx:id="refresh" layoutX="651.0" layoutY="48.0" mnemonicParsing="false" onAction="#refreshClubs" styleClass="upperButton" text="refresh" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

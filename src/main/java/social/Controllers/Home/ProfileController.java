@@ -1,25 +1,21 @@
 package social.Controllers.Home;
 
 import java.net.URL;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import javafx.concurrent.ScheduledService;
-import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.util.Duration;
-import social.Database.LocalStorage.User.FeedData;
-import social.Database.LocalStorage.User.ProfileData;
-import social.Debug.Flag;
+import social.Database.Newer.Database;
 import social.Objects.CurrentUser;
-import social.Objects.Post;
+import social.Objects.FeedPane;
 
 public class ProfileController implements Initializable {
 
@@ -39,9 +35,9 @@ public class ProfileController implements Initializable {
     @FXML private Label year;
 
     @FXML private Circle profilePicture;
+    @FXML private Button refresh;
 
-    private ProfileData profileData;
-    private FeedData feedData;
+    private Database db;
     private int yPostion;
 
 
@@ -51,18 +47,19 @@ public class ProfileController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
-        try {
-            profileData = new ProfileData();
-            feedData = new FeedData();
-        } catch (SQLException e) { 
-            Flag.DEBUG(e.getCause().toString()); 
-        }
-        
+        db = new Database();
         displayProfile();
-
-        CurrentUser.setName(profileData.getFirstName(), profileData.getLastName());
         
     }
+
+
+    @FXML
+    void refreshPosts(ActionEvent event){
+        postsAnchor.getChildren().clear();
+        yPostion = 0;
+        initFeed();
+    }
+
 
     /**
      * Displays all profile data
@@ -72,8 +69,7 @@ public class ProfileController implements Initializable {
 
         initFeed();
         initAbout();
-        initFriends();
-        addPicture(CurrentUser.imageURL);
+
     }
 
     /**
@@ -81,23 +77,21 @@ public class ProfileController implements Initializable {
      */
     private void initFeed(){
 
-        Post userFeed;
 
-        for(int i = feedData.getNumPosts()-1; i >= 0; i--){
+        ArrayList<FeedPane> feed = db.getUserFeed();
+        FeedPane post;
 
-            String name = feedData.getPostName(i);
-            String content = feedData.getPostContent(i);
-            String imageURL = feedData.getPostImage(i);
-            String date = feedData.getPostDate(i);
+        for(int i = feed.size()-1; i >= 0; i--){
 
-            userFeed = new Post(name, content, imageURL, date, yPostion);
-            postsAnchor.getChildren().addAll(userFeed);
+            post = feed.get(i);
+            post.setLayoutY(yPostion);
+            post.changeWidth(680);
 
-            yPostion += userFeed.getPrefHeight() + 2;
+            postsAnchor.getChildren().addAll(post);
+            yPostion += post.getPaneHeight() + 2;
 
-            CurrentUser.setImage(imageURL);
-            
         }
+
     }
 
     /**
@@ -105,30 +99,15 @@ public class ProfileController implements Initializable {
      */
     private void initAbout(){
 
-        this.profilePicture.setFill(new ImagePattern(new Image(CurrentUser.imageURL)));
-        this.firstname.setText(profileData.getFirstName());
-        this.lastname.setText(profileData.getLastName());
-        this.major.setText(profileData.getMajor());
-        this.standing.setText(profileData.getStanding());
-        this.year.setText(profileData.getYear());
-        this.job.setText(profileData.getDreamJob());
+        this.profilePicture.setFill(new ImagePattern(new Image(CurrentUser.getPictureUrl())));
+        this.firstname.setText(CurrentUser.getFirstName());
+        this.lastname.setText(CurrentUser.getLastName());
+        this.major.setText(CurrentUser.getMajor());
+        this.standing.setText(CurrentUser.getStanding());
+        this.year.setText(CurrentUser.getGradYear());
+        this.job.setText(CurrentUser.getDreamJob());
 
-
-    }
-
-    /**
-     * Display all friends
-     */
-    private void initFriends(){
-
-    }
-
-    /**
-     * 
-     * @param url profile picture
-     */
-    private void addPicture(String url){
-        profilePicture.setFill(new ImagePattern(new Image(url)));
+    
     }
 
 }

@@ -5,7 +5,7 @@
 
 #sidePanes {
     -fx-background-color: fx-primary;
-    -fx-border-color: transparent white transparent transparent;
+    /* -fx-border-color: transparent white transparent transparent; */
 }
 
 #upperPane {
@@ -18,8 +18,6 @@
     -fx-display: inline-block;
     /* -fx-graphic: url("http://icons.iconarchive.com/icons/martz90/circle-addon1/16/text-plus-icon.png"); */
     -fx-padding: 20 0 0 30;
-    
-
 }
 
 .nav:hover {
@@ -48,8 +46,18 @@
 
 } 
 
+#explore{
+    -fx-graphic: url("https://icons.iconarchive.com/icons/icons8/windows-8/24/Users-Find-User-icon.png");
+}
+
+#notifications {
+    -fx-graphic: url("https://icons.iconarchive.com/icons/icons8/windows-8/24/Messaging-New-Post-icon.png");
+}
+
 
 #clubScroll {
     -fx-border: 4;
     -fx-border-color: fx-primary;
 }
+
+

@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,10 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
-import social.Database.Database;
 import social.Objects.Club;
+import social.Database.Newer.Database;
 
 public class CreateClubController  implements Initializable {
 
@@ -35,6 +32,7 @@ public class CreateClubController  implements Initializable {
     private PseudoClass error;
 
     private Database db;
+
     private Club club;
 
     @FXML
@@ -52,7 +50,7 @@ public class CreateClubController  implements Initializable {
                 password.getText(),
                 clubIcon.getUrl()
             );
-            // db.createClub(this.club);
+            db.createClub(this.club);
         }
 
         for(TextField fields : textFields){
@@ -63,13 +61,7 @@ public class CreateClubController  implements Initializable {
     @FXML
     void uploadImage(ActionEvent event) {
 
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
-        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-        FileChooser.ExtensionFilter extFilterJPEG = new FileChooser.ExtensionFilter("JPEG files (*.jpeg)", "*.JPEG");
-
-        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG, extFilterJPEG);
-        File file = fileChooser.showOpenDialog(null);
+        File file = db.uploadImage();
 
         if (file != null) {
             this.clubIcon = new Image(file.toURI().toString()); 

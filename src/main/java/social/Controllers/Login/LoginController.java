@@ -42,8 +42,8 @@ public class LoginController implements Initializable {
     private final String STUDENT_CREATE = "Add New Student";
     private final String CLUB_LOGIN = "Club Login";
     private final String CLUB_CREATE = "Add New Club";
-    private final String LOGIN_URL = "file:final/src/main/resources/Images/UI/password.png";
-    private final String ADD_URL = "file:final/src/main/resources/Images/UI/add-friend.png";
+    private final String LOGIN_URL = "file:C:/Users/micha/OneDrive/Desktop/Social_Media_App/final/src/main/resources/Images/UI/password.png";
+    private final String ADD_URL = "file:C:/Users/micha/OneDrive/Desktop/Social_Media_App/final/src/main/resources/Images/UI/add-friend.png";
 
 
      /**
@@ -57,7 +57,6 @@ public class LoginController implements Initializable {
 
             createUserForm = FXMLLoader.load(App.class.getResource("CreateUserForm.fxml"));
             userLoginForm = FXMLLoader.load(App.class.getResource("LoginForm.fxml"));
-
             createClubForm = FXMLLoader.load(App.class.getResource("CreateClubForm.fxml"));
             clubLoginForm = FXMLLoader.load(App.class.getResource("ClubLoginForm.fxml"));
 
@@ -66,8 +65,12 @@ public class LoginController implements Initializable {
 
             prepareTransitionPane();
 
-        }catch(IOException e) { System.out.println(e.getCause());}
+        }catch(IOException e) { }
+        //System.out.println(e.getCause());
         
+
+
+
     }
 
 

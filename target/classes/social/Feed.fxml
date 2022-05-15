@@ -7,18 +7,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Home.FeedController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="780.0" style="-fx-background-color: #424d57;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Home.FeedController">
    <children>
-      <Button id="newPost" fx:id="createPost" layoutX="664.0" layoutY="52.0" mnemonicParsing="false" onAction="#post" text="NEW POST">
+      <Button id="upperButton" fx:id="createPost" layoutX="346.0" layoutY="106.0" mnemonicParsing="false" onAction="#post" text="CREATE POST">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <ScrollPane layoutY="110.0" prefHeight="690.0" prefWidth="780.0">
+      <ScrollPane layoutY="144.0" prefHeight="656.0" prefWidth="780.0">
         <content>
           <AnchorPane fx:id="feedPane" minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="765.0" />
         </content>
       </ScrollPane>
-      <Label alignment="CENTER" layoutX="153.0" layoutY="9.0" prefHeight="87.0" prefWidth="474.0" text="Since You've Been Gone">
+      <Label alignment="CENTER" layoutX="153.0" layoutY="25.0" prefHeight="87.0" prefWidth="474.0" text="Since You've Been Gone" textFill="WHITE">
          <font>
             <Font size="30.0" />
          </font>

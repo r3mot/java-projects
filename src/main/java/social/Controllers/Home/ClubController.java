@@ -2,56 +2,99 @@ package social.Controllers.Home;
 
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import social.Database.Database;
-import social.Debug.Flag;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import social.Database.Newer.Database;
+import social.Objects.Club;
 import social.Objects.ClubPane;
-import social.Objects.CurrentUser;
 
 public class ClubController implements Initializable {
 
-    @FXML private AnchorPane scrollAnchor;
-    private ArrayList<ClubPane> clubs;
+    @FXML private AnchorPane allClubsPane;
+    @FXML private AnchorPane clubProfilePane;
+    @FXML private Label contact;
+    @FXML private AnchorPane contentPane;
+    @FXML private Label email;
+    @FXML private Label name;
+    @FXML private Circle picture;
+    @FXML private Label purpose;
+    @FXML private SplitPane split;
+    @FXML private Label website;
+    @FXML private Button refresh;
+
     private Database db;
-    private int currentY;
+    private ArrayList<ClubPane> clubs;
+    private int layoutY;
+    private int layoutX;
+
+    @FXML
+    void goBack(ActionEvent event) {
+        split.setDividerPosition(0, 99.63);
+    }
+
+    @FXML
+    void refreshClubs(ActionEvent event){
+        displayClubs();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
         db = new Database();
-        try {
-            clubs = db.getClubs();
-        } catch (SQLException e) {
-            // Flag.DEBUG(e.getCause().toString());
-        }
 
         displayClubs();
+        split.setDividerPosition(0, 99.63);
+
     }
 
     private void displayClubs(){
 
-        for(ClubPane club : clubs){
-            club.getJoin().setOnAction(e -> {
-                try {
-                    clicked(club);
-                } catch (SQLException e1) {
-                    Flag.DEBUG(e1.getCause().toString());
-                }
-            });
+        layoutY = 20;
+        layoutX = 20;
 
-            club.setY(currentY);
-            scrollAnchor.getChildren().addAll(club);
-            currentY += 115;
+        clubs = db.getUserClubs();
+        
+        for(int i = 0; i < clubs.size(); i++){
+
+            ClubPane club = clubs.get(i);
+
+            setButtonAction(club);
+
+            club.setY(layoutY);
+            club.setX(layoutX);
+            contentPane.getChildren().addAll(club);
+            layoutY += 135;
+            
         }
     }
 
-    private void clicked(ClubPane club) throws SQLException{
-        db.addClub(club.getClub());
+    private void setButtonAction(ClubPane club){
+        club.viewClubProfile().setOnAction(e ->{
+            displayClubProfile(club.getClub());
+        });
+    }
+
+    private void displayClubProfile(Club club){
+
+        split.setDividerPosition(0, 0);
+
+        name.setText(club.getName());
+        purpose.setText(club.getPurpose());
+        contact.setText(club.getMainContact());
+        email.setText(club.getEmail());
+        website.setText(club.getWebsite());
+        picture.setFill(new ImagePattern(new Image(club.getIcon())));
     }
 
 }

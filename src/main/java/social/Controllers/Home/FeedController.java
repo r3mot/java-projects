@@ -3,6 +3,7 @@ package social.Controllers.Home;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -21,10 +22,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
-import social.Database.Database;
-import social.Database.LocalStorage.Global.GlobalFeedData;
-import social.Debug.Flag;
+import social.Database.Newer.Database;
 import social.Objects.CurrentUser;
+import social.Objects.FeedPane;
 import social.Objects.Post;
 
 public class FeedController implements Initializable {
@@ -33,12 +33,13 @@ public class FeedController implements Initializable {
     @FXML private AnchorPane feedPane;
 
     private Database db;
-    private GlobalFeedData data;
-    private Post feed;
-    private int yPosition;
 
+    private int yPosition = 0;
     private boolean maxMet;
     private String content;
+
+    private ArrayList<FeedPane> globalFeed;
+    private FeedPane post;
 
 
     /**
@@ -55,13 +56,13 @@ public class FeedController implements Initializable {
 
         displayPopup();
 
-        Post newPost = new Post(CurrentUser.name, content, CurrentUser.imageURL, getDate(), 0);
 
-        data.addPost(newPost);
+        Post post = new Post( CurrentUser.getUsername(),  CurrentUser.getFullName(),  content,  getDate(), CurrentUser.getPictureUrl());
 
-        initFeed(); 
-        
-        db.addUserPost(newPost);
+        db.addUserPost(post);
+        globalFeed.add(new FeedPane(post));
+
+        refreshFeed();
         
     }
 
@@ -71,13 +72,9 @@ public class FeedController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
-        try {
-            data = new GlobalFeedData();
-        } catch (SQLException e) {
-            Flag.DEBUG(e.getCause().toString());
-        }
-        
         db = new Database();
+        globalFeed = db.getGlobalFeed();
+       
         initFeed();
     }
 
@@ -87,23 +84,25 @@ public class FeedController implements Initializable {
      */
     private void initFeed(){
 
-        yPosition = 0;
-        feedPane.getChildren().clear();
+        yPosition = 20;
 
-        for(int i = data.getNumPosts()-1; i >= 0; i--){
+        for(int i = globalFeed.size()-1; i >= 0; i--){
+            
+            post = globalFeed.get(i);
+            post.setLayoutY(yPosition);
 
-            String name = data.getPostName(i);
-            String content = data.getPostContent(i);
-            String imageURL = data.getPostImage(i);
-            String date = data.getPostDate(i);
+            feedPane.getChildren().addAll(post);
+            yPosition += post.getPaneHeight() + 20;
 
-            feed = new Post(name, content, imageURL, date, yPosition);
-            feedPane.getChildren().addAll(feed);
-
-            yPosition += feed.getPrefHeight() + 2;
-        }
+        }  
     }
 
+    private void refreshFeed(){
+
+        feedPane.getChildren().clear();
+        initFeed();
+
+    }
 
     /**
      * Popup for user to create new post

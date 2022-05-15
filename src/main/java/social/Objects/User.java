@@ -1,7 +1,5 @@
 package social.Objects;
 
-import javafx.scene.image.Image;
-
 public class User {
     
     private String firstName;
@@ -12,18 +10,10 @@ public class User {
     private String dreamJob;
     private String username;
     private String password;
-    private Image image;
+    private String image;
+    private int userId;
 
-    public User(String firstName, 
-                    String lastName, 
-                    String major, 
-                    String standing, 
-                    String year, 
-                    String dreamJob,
-                    Image image,
-                    String username,
-                    String password)
-    {
+    public User(String username, String password, String firstName, String lastName, String major, String standing, String year, String dreamJob, String image){
         this.firstName = firstName;
         this.lastName = lastName;
         this.major = major;
@@ -33,10 +23,49 @@ public class User {
         this.image = image;
         this.username = username;
         this.password = password;
-        
     }
 
+    public User(String username, String firstName, String lastName, String major, String standing, String year, String dreamJob, String image){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.major = major;
+        this.standing = standing;
+        this.year = year;
+        this.dreamJob = dreamJob;
+        this.image = image;
+        this.username = username;
 
+    }
+
+    public User(int userId, String username, String firstName, String lastName, String image){
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.image = image;
+        this.userId = userId;
+    }
+
+    public User(String username, String firstName, String lastName, String image){
+        
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.image = image;
+
+    }
+
+    public void setImage(String url){
+        this.image = url;
+    }
+    
+    public String getFullName(){
+        return this.firstName + " " + this.lastName;
+    }
+
+    public int getUserId(){
+        return this.userId;
+    }
+    
     public String getFirstName(){
         return this.firstName;
     }
@@ -61,7 +90,7 @@ public class User {
         return this.dreamJob;
     }
 
-    public Image getImage(){
+    public String getImage(){
         return this.image;
     }
 
@@ -72,4 +101,5 @@ public class User {
     public String getPassword(){
         return this.password;
     }
+
 }

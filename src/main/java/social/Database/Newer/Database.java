@@ -22,14 +22,13 @@ public class Database {
     private ConnectionManager connection = new ConnectionManager();
     private FriendshipManager friendMngr = new FriendshipManager();
 
-
     /**
      * 
      * @param user
      * 
-     * Create user credentials
+     *             Create user credentials
      */
-    public void createUser(User user){
+    public void createUser(User user) {
 
         PreparedStatement ps;
         String hashedPassword = hash(user.getPassword());
@@ -45,19 +44,18 @@ public class Database {
 
             addUserProfile(user);
 
-        }
-        catch(Exception e){
-            //e.printStackTrace();
+        } catch (Exception e) {
+            // e.printStackTrace();
         }
     }
-    
+
     /**
      * 
      * @param user
      * 
-     * Add user information to database
+     *             Add user information to database
      */
-    private void addUserProfile(User user){
+    private void addUserProfile(User user) {
 
         PreparedStatement ps;
         String query = "INSERT INTO UserProfile(Username, FirstName, LastName, Major, Standing, GradYear, DreamJob, Picture, UserId) VALUES (?,?,?,?,?,?,?,?,?)";
@@ -82,19 +80,18 @@ public class Database {
             connection.closeConnection();
 
             CurrentUser.setUser(user);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * 
      * @param club
      * 
-     * Create club credentials
+     *             Create club credentials
      */
-    public void createClub(Club club){
+    public void createClub(Club club) {
 
         PreparedStatement ps;
         String hashedPassword = hash(club.getPassword());
@@ -110,8 +107,7 @@ public class Database {
 
             addClubProfile(club);
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -120,9 +116,9 @@ public class Database {
      * 
      * @param club
      * 
-     * Add club information to database
+     *             Add club information to database
      */
-    private void addClubProfile(Club club){
+    private void addClubProfile(Club club) {
 
         PreparedStatement ps;
         String query = "INSERT INTO ClubProfile(ClubId, Email, Name, Purpose, MainContact, Website, Picture) VALUES (?,?,?,?,?,?,?)";
@@ -145,20 +141,19 @@ public class Database {
             ps.close();
             connection.closeConnection();
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-   
+
     /**
      * 
      * @param usernameLookup
      * @return
      * 
-     * Get all profile information for a user
+     *         Get all profile information for a user
      */
-    public User getUserProfile(String usernameLookup){
+    public User getUserProfile(String usernameLookup) {
 
         PreparedStatement ps;
         ResultSet rs;
@@ -172,7 +167,7 @@ public class Database {
             ps.setString(1, usernameLookup);
             rs = ps.executeQuery();
 
-            while(rs.next()){
+            while (rs.next()) {
 
                 String username = rs.getString("Username");
                 String firstname = rs.getString("FirstName");
@@ -186,8 +181,9 @@ public class Database {
                 profile = new User(username, "", firstname, lastname, major, standing, gradYear, dreamJob, picture);
 
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        catch(SQLException e) { e.printStackTrace();}
 
         return profile;
 
@@ -197,7 +193,7 @@ public class Database {
      * 
      * @return all users in database
      */
-    public ArrayList<User> getAllUsers(){
+    public ArrayList<User> getAllUsers() {
 
         ArrayList<User> allUsers = new ArrayList<User>();
 
@@ -212,7 +208,7 @@ public class Database {
             ps = connection.getConnection().prepareStatement(query);
             rs = ps.executeQuery();
 
-            while(rs.next()){
+            while (rs.next()) {
                 String username = rs.getString("Username");
                 String firstname = rs.getString("FirstName");
                 String lastname = rs.getString("LastName");
@@ -221,8 +217,8 @@ public class Database {
                 user = new User(username, "", firstname, lastname, "", "", "", "", picture);
                 allUsers.add(user);
             }
+        } catch (SQLException e) {
         }
-        catch(SQLException e) {}
 
         return allUsers;
     }
@@ -231,9 +227,9 @@ public class Database {
      * 
      * @param post
      * 
-     * Adds a post (found in the feed) to the database
+     *             Adds a post (found in the feed) to the database
      */
-    public void addUserPost(Post post){
+    public void addUserPost(Post post) {
 
         PreparedStatement ps;
         String query = "INSERT INTO UserPost(Username, Name, Content, Date, Picture) VALUES (?,?,?,?,?)";
@@ -251,15 +247,15 @@ public class Database {
             ps.close();
             connection.closeConnection();
 
+        } catch (SQLException e) {
         }
-        catch(SQLException e) {}
     }
 
     /**
      * 
      * @return posts from all users
      */
-    public ArrayList<FeedPane> getGlobalFeed(){
+    public ArrayList<FeedPane> getGlobalFeed() {
 
         ArrayList<FeedPane> globalFeed = new ArrayList<FeedPane>();
 
@@ -267,12 +263,12 @@ public class Database {
         ResultSet rs;
         String query = "SELECT Username, Name, Content, Date, Picture FROM UserPost";
         Post post;
-               
+
         try {
             ps = connection.getConnection().prepareStatement(query);
             rs = ps.executeQuery();
 
-            while(rs.next()){
+            while (rs.next()) {
 
                 String username = rs.getString("Username");
                 String name = rs.getString("Name");
@@ -288,8 +284,8 @@ public class Database {
             rs.close();
             connection.closeConnection();
 
+        } catch (SQLException e) {
         }
-        catch(SQLException e) {}
 
         return globalFeed;
 
@@ -299,21 +295,21 @@ public class Database {
      * 
      * @return posts made by the user
      */
-    public ArrayList<FeedPane> getUserFeed(){
-        
+    public ArrayList<FeedPane> getUserFeed() {
+
         ArrayList<FeedPane> feed = new ArrayList<FeedPane>();
         Post post;
 
         PreparedStatement ps;
         ResultSet rs;
         String query = "SELECT Username, Name, Content, Date, Picture FROM UserPost WHERE Username=?";
-        
+
         try {
             ps = connection.getConnection().prepareStatement(query);
             ps.setString(1, CurrentUser.getUsername());
             rs = ps.executeQuery();
 
-            while(rs.next()){
+            while (rs.next()) {
                 String username = rs.getString("Username");
                 String name = rs.getString("Name");
                 String content = rs.getString("Content");
@@ -328,8 +324,8 @@ public class Database {
             rs.close();
             connection.closeConnection();
 
+        } catch (SQLException e) {
         }
-        catch(SQLException e) {}
 
         return feed;
 
@@ -352,11 +348,11 @@ public class Database {
 
         try {
             ps = connection.getConnection().prepareStatement(query);
-            for(int i = 0; i < friends.size(); i++){
+            for (int i = 0; i < friends.size(); i++) {
                 ps.setString(1, friends.get(i));
                 rs = ps.executeQuery();
 
-                while(rs.next()){
+                while (rs.next()) {
                     String username = rs.getString("Username");
                     String firstname = rs.getString("FirstName");
                     String lastname = rs.getString("LastName");
@@ -371,10 +367,9 @@ public class Database {
                 }
             }
 
-            
             connection.closeConnection();
+        } catch (SQLException e) {
         }
-        catch(SQLException e) {}
 
         return userfriends;
     }
@@ -383,8 +378,7 @@ public class Database {
      * 
      * @return clubs user has joined
      */
-    public ArrayList<ClubPane> getUserClubs(){
-
+    public ArrayList<ClubPane> getUserClubs() {
 
         ArrayList<String> clubs = friendMngr.getUserClubs();
         ArrayList<ClubPane> userClubs = new ArrayList<ClubPane>();
@@ -397,12 +391,12 @@ public class Database {
 
         try {
             ps = connection.getConnection().prepareStatement(query);
-            for(int i = 0; i < clubs.size(); i++){
+            for (int i = 0; i < clubs.size(); i++) {
                 ps.setString(1, clubs.get(i));
                 rs = ps.executeQuery();
 
-                while(rs.next()){
-                    
+                while (rs.next()) {
+
                     String email = rs.getString("Email");
                     String name = rs.getString("Name");
                     String purpose = rs.getString("Purpose");
@@ -417,8 +411,8 @@ public class Database {
 
             ps.close();
             connection.closeConnection();
+        } catch (SQLException e) {
         }
-        catch(SQLException e) {}
 
         return userClubs;
 
@@ -428,9 +422,9 @@ public class Database {
      * 
      * @return current highest id
      * 
-     * User to determine the new ID given on account creation
+     *         User to determine the new ID given on account creation
      */
-    private int getMaxStudentID(){
+    private int getMaxStudentID() {
 
         PreparedStatement ps;
         ResultSet rs;
@@ -443,11 +437,11 @@ public class Database {
             ps = connection.getConnection().prepareStatement(query);
             rs = ps.executeQuery();
 
-            while(rs.next()){
+            while (rs.next()) {
                 number = rs.getInt("UserId");
             }
+        } catch (SQLException e) {
         }
-        catch(SQLException e) {}
 
         return number;
     }
@@ -456,9 +450,9 @@ public class Database {
      * 
      * @return current highest id
      * 
-     * User to determine the new ID given on account creation
+     *         User to determine the new ID given on account creation
      */
-    private int getMaxClubId(){
+    private int getMaxClubId() {
 
         PreparedStatement ps;
         ResultSet rs;
@@ -471,20 +465,20 @@ public class Database {
             ps = connection.getConnection().prepareStatement(query);
             rs = ps.executeQuery();
 
-            while(rs.next()){
+            while (rs.next()) {
                 number = rs.getInt("ClubId");
             }
+        } catch (SQLException e) {
         }
-        catch(SQLException e) {}
 
         return number;
     }
-    
+
     /**
      * 
      * @return uploaded image file
      */
-    public File uploadImage(){
+    public File uploadImage() {
 
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
@@ -495,34 +489,34 @@ public class Database {
 
     }
 
-    
     /**
      * 
      * @param passwordToHash raw password entry
      * @return
      * 
-     * Hashes password as to not store plain text
-     * May also be used to decode a previously hashed password
+     *         Hashes password as to not store plain text
+     *         May also be used to decode a previously hashed password
      */
-    private String hash(String passwordToHash){
+    private String hash(String passwordToHash) {
 
         MessageDigest md;
         StringBuilder sb;
 
         String generatedPassword = null;
         try {
-            
+
             md = MessageDigest.getInstance("SHA-512");
             byte[] bytes = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
             md.update(bytes);
             sb = new StringBuilder();
-            for(int i=0; i< bytes.length ;i++){
+            for (int i = 0; i < bytes.length; i++) {
                 sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
             }
             generatedPassword = sb.toString();
 
-        } catch (NoSuchAlgorithmException e) {}
+        } catch (NoSuchAlgorithmException e) {
+        }
 
         return generatedPassword;
-    } 
+    }
 }

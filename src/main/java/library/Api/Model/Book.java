@@ -11,7 +11,7 @@ public class Book {
     private int numPages;
     private double rating;
 
-    public Book(String title, String subject, int pubYear, int numPages, double rating) {
+    public Book(UUID id, String title, String subject, int pubYear, int numPages, double rating) {
         this.id = UUID.randomUUID();
         this.title = title;
         this.subject = subject;

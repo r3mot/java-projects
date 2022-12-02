@@ -7,7 +7,7 @@ import library.Api.Model.Book;
 
 public interface BookDao {
 
-    int addBook(Book book);
+    int insertBook(Book book);
 
     List<Book> selectAllBooks();
 

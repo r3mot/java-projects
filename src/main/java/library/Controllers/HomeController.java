@@ -156,6 +156,10 @@ public class HomeController implements Initializable {
         animationSlideRight();
     }
 
+    @FXML
+    private void searchOnClick(ActionEvent event) {
+        System.out.println("clicked");
+    }
     // ============================================ Keyboard Event Controllers
     // ==================================================
 

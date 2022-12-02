@@ -17,7 +17,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("Home"), 1304, 739);
-        String css = this.getClass().getResource("/midterm/Styling/style.css").toExternalForm();
+        String css = this.getClass().getResource("/library/Styling/style.css").toExternalForm();
         scene.getStylesheets().add(css);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);

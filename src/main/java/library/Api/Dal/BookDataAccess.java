@@ -2,6 +2,7 @@ package library.Api.Dal;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,7 +46,7 @@ public class BookDataAccess implements BookDao {
         PreparedStatement ps;
         ResultSet rs;
         String sql = "SELECT * FROM Book";
-        List<Book> books = null;
+        List<Book> books = new ArrayList<>();
 
         try {
             ps = connectionManager.open().prepareStatement(sql);

@@ -98,7 +98,7 @@
             </Button>
          </children>
       </Pane>
-      <Pane fx:id="leftPane" layoutX="958.0" layoutY="34.0" prefHeight="705.0" prefWidth="346.0">
+      <Pane fx:id="leftPane" layoutX="958.0" layoutY="34.0" prefHeight="705.0" prefWidth="346.0" visible="false">
          <children>
             <TextField fx:id="titleInput" layoutX="57.0" layoutY="73.0" prefHeight="38.0" prefWidth="209.0" promptText="Title" styleClass="newBookFields">
                <font>

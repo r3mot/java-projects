@@ -1,4 +1,4 @@
-package midterm.Controllers;
+package library.Controllers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,9 +26,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import midterm.Backend.Book;
-import midterm.Backend.Library;
-import midterm.Backend.Sort.Filter;
+import library.Backend.Book;
+import library.Backend.Library;
+import library.Backend.Sort.Filter;
 
 public class HomeController implements Initializable {
 
@@ -36,36 +36,63 @@ public class HomeController implements Initializable {
     Library library = new Library();
     Filter filter;
 
-    @FXML private Pane pane;
-    @FXML private Pane leftPane, leftPaneInitial;
-    @FXML private AnchorPane anchor;
-    @FXML private Button addBookBtn, cancelBtn, b1;
-    @FXML private RadioButton pagesFilterBtn;
-    @FXML private RadioButton ratingFilterBtn;
-    @FXML private RadioButton subjectFilterBtn;
-    @FXML private RadioButton yearFilterBtn;
-    @FXML private TableView < Book > table;
-    @FXML private TableColumn < Book, Integer > pagesCol;
-    @FXML private TableColumn < Book, Double > ratingCol;
-    @FXML private TableColumn < Book, Integer > yearCol;
-    @FXML private TableColumn < Book, String > subjectCol;
-    @FXML private TableColumn < Book, String > titleCol;
-    @FXML private TextField pagesInput;
-    @FXML private TextField ratingInput;
-    @FXML private TextField searchField;
-    @FXML private TextField subjectInput;
-    @FXML private TextField titleInput;
-    @FXML private TextField yearInput;
-    @FXML private Label yearWarning, pagesWarning, ratingWarning;
-    @FXML private ImageView image;
-    @FXML private ToggleGroup filters;
-    @FXML private ImageView close;
-    @FXML private ImageView minimize;
-    @FXML private Pane navbar;
-    private ObservableList < Book > booksAsList;
+    @FXML
+    private Pane pane;
+    @FXML
+    private Pane leftPane, leftPaneInitial;
+    @FXML
+    private AnchorPane anchor;
+    @FXML
+    private Button addBookBtn, cancelBtn, b1;
+    @FXML
+    private RadioButton pagesFilterBtn;
+    @FXML
+    private RadioButton ratingFilterBtn;
+    @FXML
+    private RadioButton subjectFilterBtn;
+    @FXML
+    private RadioButton yearFilterBtn;
+    @FXML
+    private TableView<Book> table;
+    @FXML
+    private TableColumn<Book, Integer> pagesCol;
+    @FXML
+    private TableColumn<Book, Double> ratingCol;
+    @FXML
+    private TableColumn<Book, Integer> yearCol;
+    @FXML
+    private TableColumn<Book, String> subjectCol;
+    @FXML
+    private TableColumn<Book, String> titleCol;
+    @FXML
+    private TextField pagesInput;
+    @FXML
+    private TextField ratingInput;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private TextField subjectInput;
+    @FXML
+    private TextField titleInput;
+    @FXML
+    private TextField yearInput;
+    @FXML
+    private Label yearWarning, pagesWarning, ratingWarning;
+    @FXML
+    private ImageView image;
+    @FXML
+    private ToggleGroup filters;
+    @FXML
+    private ImageView close;
+    @FXML
+    private ImageView minimize;
+    @FXML
+    private Pane navbar;
+    private ObservableList<Book> booksAsList;
     private Book[] booksCopy;
 
-//============================================ Mouse Event Controllers =====================================================
+    // ============================================ Mouse Event Controllers
+    // =====================================================
 
     @FXML
     void addBookOnClick(ActionEvent event) throws IOException {
@@ -74,12 +101,11 @@ public class HomeController implements Initializable {
             triggerWarning(event);
 
         Book newBook = library.addBook(
-            titleInput.getText(),
-            subjectInput.getText(),
-            Integer.parseInt(yearInput.getText()),
-            Integer.parseInt(pagesInput.getText()),
-            Double.parseDouble(ratingInput.getText())
-        );
+                titleInput.getText(),
+                subjectInput.getText(),
+                Integer.parseInt(yearInput.getText()),
+                Integer.parseInt(pagesInput.getText()),
+                Double.parseDouble(ratingInput.getText()));
 
         addToTable(newBook);
         triggerSuccessDialog(event);
@@ -121,67 +147,68 @@ public class HomeController implements Initializable {
 
     @FXML
     /* Triggers animation when ADD BOOK btn clicked */
-    private void b1OnClick(ActionEvent event){
+    private void b1OnClick(ActionEvent event) {
         animationSlideLeft();
-     }
+    }
 
-     @FXML
-    private void cancelOnClick(ActionEvent event){
+    @FXML
+    private void cancelOnClick(ActionEvent event) {
         animationSlideRight();
-     }
+    }
 
-    
-
-//============================================ Keyboard Event Controllers ==================================================
-
+    // ============================================ Keyboard Event Controllers
+    // ==================================================
 
     @FXML
     /* Checks input type in text field - populates error messages */
     void checkYearInputType(KeyEvent event) {
         yearInput.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
-            if(yearInput.getText().matches("[0-9]*")){
+            if (yearInput.getText().matches("[0-9]*")) {
                 yearWarning.setVisible(false);
-            }else{
+            } else {
                 yearWarning.setVisible(true);
             }
-        }); 
+        });
     }
+
     @FXML
     void checkPagesInputType(KeyEvent event) {
         pagesInput.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
-            if(pagesInput.getText().matches("[0-9]*")){ 
+            if (pagesInput.getText().matches("[0-9]*")) {
                 pagesWarning.setVisible(false);
-            }else{
+            } else {
                 pagesWarning.setVisible(true);
             }
-        }); 
+        });
     }
+
     @FXML
     void checkRatingInputType(KeyEvent event) {
         ratingInput.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
-            if(ratingInput.getText().matches("[0-9]*")){ 
+            if (ratingInput.getText().matches("[0-9]*")) {
                 ratingWarning.setVisible(false);
-            }else{
+            } else {
                 ratingWarning.setVisible(true);
             }
-        }); 
+        });
     }
 
-     @FXML
+    @FXML
     void searchCatalog(KeyEvent event) {
-        /* - Uses Key event to determine whether or not a user is typing
-        - On key release, assign event listener to the search field
-        - Type: ObjectProperty<Predicate<? super E>>
-        - the predicate matches the element in the filtered list
-        - Converts the filtered list to a sorted list
-        - Displays the searched values in the table (if any)
-    */
+        /*
+         * - Uses Key event to determine whether or not a user is typing
+         * - On key release, assign event listener to the search field
+         * - Type: ObjectProperty<Predicate<? super E>>
+         * - the predicate matches the element in the filtered list
+         * - Converts the filtered list to a sorted list
+         * - Displays the searched values in the table (if any)
+         */
         update(); // Custom event listener
-        
-        FilteredList < Book > filteredData = new FilteredList < > (booksAsList, e-> true);
-        searchField.setOnKeyReleased(e-> {
-            searchField.textProperty().addListener((ObservableValue, oldValue, newValue)-> {
-                filteredData.setPredicate((Predicate <? super Book> ) book-> {
+
+        FilteredList<Book> filteredData = new FilteredList<>(booksAsList, e -> true);
+        searchField.setOnKeyReleased(e -> {
+            searchField.textProperty().addListener((ObservableValue, oldValue, newValue) -> {
+                filteredData.setPredicate((Predicate<? super Book>) book -> {
                     if (newValue == null || newValue.isEmpty()) {
                         return true;
                     }
@@ -194,13 +221,14 @@ public class HomeController implements Initializable {
                     return false;
                 });
             });
-            SortedList < Book > sortedData = new SortedList < > (filteredData);
+            SortedList<Book> sortedData = new SortedList<>(filteredData);
             sortedData.comparatorProperty().bind(table.comparatorProperty());
             table.setItems(sortedData);
         });
     }
 
-//============================================ Initializers && Listeners ===================================================
+    // ============================================ Initializers && Listeners
+    // ===================================================
 
     @Override
     /* Initialize table */
@@ -213,8 +241,7 @@ public class HomeController implements Initializable {
         start();
     }
 
-
-   /* Sets all necessary data in library and GUI table */
+    /* Sets all necessary data in library and GUI table */
     private void start() {
         library.initialize();
         this.booksCopy = library.getCatalog();
@@ -237,10 +264,10 @@ public class HomeController implements Initializable {
     /* Sanity checks input fields */
     private boolean textFieldEmpty() {
         if (titleInput.getText().isEmpty() ||
-            subjectInput.getText().isEmpty() ||
-            pagesInput.getText().isEmpty() ||
-            yearInput.getText().isEmpty() ||
-            ratingInput.getText().isEmpty())
+                subjectInput.getText().isEmpty() ||
+                pagesInput.getText().isEmpty() ||
+                yearInput.getText().isEmpty() ||
+                ratingInput.getText().isEmpty())
             return true;
         return false;
     }
@@ -255,31 +282,33 @@ public class HomeController implements Initializable {
     }
 
     /* List that allows for tracking of changes - used to populate table */
-    ObservableList < Book > bookList(Book[] book) {
+    ObservableList<Book> bookList(Book[] book) {
         booksAsList = FXCollections.observableArrayList();
 
-        for (Book b: book) {
+        for (Book b : book) {
             if (b.getRating() == -1) // Refer to Generator Class: line 89
                 continue;
             booksAsList.add(new Book(
-                b.getTitle(),
-                b.getSubject(),
-                b.getPubYear(),
-                b.getNumPages(),
-                b.getRating()));
+                    b.getTitle(),
+                    b.getSubject(),
+                    b.getPubYear(),
+                    b.getNumPages(),
+                    b.getRating()));
         }
         return booksAsList;
     }
 
-//============================================ Dialog Popups ===============================================================
+    // ============================================ Dialog Popups
+    // ===============================================================
 
     /* User did not fill out all text fields */
     private void triggerWarning(ActionEvent event) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Add Book Error");
         alert.setHeaderText("Please make sure all fields are fill out");
-        Optional < ButtonType > result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {}
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+        }
     }
 
     /* User successfully added a book to the library */
@@ -287,15 +316,16 @@ public class HomeController implements Initializable {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Congratulations");
         alert.setHeaderText("Your book has been successfully added!");
-        Optional < ButtonType > result = alert.showAndWait();
+        Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             clearTextFields();
         }
     }
 
-//============================================ Animations ==================================================================
+    // ============================================ Animations
+    // ==================================================================
 
-    private void animationSlideLeft(){
+    private void animationSlideLeft() {
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.8));
         slide.setNode(leftPane);
@@ -303,11 +333,11 @@ public class HomeController implements Initializable {
         slide.play();
         leftPaneInitial.setTranslateX(0);
         setVisibility(true);
-        slide.setOnFinished((e->{
+        slide.setOnFinished((e -> {
         }));
     }
 
-    private void animationSlideRight(){
+    private void animationSlideRight() {
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.8));
         slide.setNode(leftPane);
@@ -315,12 +345,12 @@ public class HomeController implements Initializable {
         slide.play();
         leftPaneInitial.setTranslateX(0);
         setVisibility(false);
-        slide.setOnFinished((e->{
+        slide.setOnFinished((e -> {
         }));
     }
 
     /* Visibility of textfields / Scene panes */
-    private void setVisibility(boolean update){
+    private void setVisibility(boolean update) {
         leftPane.setVisible(update);
         titleInput.setVisible(update);
         subjectInput.setVisible(update);

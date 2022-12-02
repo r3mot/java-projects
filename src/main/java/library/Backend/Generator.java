@@ -1,4 +1,4 @@
-package midterm.Backend;
+package library.Backend;
 
 import java.text.DecimalFormat;
 import java.util.HashSet;
@@ -7,36 +7,35 @@ import java.util.Set;
 public class Generator {
 
     private Book[] randomBooks = new Book[50];
-    private Set < Integer > yearsUsed = new HashSet < Integer > ();
+    private Set<Integer> yearsUsed = new HashSet<Integer>();
     private int[] subjectCount = new int[5];
     private int max = 0;
     private String[] subjects = new String[] {
-        "Programming",
-        "Data Structures",
-        "Algorithms",
-        "Operating Systems",
-        "Gaming"
+            "Programming",
+            "Data Structures",
+            "Algorithms",
+            "Operating Systems",
+            "Gaming"
     };
-
 
     public Book[] generateCatalog() {
         return generateRandomBooks();
     }
 
-    public int getMax(){
+    public int getMax() {
         return max;
     }
 
     private int randomYear() {
-        return (int)(1 + (Math.random() * (2022 - 1980) + 1980));
+        return (int) (1 + (Math.random() * (2022 - 1980) + 1980));
     }
 
     private int subjectIndex() {
-        return (int)(Math.floor(Math.random() * (4 + 1)));
+        return (int) (Math.floor(Math.random() * (4 + 1)));
     }
 
     private int randomPages() {
-        return (int)(1 + (Math.random() * (1000 - 50) + 50));
+        return (int) (1 + (Math.random() * (1000 - 50) + 50));
     }
 
     private double round(double input) {
@@ -76,7 +75,6 @@ public class Generator {
         return subjects[randomIndex];
     }
 
-
     private Book[] generateRandomBooks() {
         fillInitialBooks();
         fillTempBooks();
@@ -84,13 +82,13 @@ public class Generator {
     }
 
     private void fillInitialBooks() {
-        for (int i = 0; i < 20; i++) 
+        for (int i = 0; i < 20; i++)
             randomBooks[i] = addBook(i);
     }
 
     /* Workaround so GUI doesn't return null when iterating through book array */
     private void fillTempBooks() {
-        for (int j = 20; j < 50; j++) 
+        for (int j = 20; j < 50; j++)
             randomBooks[j] = new Book("", "", -1, -1, -1);
     }
 

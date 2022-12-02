@@ -3,6 +3,7 @@ module midterm {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens midterm.Controllers to javafx.fxml;
-    exports midterm;
+    opens library.Controllers to javafx.fxml;
+
+    exports library;
 }

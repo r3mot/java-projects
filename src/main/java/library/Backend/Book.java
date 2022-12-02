@@ -1,4 +1,4 @@
-package midterm.Backend;
+package library.Backend;
 
 /* Book object to be used throughout program */
 
@@ -68,9 +68,9 @@ public class Book {
     @Override
     public String toString() {
         return "\nTitle: " + title +
-            "\tSubject: " + subject +
-            "\tYear: " + pubYear +
-            "\tPages: " + numPages +
-            "\tRating: " + rating;
+                "\tSubject: " + subject +
+                "\tYear: " + pubYear +
+                "\tPages: " + numPages +
+                "\tRating: " + rating;
     }
 }

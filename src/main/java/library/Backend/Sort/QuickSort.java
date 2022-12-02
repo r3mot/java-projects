@@ -1,14 +1,14 @@
-package midterm.Backend.Sort;
+package library.Backend.Sort;
 
 import java.util.Comparator;
 
-import midterm.Backend.Book;
+import library.Backend.Book;
 
 /* Custome quicksort algo - uses custom comparators to determine which obj property to sort*/
 
 public class QuickSort {
 
-    public static Book[] quickSort(Book[] data, int low, int high, Comparator < Book > comparator) {
+    public static Book[] quickSort(Book[] data, int low, int high, Comparator<Book> comparator) {
 
         int i = low;
         int j = high;

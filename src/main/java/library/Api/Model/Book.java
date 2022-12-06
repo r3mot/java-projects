@@ -4,15 +4,15 @@ import java.util.UUID;
 
 public class Book {
 
-    private final UUID id;
+    private final String id;
     private String title;
     private String subject;
     private int pubYear;
     private int numPages;
     private double rating;
 
-    public Book(UUID id, String title, String subject, int pubYear, int numPages, double rating) {
-        this.id = UUID.randomUUID();
+    public Book(String id, String title, String subject, int pubYear, int numPages, double rating) {
+        this.id = UUID.randomUUID().toString();
         this.title = title;
         this.subject = subject;
         this.pubYear = pubYear;
@@ -20,7 +20,7 @@ public class Book {
         this.rating = rating;
     }
 
-    public UUID getId() {
+    public String getId() {
         return this.id;
     }
 

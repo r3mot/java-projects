@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="607.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.Controllers.TableController">
+   <children>
+      <TextField fx:id="input" alignment="CENTER" onKeyReleased="#searchCatalog" prefHeight="49.0" prefWidth="735.0" promptText="Search For A Book" styleClass="searchBar">
+         <font>
+            <Font name="Verdana" size="15.0" />
+         </font>
+      </TextField>
+      <TableView fx:id="table" layoutY="88.0" prefHeight="519.0" prefWidth="735.0" styleClass="table">
+         <columns>
+            <TableColumn fx:id="titleCol" prefWidth="75.0" styleClass="tableColumn" text="Title" />
+            <TableColumn fx:id="subjectCol" prefWidth="75.0" styleClass="tableColumn" text="Subject" />
+            <TableColumn fx:id="yearCol" prefWidth="75.0" styleClass="tableColumn" text="Year" />
+            <TableColumn fx:id="pagesCol" prefWidth="75.0" styleClass="tableColumn" text="Pages" />
+            <TableColumn fx:id="ratingCol" prefWidth="75.0" styleClass="tableColumn" text="Rating" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</Pane>

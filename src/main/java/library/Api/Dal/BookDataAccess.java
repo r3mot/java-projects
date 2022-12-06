@@ -14,8 +14,8 @@ public class BookDataAccess implements BookDao {
 
     private final ConnectionManager connectionManager;
 
-    public BookDataAccess(ConnectionManager connectionManager) {
-        this.connectionManager = connectionManager;
+    public BookDataAccess() {
+        this.connectionManager = new ConnectionManager();
     }
 
     @Override
@@ -54,7 +54,7 @@ public class BookDataAccess implements BookDao {
 
             while (rs.next()) {
                 Book book = new Book(
-                        rs.getObject("id", java.util.UUID.class),
+                        rs.getString("BookId"),
                         rs.getString("Title"),
                         rs.getString("Subject"),
                         rs.getInt("Publish_year"),

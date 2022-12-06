@@ -14,6 +14,10 @@ public class BookService {
         this.bookDataAccess = bookDataAccess;
     }
 
+    public BookService() {
+        this.bookDataAccess = new BookDataAccess();
+    }
+
     public int addBook(Book book) {
         return bookDataAccess.insertBook(book);
     }

@@ -2,9 +2,7 @@ package library.Backend.Sort;
 
 import java.util.Comparator;
 
-import library.Backend.Book;
-
-/* Custome quicksort algo - uses custom comparators to determine which obj property to sort*/
+import library.Api.Model.Book;
 
 public class QuickSort {
 

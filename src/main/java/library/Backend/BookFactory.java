@@ -3,8 +3,11 @@ package library.Backend;
 import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
-public class Generator {
+import library.Api.Model.Book;
+
+public class BookFactory {
 
     private Book[] randomBooks = new Book[50];
     private Set<Integer> yearsUsed = new HashSet<Integer>();
@@ -89,16 +92,18 @@ public class Generator {
     /* Workaround so GUI doesn't return null when iterating through book array */
     private void fillTempBooks() {
         for (int j = 20; j < 50; j++)
-            randomBooks[j] = new Book("", "", -1, -1, -1);
+            randomBooks[j] = new Book(null, null, null, j, j, j);
     }
 
     private Book addBook(int i) {
-        Book book = new Book();
-        book.setTitle("Book " + (i + 1));
-        book.setSubject(randomSubject());
-        book.setYear(randomUniqueYear());
-        book.setPages(randomPages());
-        book.setRating(randomRating());
+        Book book = new Book(
+                UUID.randomUUID().toString(),
+                "Book " + i,
+                randomSubject(),
+                randomUniqueYear(),
+                randomPages(),
+                randomRating()
+        );
         return book;
 
     }

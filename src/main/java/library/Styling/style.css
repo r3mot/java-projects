@@ -1,4 +1,5 @@
 /* Global */
+@import url("./table.css");
 *{
     fx-primary: rgb(127,0,52);
     fx-secondary: rgb(228,177,8);
@@ -18,87 +19,41 @@
 }
 
 /* Buttons */
-.btn{
-    -fx-background-radius: 20;
-    -fx-font-family: "Helvetica";
-    -fx-font-size: 12px;
-}
-#b1 {
+.button {
     -fx-background-color: fx-primary;
-    -fx-text-fill:white;
-    -fx-border-color: black;
-    -fx-border-width: 2px;
-    -fx-font-size: 16;
-    font-weight: 10px;
-}
-#b1:hover {
-    -fx-background-color: black;
-}
-#addBookBtn {
-    -fx-background-color:rgb(64,64,64);
-    -fx-border-color: white;
-    -fx-border-width: 2px;
     -fx-text-fill: white;
-    -fx-font-size: 14;
-    font-weight: 10px;
-}
-#addBookBtn:hover{
-    -fx-background-color:white;
-    -fx-text-fill: black;
-}
-#cancelBtn {
-    -fx-background-color:rgb(64,64,64);
-    -fx-border-color: white;
+    -fx-font-size: 15px;
+    -fx-border-color: fx-secondary;
     -fx-border-width: 2px;
-    -fx-text-fill: white;
-    -fx-font-size: 14;
-    font-weight: 10px;
-}
-#cancelBtn:hover{
-    -fx-background-color:white;
-    -fx-text-fill: black;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 10px;
+    -fx-padding: 5px;
 }
 
-.radio-button .radio {
-    -fx-border-width: 1px;
-    -fx-border-color: #000;
-    -fx-background-color: white;
-    -fx-background-image: null;
-    -fx-border-radius: 15px;
-    -fx-padding: 4px;
+.button:hover {
+    -fx-background-color: fx-secondary;
+  
 }
-.radio-button .radio:selected {
-    -fx-background-color: white;
-    -fx-background-image: null;
-}
-.radio-button -radio:armed {
-    -fx-background-color: white;
-    -fx-background-image: null;
-}
-.radio-button -radio:determinate {
-    -fx-background-color: white;
-    -fx-background-image: null;
-}
-.radio-button -radio:indeterminate {
-    -fx-background-color: white;
-    -fx-background-image: null;
-}
-.radio-button .dot {
-    -fx-background-radius: 15px;
-    -fx-padding: 8px;
-}
+
 
 /* Text Field */
-#searchField {
+/* #searchField {
     -fx-effect: dropshadow(one-pass-box, rgb(214, 167, 13),  10,0.5,10,5);
     -fx-background-color: rgb(223, 217, 217);
-}
+} */
+
 .newBookFields {
-    -fx-effect: dropshadow(one-pass-box,rgb(48, 47, 47),  10,0.5,5,5);
+    -fx-font-size: 15px;
 }
 
 /* Table */
-#table {
+.table {
     -fx-effect: dropshadow(one-pass-box, rgb(214, 167, 13),  10,0.5,10,5);
-    -fx-background-color: rgb(223, 217, 217);
 }
+
+.searchBar {
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-font-size: 15px;
+}
+

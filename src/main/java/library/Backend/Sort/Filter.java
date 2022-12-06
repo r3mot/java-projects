@@ -2,7 +2,12 @@ package library.Backend.Sort;
 
 import java.util.Comparator;
 
-import library.Backend.Book;
+import library.Api.Model.Book;
+
+/**
+ * Custom quicksort algo - uses custom comparators to determine which obj property to sort
+ * Used to sort the catalog by title, author, or year
+ */
 
 public class Filter extends QuickSort {
 
@@ -12,8 +17,8 @@ public class Filter extends QuickSort {
         this.toSort = toSort;
     }
 
-    // ======================== Public access to filtering
-    // =====================================================================
+    // ======================== Public access to filtering ========================
+    // ============================================================================
 
     public Book[] filterPages() {
         Comparator<Book> byPages = new ComparePages();
@@ -30,8 +35,8 @@ public class Filter extends QuickSort {
         return quickSort(toSort, 0, toSort.length - 1, byRating);
     }
 
-    // ======================= Comparators used in quicksort implementation
-    // =====================================================
+    // ======================= Comparators used in quicksort implementation =======
+    // ============================================================================
 
     private static class CompareYear implements Comparator<Book> {
         @Override

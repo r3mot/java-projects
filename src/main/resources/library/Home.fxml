@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="739.0" prefWidth="1304.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.Controllers.HomeController">
+   <children>
+      <Pane fx:id="navbar" prefHeight="34.0" prefWidth="1304.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="34.0" fitWidth="37.0" layoutX="1253.0" onMouseClicked="#exitApplication" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/close.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="34.0" fitWidth="37.0" layoutX="1205.0" onMouseClicked="#minimizeApplication" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/minimize.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="leftPaneInitial" layoutY="34.0" prefHeight="705.0" prefWidth="346.0">
+         <children>
+            <Button fx:id="animateAddBook" layoutX="103.0" layoutY="490.0" mnemonicParsing="false" onAction="#startAnimation" prefHeight="49.0" prefWidth="140.0" style="-fx-border-radius: 20px;" styleClass="btn" text="ADD BOOK">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="145.0" fitWidth="168.0" layoutX="101.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/book.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="addBookPane" layoutX="958.0" layoutY="34.0" prefHeight="705.0" prefWidth="346.0" visible="false" />
+      <Pane fx:id="tablePane" layoutX="449.0" layoutY="93.0" prefHeight="639.0" prefWidth="742.0" />
+      <Pane fx:id="newBookPane" layoutX="958.0" layoutY="34.0" prefHeight="705.0" prefWidth="346.0" style="-fx-background-color: fx-primary;" stylesheets="@../../java/library/Styling/style.css">
+         <children>
+            <TextField fx:id="title" layoutX="57.0" layoutY="73.0" prefHeight="38.0" prefWidth="209.0" promptText="Title" styleClass="newBookFields">
+               <font>
+                  <Font name="Verdana" size="15.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="subject" layoutX="57.0" layoutY="173.0" prefHeight="38.0" prefWidth="209.0" promptText="Subject" styleClass="newBookFields">
+               <font>
+                  <Font name="Verdana" size="15.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="year" layoutX="57.0" layoutY="273.0" onKeyTyped="#sanitizeYear" prefHeight="38.0" prefWidth="209.0" promptText="Year" styleClass="newBookFields">
+               <font>
+                  <Font name="Verdana" size="15.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="pages" layoutX="57.0" layoutY="373.0" onKeyTyped="#sanitizePages" prefHeight="38.0" prefWidth="209.0" promptText="Pages" styleClass="newBookFields">
+               <font>
+                  <Font name="Verdana" size="15.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="rating" layoutX="57.0" layoutY="473.0" onKeyTyped="#sanitizeRating" prefHeight="38.0" prefWidth="209.0" promptText="Rating" styleClass="newBookFields">
+               <font>
+                  <Font name="Verdana" size="15.0" />
+               </font>
+            </TextField>
+            <Button layoutX="178.0" layoutY="592.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="88.0" style="-fx-border-radius: 20;" text="Cancel">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="addBookButton" layoutX="57.0" layoutY="592.0" mnemonicParsing="false" onAction="#addBook" prefHeight="25.0" prefWidth="88.0" style="-fx-border-radius: 20;" text="Add">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="yearWarning" alignment="CENTER" layoutX="57.0" layoutY="245.0" prefHeight="15.0" prefWidth="209.0" text="Please Enter A Number" textAlignment="CENTER" visible="false" />
+            <Label fx:id="pagesWarning" alignment="CENTER" layoutX="55.0" layoutY="344.0" prefHeight="15.0" prefWidth="209.0" text="Please Enter A Number" textAlignment="CENTER" visible="false" />
+            <Label fx:id="ratingWarning" alignment="CENTER" layoutX="58.0" layoutY="437.0" prefHeight="15.0" prefWidth="209.0" text="Please Enter A Number" textAlignment="CENTER" visible="false" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

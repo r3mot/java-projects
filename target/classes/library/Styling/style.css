@@ -1,0 +1,59 @@
+/* Global */
+@import url("./table.css");
+*{
+    fx-primary: rgb(127,0,52);
+    fx-secondary: rgb(228,177,8);
+    -fx-font-family: "Verdana";
+    
+}
+
+/* Panes */
+#anchor {
+    -fx-background-color: fx-secondary;
+}
+#leftPaneInitial {
+    -fx-background-color: fx-primary;
+}
+#leftPane {
+    -fx-background-color: rgb(64,64,64);
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: fx-primary;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 25px;
+    -fx-padding: 5px;
+}
+
+.button:hover {
+    -fx-background-color: fx-secondary;
+  
+}
+
+
+/* Text Field */
+#searchField {
+    -fx-effect: dropshadow(one-pass-box, rgb(214, 167, 13),  10,0.5,10,5);
+    -fx-background-color: rgba(223, 217, 217, 0.781);
+}
+
+.newBookFields {
+    -fx-font-size: 15px;
+}
+
+/* Table */
+.table {
+    -fx-effect: dropshadow(one-pass-box, rgb(214, 167, 13),  10,0.5,10,5);
+}
+
+.searchBar {
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-font-size: 15px;
+}
+

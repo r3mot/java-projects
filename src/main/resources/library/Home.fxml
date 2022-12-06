@@ -88,9 +88,9 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="yearWarning" layoutX="112.0" layoutY="245.0" text="Please Enter A Number" textFill="#f80000" visible="false" />
-            <Label fx:id="pagesWarning" layoutX="112.0" layoutY="344.0" text="Please Enter A Number" textFill="RED" visible="false" />
-            <Label fx:id="ratingWarning" layoutX="112.0" layoutY="437.0" text="Please Enter A Number" textFill="RED" visible="false" />
+            <Label fx:id="yearWarning" alignment="CENTER" layoutX="57.0" layoutY="245.0" prefHeight="15.0" prefWidth="209.0" text="Please Enter A Number" textAlignment="CENTER" visible="false" />
+            <Label fx:id="pagesWarning" alignment="CENTER" layoutX="55.0" layoutY="344.0" prefHeight="15.0" prefWidth="209.0" text="Please Enter A Number" textAlignment="CENTER" visible="false" />
+            <Label fx:id="ratingWarning" alignment="CENTER" layoutX="58.0" layoutY="437.0" prefHeight="15.0" prefWidth="209.0" text="Please Enter A Number" textAlignment="CENTER" visible="false" />
          </children>
       </Pane>
    </children>

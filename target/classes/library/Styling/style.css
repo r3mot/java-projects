@@ -23,10 +23,10 @@
     -fx-background-color: fx-primary;
     -fx-text-fill: white;
     -fx-font-size: 15px;
-    -fx-border-color: fx-secondary;
+    -fx-border-color: black;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    -fx-background-radius: 10px;
+    -fx-background-radius: 25px;
     -fx-padding: 5px;
 }
 
@@ -37,10 +37,10 @@
 
 
 /* Text Field */
-/* #searchField {
+#searchField {
     -fx-effect: dropshadow(one-pass-box, rgb(214, 167, 13),  10,0.5,10,5);
-    -fx-background-color: rgb(223, 217, 217);
-} */
+    -fx-background-color: rgba(223, 217, 217, 0.781);
+}
 
 .newBookFields {
     -fx-font-size: 15px;

@@ -1,9 +1,8 @@
-import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Scanner userIn = new Scanner(System.in);
-        String path = userIn.nextLine();
+        CLI cli = new CLI();
+        String path = cli.getPath();
 
         TreeNode root = new TreeNode(path);
         if (!root.buildTree(path)) {
@@ -13,6 +12,6 @@ public class App {
 
         root.print();
 
-        userIn.close();
+        cli.close();
     }
 }

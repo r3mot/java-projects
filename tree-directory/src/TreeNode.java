@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,23 @@ public class TreeNode {
     // Add a child node
     public boolean addChild(TreeNode child) {
         return children.add(child);
+    }
+
+    public boolean buildTree(String path) {
+        File[] files = new File(path).listFiles();
+        for (File file : files) {
+            TreeNode child = new TreeNode(file.getName());
+            if (!addChild(child)) {
+                System.err.println("Failed to add child node");
+                return false;
+            }
+
+            if (file.isDirectory()) {
+                child.buildTree(file.getPath());
+            }
+        }
+
+        return true;
     }
 
     // Print the tree structure

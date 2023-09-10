@@ -11,8 +11,8 @@ public class TreeNode {
     }
 
     // Add a child node
-    public void addChild(TreeNode child) {
-        children.add(child);
+    public boolean addChild(TreeNode child) {
+        return children.add(child);
     }
 
     // Print the tree structure

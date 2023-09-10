@@ -17,7 +17,7 @@ public class NQueen {
         Stack<Integer> queens = new Stack<>();
         int row = 0;
 
-        while (!found) {
+        while (!this.found) {
             boolean placed = false;
             for (int col = column; col < this.n; col++) {
                 if (canPlace(row, col)) {
@@ -57,7 +57,7 @@ public class NQueen {
             System.out.println("-");
 
             for (int j = 0; j < this.n; j++) {
-                String cell = (board[i][j] == 1) ? "Q" : " ";
+                String cell = (this.board[i][j] == 1) ? "Q" : " ";
                 System.out.print("| " + cell + " ");
             }
             System.out.println("|");
@@ -72,21 +72,21 @@ public class NQueen {
     private boolean canPlace(int row, int col) {
         // check column
         for (int i = 0; i < row; i++) {
-            if (board[i][col] == 1) {
+            if (this.board[i][col] == 1) {
                 return false;
             }
         }
 
         // check left diagonal
         for (int i = row, j = col; i >= 0 && j >= 0; i--, j--) {
-            if (board[i][j] == 1) {
+            if (this.board[i][j] == 1) {
                 return false;
             }
         }
 
         // check right diagonal
         for (int i = row, j = col; i >= 0 && j < this.n; i--, j++) {
-            if (board[i][j] == 1) {
+            if (this.board[i][j] == 1) {
                 return false;
             }
         }

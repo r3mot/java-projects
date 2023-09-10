@@ -42,8 +42,7 @@ public class NQueen {
 
                 // kind of backtracking
                 int prev = queens.pop();
-                row--;
-                this.board[row][prev] = 0;
+                this.board[--row][prev] = 0;
                 this.column = prev + 1;
             }
         }

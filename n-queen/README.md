@@ -1,18 +1,38 @@
-## Getting Started
+# N-Queen
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Task: Solve the N-Queens problem without using backtracking
 
-## Folder Structure
+Requirements:
+-- <b>Input</b>: an integer N (between 4 and 20), representing the size of the chessboard and the number of queens.
+-- <b>Output</b>: a representation of the chessboard with the positions of the queens.
 
-The workspace contains two folders by default, where:
+## Run From Command Line
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+Go to the project directory
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+```bash
+  cd n-queen/src
+```
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+Compile Project
 
-## Dependency Management
+```bash
+  javac App.java
+```
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Run with CMD Arguments
+
+```bash
+  java App "N"
+```
+
+Run without Arguments
+
+```bash
+  java App
+```
+
+## Author
+
+- [@Corey Mendrella](https://github.com/r3mot)
+- Dr. Bhrigu Celly (TreeNode implementation)

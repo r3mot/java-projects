@@ -12,8 +12,6 @@ public class App {
             System.out.println("Enter a path to parse: ");
             if (userIn.hasNextLine()) {
                 parseDirectory(userIn.nextLine());
-                userIn.close();
-                return;
             }
             userIn.close();
         }

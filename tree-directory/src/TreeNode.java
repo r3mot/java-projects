@@ -41,8 +41,8 @@ public class TreeNode {
      * @param path The path to build the tree from
      * @return true if the tree was built, false otherwise
      */
-    public boolean buildTree(String path) {
-        File[] files = new File(path).listFiles();
+    public boolean buildTree(File root) {
+        File[] files = root.listFiles();
         for (File file : files) {
             TreeNode child = new TreeNode(file.getName());
             if (!addChild(child)) { // want to know if adding child failed
@@ -51,7 +51,7 @@ public class TreeNode {
             }
 
             if (file.isDirectory()) {
-                child.buildTree(file.getPath());
+                child.buildTree(new File(file.getPath()));
             }
         }
 

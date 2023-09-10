@@ -52,10 +52,21 @@ public class NQueen {
     private void dump() {
         for (int i = 0; i < this.n; i++) {
             for (int j = 0; j < this.n; j++) {
-                System.out.print(this.board[i][j] + " ");
+                System.out.print("----");
             }
-            System.out.println();
+            System.out.println("-");
+
+            for (int j = 0; j < this.n; j++) {
+                String cell = (board[i][j] == 1) ? "Q" : " ";
+                System.out.print("| " + cell + " ");
+            }
+            System.out.println("|");
         }
+
+        for (int j = 0; j < this.n; j++) {
+            System.out.print("----");
+        }
+        System.out.println("-");
     }
 
     private boolean canPlace(int row, int col) {

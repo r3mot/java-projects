@@ -34,6 +34,7 @@ public class Directory {
      * 
      * @param path The path to get the directory from
      * @return File object representing the directory
+     * @see https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html
      */
     private File resolve(String path) {
         String dir = System.getProperty("user.dir"); // working directory

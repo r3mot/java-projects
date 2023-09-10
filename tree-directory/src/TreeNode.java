@@ -13,6 +13,7 @@ public class TreeNode {
 
     // Add a child node
     public boolean addChild(TreeNode child) {
+
         return children.add(child);
     }
 
@@ -39,12 +40,12 @@ public class TreeNode {
     }
 
     private void print(String prefix, boolean isTail) {
-        System.out.println(prefix + (isTail ? "??? " : "??? ") + value);
+        System.out.println(prefix + (isTail ? "\u2514\u2500\u2500 " : "\u2502\u2500\u2500 ") + value);
         for (int i = 0; i < children.size() - 1; i++) {
-            children.get(i).print(prefix + (isTail ? "    " : "?   "), false);
+            children.get(i).print(prefix + (isTail ? "    " : "\u2502   "), false);
         }
         if (children.size() > 0) {
-            children.get(children.size() - 1).print(prefix + (isTail ? "    " : "?   "), true);
+            children.get(children.size() - 1).print(prefix + (isTail ? "    " : "\u2502   "), true);
         }
     }
 }

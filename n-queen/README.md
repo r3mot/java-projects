@@ -36,4 +36,4 @@ Run without Arguments
 ## Author
 
 - [@Corey Mendrella](https://github.com/r3mot)
-- Dr. Bhrigu Celly (TreeNode implementation)
+- Dr. Bhrigu Celly (canPlace implementation)

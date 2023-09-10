@@ -2,26 +2,50 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A tree node that represents a directory
+ * 
+ * @value The name of the directory
+ * @children The children of the directory
+ * 
+ */
+
 public class TreeNode {
     private String value;
     private List<TreeNode> children;
 
+    /**
+     * Create a new tree node
+     * 
+     * @param value of the node ( directory name )
+     */
     public TreeNode(String value) {
         this.value = value;
         this.children = new ArrayList<>();
     }
 
-    // Add a child node
+    /**
+     * Add a child node to the current node
+     * 
+     * @param child The child node to add
+     * @return true if the child node was added, false otherwise
+     */
     public boolean addChild(TreeNode child) {
 
         return children.add(child);
     }
 
+    /**
+     * Build a tree structure from a given path
+     * 
+     * @param path The path to build the tree from
+     * @return true if the tree was built, false otherwise
+     */
     public boolean buildTree(String path) {
         File[] files = new File(path).listFiles();
         for (File file : files) {
             TreeNode child = new TreeNode(file.getName());
-            if (!addChild(child)) {
+            if (!addChild(child)) { // want to know if adding child failed
                 System.err.println("Failed to add child node");
                 return false;
             }
@@ -34,7 +58,9 @@ public class TreeNode {
         return true;
     }
 
-    // Print the tree structure
+    /**
+     * Print the directory tree
+     */
     public void print() {
         print("", true);
     }

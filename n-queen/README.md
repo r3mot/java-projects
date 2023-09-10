@@ -3,8 +3,9 @@
 Task: Solve the N-Queens problem without using backtracking
 
 Requirements:
--- <b>Input</b>: an integer N (between 4 and 20), representing the size of the chessboard and the number of queens.
--- <b>Output</b>: a representation of the chessboard with the positions of the queens.
+
+- <b>Input</b>: an integer N (between 4 and 20), representing the size of the chessboard and the number of queens.
+- <b>Output</b>: a representation of the chessboard with the positions of the queens.
 
 ## Run From Command Line
 

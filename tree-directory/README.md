@@ -23,7 +23,7 @@ Run with CMD Arguments
 - You can use absolute or relative path
 
 ```bash
-  java App "relative || absolute path"
+  java App "C:\\path\to\resolve"
 ```
 
 Run without Arguments

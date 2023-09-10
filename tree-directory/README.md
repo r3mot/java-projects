@@ -1,18 +1,36 @@
-## Getting Started
+# Directory Structure
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Task: Develop a program to import the directory structure of a given file system path and represent it using a tree structure.
 
-## Folder Structure
+Goal: Display this tree structure on the screen to provide a visual representation of the directory hierarchy.
 
-The workspace contains two folders by default, where:
+## Run From Command Line
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+Go to the project directory
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+```bash
+  cd tree-directory/src
+```
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+Compile Project
 
-## Dependency Management
+```bash
+  javac App.java
+```
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Run with CMD Arguments
+
+```bash
+  java App "/path"
+```
+
+Run without Arguments
+
+```bash
+  java App
+```
+
+## Author
+
+- [@Corey Mendrella](https://github.com/r3mot)
+- Dr. Bhrigu Celly (TreeNode implementation)

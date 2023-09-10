@@ -20,8 +20,10 @@ Compile Project
 
 Run with CMD Arguments
 
+- You can use absolute or relative path
+
 ```bash
-  java App "/path"
+  java App "relative || absolute path"
 ```
 
 Run without Arguments

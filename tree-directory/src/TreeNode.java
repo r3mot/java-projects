@@ -31,28 +31,26 @@ public class TreeNode {
      * @return true if the child node was added, false otherwise
      */
     public boolean addChild(TreeNode child) {
-
         return children.add(child);
     }
 
-    /**
-     * Build a tree structure from a given path
-     * 
-     * @param path The path to build the tree from
-     * @return true if the tree was built, false otherwise
-     */
     public boolean buildTree(File root) {
         File[] files = root.listFiles();
         for (File file : files) {
-            TreeNode child = new TreeNode(file.getName());
-            if (!addChild(child)) { // want to know if adding child failed
-                System.err.println("Failed to add child node");
-                return false;
+
+            if (!Filter.excluded(file)) { // if excluding, dont care about adding child
+                TreeNode child = new TreeNode(file.getName());
+
+                if (!addChild(child)) {
+                    System.err.println("Failed to add child node");
+                    return false;
+                }
+
+                if (file.isDirectory()) {
+                    child.buildTree(new File(file.getPath()));
+                }
             }
 
-            if (file.isDirectory()) {
-                child.buildTree(new File(file.getPath()));
-            }
         }
 
         return true;

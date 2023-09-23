@@ -5,7 +5,7 @@ import java.util.List;
 public class AVLTree<K, V> {
 
     private Node<K, V> mHead;
-    private boolean debug = true;
+    private boolean debug = false;
 
     public Node<K, V> getHead() {
         return mHead;
@@ -42,6 +42,13 @@ public class AVLTree<K, V> {
         dumpTree(leftToRight, mHead);
         if (debug)
             print("", mHead, false);
+    }
+
+    /**
+     * Print the tree.
+     */
+    public void printTree() {
+        print("", mHead, false);
     }
 
     /**

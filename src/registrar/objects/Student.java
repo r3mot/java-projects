@@ -14,6 +14,15 @@ public class Student {
     }
 
     /**
+     * Print all courses a student is enrolled in
+     */
+    public void printCourses() {
+        for (Course course : mCourses.values()) {
+            System.out.println(course.courseCode());
+        }
+    }
+
+    /**
      * Add a course to the students schedule.
      * 
      * @param course

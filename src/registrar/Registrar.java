@@ -43,6 +43,10 @@ public class Registrar {
         if (student.canAdd(course) && course.isOpen()) {
             student.add(course);
             course.add(student);
+
+            System.out.println("Enrolled " + studentId + " in " + courseCode);
+        } else {
+            System.err.println("Could not enroll " + studentId + " in " + courseCode);
         }
     }
 
@@ -64,6 +68,8 @@ public class Registrar {
 
         course.drop(student);
         student.drop(courseCode);
+
+        System.out.println("Removed " + studentId + " from " + courseCode);
     }
 
     /**

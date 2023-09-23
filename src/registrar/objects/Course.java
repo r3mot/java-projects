@@ -17,6 +17,15 @@ public class Course {
     }
 
     /**
+     * Print all students in a course
+     */
+    public void printRoster() {
+        for (Student student : mRoster.values()) {
+            System.out.println(student.getId());
+        }
+    }
+
+    /**
      * Get the roster of students in the course.
      * 
      * @return

@@ -22,7 +22,7 @@ public class Factory {
             } else {
                 count = i;
             }
-            Course course = new Course(count, count + 1, "CSC-" + i);
+            Course course = new Course(count, count + 1, "CSC-" + (i + 1));
             courseTree.insert(course.courseCode(), course);
         }
 

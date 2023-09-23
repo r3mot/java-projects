@@ -6,6 +6,7 @@ import registrar.tree.AVLTree;
 import registrar.utility.Factory;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -66,23 +67,53 @@ public class Registrar {
     }
 
     /**
-     * Print all the students in the system to stdout.
+     * Find a student by their student id.
      * 
-     * @complexity
+     * @param studentId of the student to find
+     * @return
      */
-    public void dumpStudents() {
-        for (Student student : mStudents.values()) {
-            System.out.println(student.getId());
+    public Student getStudentById(String studentId) {
+        return findStudent(studentId);
+    }
+
+    /**
+     * Find a course by its course code.
+     * 
+     * @param courseCode of the course to find
+     * @return
+     */
+    public Course getCourseByCode(String courseCode) {
+        return findCourse(courseCode);
+    }
+
+    /**
+     * Print all courses
+     */
+    public void printAllCourses() {
+        List<Course> courses = new LinkedList<>();
+        mCourses.dump(courses);
+
+        for (Course course : courses) {
+            System.out.println(course.courseCode());
         }
     }
 
     /**
-     * Print all the courses in the system to stdout.
+     * Prints tree view of courses
+     */
+    public void printCoursesAsTree() {
+        mCourses.printTree();
+    }
+
+    /**
+     * Print all the students in the system to stdout.
      * 
      * @complexity
      */
-    public void dumpCourses() {
-        mCourses.dump(new LinkedList<>());
+    public void printAllStudents() {
+        for (Student student : mStudents.values()) {
+            System.out.println(student.getId());
+        }
     }
 
     /**

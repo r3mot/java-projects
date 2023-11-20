@@ -8,9 +8,13 @@ public class Fibonacci {
 
     /* Used to store the cached fibonacci values */
     private Map<Integer, Integer> cache;
+    private Map<Integer, Integer> memo;
 
     public Fibonacci() {
         this.cache = new HashMap<>();
+        this.memo = new HashMap<>();
+        this.memo.put(0, 0);
+        this.memo.put(1, 1);
     }
 
     /**
@@ -33,19 +37,16 @@ public class Fibonacci {
      * @space-complexity O(1)
      */
     public int iterativeFib(int n) {
-        int f1 = 0, f2 = 1;
-
-        boolean swap = false;
-        for (int i = 0; i < n; i++) {
-            if (swap) {
-                f1 += f2;
-            } else {
-                f2 += f1;
-            }
-            swap = !swap;
+        if (n < 2) {
+            return n;
         }
 
-        return swap ? f2 : f1;
+        for (int i = 2; i <= n; i++) {
+            int result = memo.get(i - 1) + memo.get(i - 2);
+            memo.put(i, result);
+        }
+
+        return memo.get(n);
     }
 
     /**
@@ -70,16 +71,24 @@ public class Fibonacci {
     }
 
     /**
-     * Alternative optimized Fibonacci using dynamic programming
-     * Uses Java's computeIfAbsent method.
-     * It is still O(1) for lookups and O(n) for the first time.
+     * Optimized Fibonacci using dynamic programming
      * 
-     * @param n
-     * @return
+     * @time-complexity O(n)
+     * @space-complexity O(n)
      */
-    private int alternative(int n) {
-        if (n < 2)
-            return 1;
-        return cache.computeIfAbsent(n, key -> alternative(key - 1) + alternative(key - 2));
+    public int alternative(int n) {
+        if (n < 2) {
+            return n;
+        }
+
+        if (cache.containsKey(n)) {
+            return cache.get(n);
+        }
+
+        int result = alternative(n - 1) + alternative(n - 2);
+        cache.put(n, result);
+
+        return result;
     }
+
 }

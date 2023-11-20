@@ -2,7 +2,7 @@
 /**
  * Title: Space Time Trade-off
  * Course: CSC 401
- * Authors: Corey Mendrella, Matthew Wimer, Deepak Anantha
+ * Authors: Corey Mendrella, Matthew Wimer
  * Date: 11/19/2023
  * 
  * Purpose: Compare and analyze the time and space complexity
@@ -16,7 +16,9 @@ public class App {
         // int iterative = fib.iterativeFib(10);
         // int dynamic = fib.optimizedFib(10);
 
-        // Tests
-        Test.rescursion(10);
+        // Test.rescursion(i, 10);
+        // for (int i = 1; i < 20; i++) {
+        // Test.dynamic(i, 10);
+        // }
     }
 }

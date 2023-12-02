@@ -1,0 +1,11 @@
+# development
+settings.json
+
+.classpath
+.project
+.settings/
+target/
+.vscode/
+
+# local env
+config.*

@@ -23,4 +23,15 @@ public final class Constants {
     public static final String[] defaultColumns = productCols;
     public static final Object[][] emptyTable = new Object[0][productCols.length];
   }
+
+  public static String[] getColumns(int index) {
+    switch (index) {
+      case 0:
+        return Table.productCols;
+      case 1:
+        return Table.productCols;
+      default:
+        return Table.defaultColumns;
+    }
+  }
 }

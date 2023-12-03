@@ -11,10 +11,6 @@ import views.MainView;
  * A pseudo-service layer to handle database interactions for the inventory
  * Here we will define the methods for the queries we need to implement
  *
- * This isn't the best architecture, but it will work for this simple demo.
- * In a real application, we would want to abstract away the database logic
- *
- *
  * @see model.Warehouse
  * @see model.Product
  * @see model.ProductType
@@ -36,6 +32,7 @@ public class Controller {
     attachDropdownListener();
   }
 
+  // render the main view
   public void renderView() {
     EventQueue.invokeLater(
       new Runnable() {
@@ -63,8 +60,8 @@ public class Controller {
           public void itemStateChanged(ItemEvent evt) {
             if (evt.getStateChange() == ItemEvent.SELECTED) {
               int selectedIndex = mainView.form().dropdown().getSelectedIndex();
-              String[] columns = Constants.getColumns(selectedIndex);
-              mainView.table().setColumns(columns);
+              String[] tableColumns = Constants.getColumns(selectedIndex);
+              mainView.table().setColumns(tableColumns);
             }
           }
         }
@@ -88,6 +85,8 @@ public class Controller {
 
   /**
    * Queries the database based on the dropdown index
+   * The table expects a 2D array of Objects, so we will return that
+   *
    * @param index
    * @return Object[][] data
    */

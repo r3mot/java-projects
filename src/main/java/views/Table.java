@@ -8,10 +8,13 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * Table view for the application to display the query results
+ */
 public class Table extends JPanel {
 
   private JScrollPane scrollPane;
-  private JTable table;
+  private JTable table; // display the query results
 
   public Table() {
     scrollPane = new JScrollPane();
@@ -47,6 +50,11 @@ public class Table extends JPanel {
     setSize(new Dimension(1000, 600));
   }
 
+  /**
+   * Set the table data from outside the class
+   * @param data - the data to display in the table (2D array of Objects)
+   * @param columnNames - the column names for the table (array of Strings)
+   */
   public void setTable(Object[][] data, String[] columnNames) {
     SwingUtilities.invokeLater(() -> {
       DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -55,6 +63,10 @@ public class Table extends JPanel {
     });
   }
 
+  /**
+   * Set the table columns from outside the class
+   * @param columns - the columns to display in the table (array of Strings)
+   */
   public void setColumns(String[] columns) {
     SwingUtilities.invokeLater(() -> {
       DefaultTableModel model = (DefaultTableModel) table.getModel();

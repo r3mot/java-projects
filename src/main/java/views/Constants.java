@@ -24,6 +24,11 @@ public final class Constants {
     public static final Object[][] emptyTable = new Object[0][productCols.length];
   }
 
+  /**
+   * Get the columns for the table based on the index
+   * @param index - the index of the dropdown
+   * @return String[] - the columns for the table
+   */
   public static String[] getColumns(int index) {
     switch (index) {
       case 0:

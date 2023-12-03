@@ -21,7 +21,7 @@ public class MainView extends JFrame {
     setDefaultLookAndFeelDecorated(true);
     setSize(new Dimension(1000, 600));
     setLayout(new BorderLayout());
-    setLocationRelativeTo(null);
+    setLocationRelativeTo(null); // center the window
     createForm(Constants.dropdownOptions); // default options
     createTable();
   }

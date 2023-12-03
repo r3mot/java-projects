@@ -38,6 +38,10 @@ public class ConnectionManager {
     }
   }
 
+  /**
+   * Connect to the database
+   * @return Connection
+   */
   public Connection connect() {
     try {
       Class.forName(JDBC_DRIVER);
@@ -54,6 +58,11 @@ public class ConnectionManager {
     return connection;
   }
 
+  /**
+   * Close the database connection
+   *
+   * Make sure to close the connection after every query
+   */
   public void close() {
     try {
       connection.close();

@@ -15,16 +15,17 @@ public class DataService {
   }
 
   /**
-   * Get all products from the database
-   * Returns a 2D array of the products to be displayed in the table
-   * @param typeName
-   * @return
+   * Get all products from the database as a List<Product>
+   * Stream the list and map each product to an Object[]
+   *
+   * @param typeName - the name of the product type
+   * @return Object[][] - a 2D array of products
    */
   public Object[][] getProductsByType(String typeName) {
     List<Product> products = dataAccess.getProductsByType(typeName);
 
     return products == null
-      ? Constants.Table.emptyTable
+      ? Constants.Table.emptyTable // see views.Constants
       : products
         .stream()
         .map(product ->
@@ -40,11 +41,17 @@ public class DataService {
         .toArray(Object[][]::new);
   }
 
+  /**
+   * Get a single product by its ID
+   *
+   * @param productId - the ID of the product
+   * @return Object[][] - a 2D array of product
+   */
   public Object[][] getProductById(int productId) {
     Product product = dataAccess.getProductById(productId);
 
     return product == null
-      ? Constants.Table.emptyTable
+      ? Constants.Table.emptyTable // see views.Constants
       : new Object[][] {
         {
           product.productId(),

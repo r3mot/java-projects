@@ -10,11 +10,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Form to display the query options and query parameters
+ */
 public class Form extends JPanel {
 
-  private JComboBox<String> dropdown;
-  private JTextField textField;
-  private JButton button;
+  private JComboBox<String> dropdown; // Query options
+  private JTextField textField; // Query parameters
+  private JButton button; // Submit query
 
   public Form(String[] options) {
     this.dropdown = new JComboBox<String>(options);

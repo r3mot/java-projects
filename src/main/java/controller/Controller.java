@@ -8,8 +8,7 @@ import views.Constants;
 import views.MainView;
 
 /**
- * A pseudo-service layer to handle database interactions for the inventory
- * Here we will define the methods for the queries we need to implement
+ * The main controller for the application
  *
  * @see model.Warehouse
  * @see model.Product

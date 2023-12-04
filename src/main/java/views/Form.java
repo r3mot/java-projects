@@ -25,7 +25,9 @@ public class Form extends JPanel {
     this.button = new JButton("Submit");
 
     setLayout(new GridLayout(1, 1));
-    textField.setPreferredSize(new Dimension(300, 30));
+    textField.setPreferredSize(new Dimension(300, 40));
+    button.setPreferredSize(new Dimension(100, 40));
+    dropdown.setPreferredSize(new Dimension(300, 40));
     setDropdown();
     setFormField();
   }

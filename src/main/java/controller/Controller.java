@@ -79,9 +79,7 @@ public class Controller {
       .form()
       .button()
       .addActionListener(e -> {
-        int index = mainView.form().dropdown().getSelectedIndex(); // get dropdown index
-        Object[][] data = query(index); // query the database
-        mainView.table().setTable(data, Constants.getColumns(index)); // update the table
+        performQuery();
       });
   }
 
@@ -96,13 +94,17 @@ public class Controller {
         new KeyAdapter() {
           public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-              int index = mainView.form().dropdown().getSelectedIndex(); // get dropdown index
-              Object[][] data = query(index); // query the database
-              mainView.table().setTable(data, Constants.getColumns(index)); // update the table
+              performQuery();
             }
           }
         }
       );
+  }
+
+  private void performQuery() {
+    int index = mainView.form().dropdown().getSelectedIndex(); // get dropdown index
+    Object[][] data = query(index); // query the database
+    mainView.table().setTable(data, Constants.getColumns(index)); // update the table
   }
 
   /**

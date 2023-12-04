@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import models.Product;
+import models.Warehouse;
 
 public class DataAccess {
 
@@ -12,6 +13,45 @@ public class DataAccess {
 
   public DataAccess() {
     connection = new ConnectionManager();
+  }
+
+  /**
+   * List the names and addresses of all warehouses with a specified area code
+   * @param areaCode
+   * @return
+   */
+  public List<Warehouse> getWarehouseByAreaCode(int areaCode) {
+    PreparedStatement ps;
+    ResultSet rs;
+
+    final String query =
+      "SELECT WarehouseName, WarehouseAddress, WarehousePhone FROM Warehouse WHERE WarehousePhone LIKE ?";
+
+    List<Warehouse> warehouses = new ArrayList<>();
+
+    try {
+      ps = connection.connect().prepareStatement(query);
+      ps.setString(1, areaCode + "%"); // set the first parameter to the areaCode
+      rs = ps.executeQuery();
+
+      while (rs.next()) {
+        Warehouse warehouse = new Warehouse(
+          rs.getString("WarehouseName"),
+          rs.getString("WarehouseAddress"),
+          rs.getString("WarehousePhone")
+        );
+        warehouses.add(warehouse);
+      }
+
+      ps.close();
+      rs.close();
+      return warehouses;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ArrayList<>();
+    } finally {
+      connection.close();
+    }
   }
 
   /**

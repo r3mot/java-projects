@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Product;
 import models.Supplier;
+import models.Warehouse;
 import views.Constants;
 
 public class DataService {
@@ -12,6 +13,28 @@ public class DataService {
 
   public DataService() {
     dataAccess = new DataAccess();
+  }
+
+  /**
+   * List the names, addresses, and phone number of all warehouses with a specified area code
+   * @param areaCode - the area code to search for
+   * @return
+   */
+  public Object[][] getWarehouseByAreaCode(int areaCode) {
+    List<Warehouse> warehouses = dataAccess.getWarehouseByAreaCode(areaCode);
+
+    return warehouses == null
+      ? Constants.Table.emptyTable // see views.Constants
+      : warehouses
+        .stream()
+        .map(warehouse ->
+          new Object[] {
+            warehouse.warehouseName(),
+            warehouse.warehouseAddress(),
+            warehouse.warehousePhone(),
+          }
+        )
+        .toArray(Object[][]::new);
   }
 
   /**

@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import views.Constants;
+import views.Constants.Table;
 import views.MainView;
 
 /**
@@ -91,11 +92,14 @@ public class Controller {
    */
   private Object[][] query(int index) {
     String params = mainView.form().textField().getText();
-    switch (index) {
-      case 0:
+    Constants.Options option = Constants.Options.values()[index];
+    switch (option) {
+      case GET_PRODUCT_BY_ID:
         return service.getProductById(Integer.parseInt(params));
-      case 1:
+      case GET_PRODUCTS_BY_PRODUCT_TYPE:
         return service.getProductsByType(mainView.form().textField().getText());
+      case GET_WAREHOUSE_BY_AREA_CODE:
+        return service.getWarehouseByAreaCode(Integer.parseInt(params));
       default:
         return new Object[][] {};
     }

@@ -70,7 +70,7 @@ public class Form extends JPanel {
    */
   private void setFormField() {
     JPanel formPanel = new JPanel();
-    JLabel formLabel = new JLabel("Enter a value");
+    JLabel formLabel = new JLabel("Query Parameters");
     formPanel.setLayout(new GridBagLayout());
     GridBagConstraints c = new GridBagConstraints();
     c.fill = GridBagConstraints.HORIZONTAL;

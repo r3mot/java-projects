@@ -1,7 +1,5 @@
 package views;
 
-import org.w3c.dom.css.RGBColor;
-
 /**
  * This is kind of scuffed but it works for now
  */

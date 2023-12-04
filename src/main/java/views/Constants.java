@@ -30,19 +30,15 @@ public final class Constants {
   public static final class Table {
 
     public static final String[] productCols = {
-      "ProductId",
-      "ProductName",
-      "ProductQuantity",
-      "ProductPrice",
-      "ProductDescription",
-      "TypeId",
+      "ID",
+      "Name",
+      "Quantity",
+      "Price",
+      "Description",
+      "Type ID",
     };
 
-    public static final String[] warehouseCols = {
-      "WarehouseName",
-      "WarehouseAddress",
-      "WarehousePhone",
-    };
+    public static final String[] warehouseCols = { "Name", "Address", "Phone" };
     public static final String[] defaultColumns = productCols;
     public static final Object[][] emptyTable = new Object[0][productCols.length];
   }

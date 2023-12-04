@@ -1,5 +1,6 @@
 package views;
 
+import com.formdev.flatlaf.ui.FlatUIUtils;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JLabel;
@@ -7,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,10 +27,15 @@ public class Table extends JPanel {
 
     table.getTableHeader().setOpaque(false);
     table.setRowHeight(25);
+
     // justify column headers
     (
       (DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()
-    ).setHorizontalAlignment(JLabel.LEFT);
+    ).setHorizontalAlignment(JLabel.CENTER);
+    // Center align cell data
+    DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+    centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+    table.setDefaultRenderer(Object.class, centerRenderer);
   }
 
   /**
@@ -47,6 +54,9 @@ public class Table extends JPanel {
     table.setShowHorizontalLines(true);
     table.getTableHeader().setReorderingAllowed(false);
     table.setPreferredScrollableViewportSize(table.getPreferredSize());
+    table
+      .getTableHeader()
+      .setFont(FlatUIUtils.nonUIResource(UIManager.getFont("semibold.font")));
     scrollPane.setViewportView(table);
     scrollPane.setHorizontalScrollBarPolicy(
       JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED

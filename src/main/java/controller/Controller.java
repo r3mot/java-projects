@@ -61,7 +61,7 @@ public class Controller {
             if (evt.getStateChange() == ItemEvent.SELECTED) {
               int selectedIndex = mainView.form().dropdown().getSelectedIndex();
               String[] tableColumns = Constants.getColumns(selectedIndex);
-              mainView.table().setColumns(tableColumns);
+              mainView.table().setTable(new Object[][] {}, tableColumns);
             }
           }
         }
@@ -79,7 +79,7 @@ public class Controller {
       .addActionListener(e -> {
         int index = mainView.form().dropdown().getSelectedIndex(); // get dropdown index
         Object[][] data = query(index); // query the database
-        mainView.table().setTable(data, Constants.Table.productCols); // update the table
+        mainView.table().setTable(data, Constants.getColumns(index)); // update the table
       });
   }
 

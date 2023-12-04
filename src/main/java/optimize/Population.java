@@ -3,6 +3,7 @@ package optimize;
 public class Population {
 
   private Individual[] individuals;
+  private double populationFitness = -1;
 
   public Population(int populationSize, int geneLength) {
     individuals = new Individual[populationSize];
@@ -10,6 +11,10 @@ public class Population {
     for (int i = 0; i < populationSize; i++) {
       individuals[i] = new Individual(geneLength);
     }
+  }
+
+  public double populationFitness() {
+    return populationFitness;
   }
 
   public Individual fittest() {
@@ -25,5 +30,15 @@ public class Population {
 
   public Individual[] individuals() {
     return individuals;
+  }
+
+  public void updatePopulationFitness() {
+    double total = 0;
+
+    for (Individual individual : individuals) {
+      total += individual.fitness();
+    }
+
+    populationFitness = total / individuals.length;
   }
 }

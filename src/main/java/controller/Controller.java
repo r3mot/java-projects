@@ -4,6 +4,8 @@ import database.DataService;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import views.Constants;
 import views.MainView;
 
@@ -29,6 +31,7 @@ public class Controller {
 
     attachButtonListener();
     attachDropdownListener();
+    addKeyListener();
   }
 
   // render the main view
@@ -80,6 +83,26 @@ public class Controller {
         Object[][] data = query(index); // query the database
         mainView.table().setTable(data, Constants.getColumns(index)); // update the table
       });
+  }
+
+  /**
+   * If the user presses enter, perform the query
+   */
+  private void addKeyListener() {
+    mainView
+      .form()
+      .textField()
+      .addKeyListener(
+        new KeyAdapter() {
+          public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+              int index = mainView.form().dropdown().getSelectedIndex(); // get dropdown index
+              Object[][] data = query(index); // query the database
+              mainView.table().setTable(data, Constants.getColumns(index)); // update the table
+            }
+          }
+        }
+      );
   }
 
   /**

@@ -1,0 +1,17 @@
+
+#mainAnchor {
+    -fx-background-color: rgb(171,176,178);
+}
+
+.combo-box-popup .list-view {
+    -fx-font-size: 15pt;
+}
+
+.combo-box {
+    -fx-font-size: 15pt;
+    -fx-alignment: center;
+}
+
+#gameAnchor {
+    -fx-background-color: rgb(171,176,178);
+}

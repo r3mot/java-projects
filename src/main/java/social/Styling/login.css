@@ -1,0 +1,13 @@
+#loginField:error {
+    -fx-text-box-border: red;
+    -fx-focus-color:red;
+}
+
+#loginBorder {
+    -fx-border-width: 2;
+    -fx-border-color: black;
+}
+
+#loginLabels {
+    -fx-font-size: 20;
+}

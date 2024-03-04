@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Home.FriendController">
+   <children>
+      <Circle fx:id="icon" fill="DODGERBLUE" layoutX="120.0" layoutY="88.0" radius="58.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="name" alignment="CENTER" layoutX="226.0" layoutY="51.0" prefHeight="74.0" prefWidth="279.0">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Line endX="-100.0" endY="321.0" layoutX="465.0" layoutY="186.0" startX="-100.0" />
+      <Label layoutX="129.0" layoutY="201.0" prefHeight="17.0" prefWidth="207.0" text="Major">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="129.0" layoutY="258.0" prefHeight="17.0" prefWidth="207.0" text="Standing">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="129.0" layoutY="315.0" prefHeight="17.0" prefWidth="207.0" text="Graduation Year">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="129.0" layoutY="372.0" prefHeight="17.0" prefWidth="207.0" text="Dream Job">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="major" alignment="TOP_LEFT" layoutX="399.0" layoutY="201.0" prefHeight="17.0" prefWidth="207.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="standing" alignment="TOP_LEFT" layoutX="399.0" layoutY="258.0" prefHeight="17.0" prefWidth="207.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="year" alignment="TOP_LEFT" layoutX="399.0" layoutY="315.0" prefHeight="17.0" prefWidth="207.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="job" alignment="TOP_LEFT" layoutX="399.0" layoutY="372.0" prefHeight="17.0" prefWidth="207.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="129.0" layoutY="429.0" prefHeight="17.0" prefWidth="207.0" text="Clubs">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="clubs" alignment="TOP_LEFT" layoutX="399.0" layoutY="429.0" prefHeight="88.0" prefWidth="315.0" wrapText="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

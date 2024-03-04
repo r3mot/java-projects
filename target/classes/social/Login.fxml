@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #424d57;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Login.LoginController">
+   <children>
+      <Pane fx:id="formsPane" layoutX="50.0" layoutY="75.0" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: white;">
+         <children>
+            <Pane fx:id="loginPane" layoutX="450.0" prefHeight="650.0" prefWidth="450.0" style="-fx-background-color: rgb(223, 217, 217);" />
+            <Pane fx:id="createUserPane" prefHeight="650.0" prefWidth="450.0" style="-fx-background-color: rgb(223, 217, 217);" />
+            <Pane fx:id="transitionPane" prefHeight="650.0" prefWidth="450.0" style="-fx-background-color: #424d57;">
+               <children>
+                  <Button id="transitionButton" fx:id="goToLogin" layoutX="121.0" layoutY="485.0" mnemonicParsing="false" onAction="#slideLeft" prefHeight="40.0" prefWidth="209.0" styleClass="signUp" text="LOG IN">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button id="transitionButton" fx:id="goToCreateUser" layoutX="121.0" layoutY="485.0" mnemonicParsing="false" onAction="#slideRight" prefHeight="40.0" prefWidth="209.0" styleClass="signIn" text="SIGN UP">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label fx:id="label" alignment="CENTER" layoutX="20.0" layoutY="93.0" prefHeight="71.0" prefWidth="411.0" textFill="WHITE">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="icon" fitHeight="152.0" fitWidth="171.0" layoutX="149.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button id="transitionButton" fx:id="club" layoutX="120.0" layoutY="541.0" mnemonicParsing="false" onAction="#createClub" prefHeight="40.0" prefWidth="209.0" styleClass="signUp" text="CREATE CLUB">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button id="transitionButton" fx:id="user" layoutX="120.0" layoutY="541.0" mnemonicParsing="false" onAction="#createUser" prefHeight="40.0" prefWidth="209.0" styleClass="signUp" text="CREATE USER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button id="transitionButton" fx:id="clubLogin" layoutX="120.0" layoutY="541.0" mnemonicParsing="false" onAction="#clubLogin" prefHeight="40.0" prefWidth="209.0" styleClass="signIn" text="CLUB LOGIN">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button id="transitionButton" fx:id="studentLogin" layoutX="120.0" layoutY="541.0" mnemonicParsing="false" onAction="#studentLogin" prefHeight="40.0" prefWidth="209.0" styleClass="signIn" text="STUDENT LOGIN">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

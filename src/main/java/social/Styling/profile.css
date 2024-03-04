@@ -1,0 +1,109 @@
+
+*{
+    fx-primary:  #424d57;
+    fx-secondary:  #bebebe;
+}
+
+.friendImage:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-stroke: aqua;
+    -fx-stroke-width: 1;
+    -fx-effect: dropshadow(one-pass-box, #687988,  1,2,1.5,2.5);
+}
+
+.friendImage {
+    -fx-stroke-width: 1;
+    -fx-stroke: white;
+}
+
+.friendImage:hover {
+    -fx-cursor: hand;
+}
+
+#profileAnchor {
+
+    /* -fx-border-color: transparent transparent transparent aqua; */
+    -fx-border-size: 10;
+}
+
+#friendPane {
+    -fx-background-color: fx-primary;
+}
+
+#textfill {
+    -fx-background-color: fx-primary;
+    -fx-text-fill: rgb(170, 166, 166);
+}
+
+.tab {
+    -fx-pref-width: 250; 
+    /* -fx-background-insets: 0, 0 5 0 0, 1 6 0 0 ; */
+    -fx-padding: 10 50 4 0 ; 
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-width: 0 0 5 0 ;
+    -fx-border-color: transparent transparent transparent transparent;
+    -fx-border-insets: -4 -4 -10 -5, -2 -2 -5 -3;
+
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-alignment: CENTER;
+     -fx-pref-width: 400.0;
+     -fx-font-size: 18;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-font-weight: bold;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label {
+   -fx-text-fill: rgb(223,79,79);
+}
+
+.tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab-pane {
+    -fx-padding: 30 -1 -1 50;
+}
+
+#postTab {
+    -fx-background-color: transparent;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+#aboutTab {
+    -fx-background-color: transparent;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+#friendsTab {
+    -fx-background-color: transparent;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+#upperButton {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    
+}
+
+#upperButton:hover { 
+    -fx-background-color: black;
+
+}
+
+#upperButton2 {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-background-color: transparent;
+    
+}

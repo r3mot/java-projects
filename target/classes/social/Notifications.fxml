@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="780.0" style="-fx-background-color: #424d57;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="social.Controllers.Home.NotificationController">
+   <children>
+      <ScrollPane layoutY="151.0" prefHeight="649.0" prefWidth="780.0">
+        <content>
+          <AnchorPane fx:id="notificationPane" minHeight="0.0" minWidth="0.0" prefHeight="1998.0" prefWidth="764.0" />
+        </content>
+      </ScrollPane>
+      <Label alignment="CENTER" layoutX="153.0" layoutY="24.0" prefHeight="87.0" prefWidth="474.0" text="Notifications" textFill="WHITE">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button id="upperButton" fx:id="refresh" layoutX="627.0" layoutY="54.0" mnemonicParsing="false" onAction="#refreshNotifications" prefHeight="25.0" prefWidth="124.0" styleClass="upperButton" text="Refresh">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+   </children>
+</AnchorPane>

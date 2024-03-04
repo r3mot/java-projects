@@ -1,0 +1,63 @@
+*{
+    fx-primary:  #424d57;
+    fx-secondary:  #bebebe;
+}
+
+#sidePanes {
+    -fx-background-color: fx-primary;
+    /* -fx-border-color: transparent white transparent transparent; */
+}
+
+#upperPane {
+    -fx-background-color: #4b5763;
+}
+
+.nav {
+    -fx-background-color: fx-primary;
+    -fx-text-fill:white;
+    -fx-display: inline-block;
+    /* -fx-graphic: url("http://icons.iconarchive.com/icons/martz90/circle-addon1/16/text-plus-icon.png"); */
+    -fx-padding: 20 0 0 30;
+}
+
+.nav:hover {
+    -fx-text-fill: rgb(139, 211, 211);
+}
+
+.nav:focused {
+    -fx-border-color: transparent transparent transparent rgb(139, 211, 211) ;
+    -fx-border-width: 5;
+} 
+
+#profile{ 
+    -fx-graphic: url("https://icons.iconarchive.com/icons/icons8/windows-8/24/Users-Name-icon.png");
+}
+
+#feed {
+    -fx-graphic: url("https://icons.iconarchive.com/icons/icons8/windows-8/24/Messaging-Activity-Feed-icon.png");
+}
+
+#clubs {
+    -fx-graphic: url("https://icons.iconarchive.com/icons/roundicons/100-free-solid/24/communication-icon.png");
+}
+
+#friends{
+    -fx-graphic: url("https://icons.iconarchive.com/icons/icons8/windows-8/24/Users-Conference-icon.png");
+
+} 
+
+#explore{
+    -fx-graphic: url("https://icons.iconarchive.com/icons/icons8/windows-8/24/Users-Find-User-icon.png");
+}
+
+#notifications {
+    -fx-graphic: url("https://icons.iconarchive.com/icons/icons8/windows-8/24/Messaging-New-Post-icon.png");
+}
+
+
+#clubScroll {
+    -fx-border: 4;
+    -fx-border-color: fx-primary;
+}
+
+
